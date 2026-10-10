@@ -1,0 +1,47 @@
+---
+import { SITE } from '../data/site';
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <h2>{SITE.brand}</h2>
+      <p>
+        {SITE.tagline} — l'unica palestra in Italia che è anche galleria d'arte.
+        Allenamenti personalizzati, preparazione atletica, posturologia,
+        chinesiologia e massoterapia a {SITE.city}.
+      </p>
+    </div>
+
+    <div>
+      <h2>Contatti</h2>
+      <ul>
+        {SITE.phones.map((phone) => (
+          <li><a href={phone.href}>{phone.label}</a></li>
+        ))}
+        <!-- PLACEHOLDER EMAIL (docs/DECISIONS.md §1): sostituire con l'email ufficiale -->
+        <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+        <li>{SITE.hours.weekday}</li>
+        <li>{SITE.hours.weekend}</li>
+      </ul>
+    </div>
+
+    <div>
+      <h2>Social</h2>
+      <ul>
+        {SITE.socials.map((social) => (
+          <li>
+            <a href={social.href} rel="me noopener" target="_blank">
+              {social.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <span>© 2026 {SITE.name} — {SITE.address}</span>
+    <span>Prototipo in costruzione (Session 2)</span>
+  </div>
+</footer>
