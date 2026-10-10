@@ -24,6 +24,10 @@ Session 1 ✅ CLOSED — all decisions made (2026-10-10).
 - **Language** → Italian only (default).
 - **Logo** → no official file; use the Instagram profile picture (black bg, white mark) — downloaded at the highest available resolution (150×150) to `public/images/`; replace with the official logo when available.
 - **Email** → placeholder `info@fitartfitness.it`; swap when the official email is known.
+- **Facebook URL** → STIMATO dall'handle IG (`facebook.com/fitartstudiofitness`) — the exact URL wasn't in the content inventory; marked `pending` in `src/data/site.ts`. Confirm before deploy (Session 7).
+- **Navigazione** → struttura piatta con le 7 pagine live del vecchio sito (Home, Chi siamo, Valutazione Posturale, Cos'è il Taping, Foto, Safeguarding, Contatti); "Accedi" eliminata (Session 1). Nessun dropdown; menu a hamburger sotto 48rem.
+- **Favicon** → temporaneo = logo IG (`/images/logo-s150x150.jpg`); favicon definitivo nella Session 6.
+- **Stack** → Astro 7.3.8 (static output), zero dipendenze runtime extra; CSS hand-written con token, no framework.
 
 ## Hosting — DECIDED
 
