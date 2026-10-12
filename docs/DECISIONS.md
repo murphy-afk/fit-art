@@ -1,6 +1,6 @@
 # Decisions — Fit'Art redesign
 
-Session 1 ✅ CLOSED — all decisions made (2026-10-10).
+Session 1 CLOSED — all decisions made (2026-10-10).
 
 ## Decided
 
@@ -19,7 +19,7 @@ Session 1 ✅ CLOSED — all decisions made (2026-10-10).
 
 ## Open / defaults (can be adjusted any time)
 
-- **Testimonial** ("Anna ha perso 40 chili…") → ✅ client confirmed OK to publish.
+- **Testimonial** ("Anna ha perso 40 chili…") → client confirmed OK to publish.
 - **Safeguarding documents** ("Modello Organizzativo e Codice di Condotta") → placeholders for now; ask the gym for the files later.
 - **Language** → Italian only (default).
 - **Logo** → no official file; use the Instagram profile picture (black bg, white mark) — downloaded at the highest available resolution (150×150) to `public/images/`; replace with the official logo when available.
@@ -32,3 +32,20 @@ Session 1 ✅ CLOSED — all decisions made (2026-10-10).
 ## Hosting — DECIDED
 
 → **GitHub Pages** (client already has a GitHub account; it's a prototype). Other free alternatives acceptable if needed.
+
+## Session 3 — client feedback (2026-10-10)
+
+1. **Navbar vs content contrast** → navbar must be visibly lighter than the main content area. Navbar bg = `--color-surface` `#1E1E1E` (94% + blur), content stays `--color-bg` `#0A0A0A`.
+2. **Accent color** → NOT orange/bronze. Changed to **light grayish green**: accent `#A3BFAE`, hover `#BCD3C4`, tint `#E9F0EA` (replaces bronze `#966B50`/`#B08262` and beige `#F2E7D4`). CTA text switched to dark (`--color-bg`) for contrast. Supersedes the bronze derived from Instagram in `docs/BRAND.md`.
+3. **Navbar crowding** → full horizontal nav only at `>= 64rem`; hamburger ("Menu" text button) below. Shortened nav labels: "Valutazione Posturale" → "Valutazione", "Cos'è il Taping" → "Taping" (full titles remain in the page `<title>`/H1). Brand tagline hidden on desktop. Tighter nav spacing.
+4. **Code style (added to AGENTS.md)** → no line containing only `>` or `/>`; close tags on the previous line.
+5. **No emojis anywhere** (source, docs, UI). If an icon is needed, use an icon from a library — **library to be chosen together with the client** (open item below). No glyph substitutes (e.g. no hamburger-trigram characters); text labels or library icons only.
+
+## Open — icon library (to choose together, Session 3+)
+
+Candidates to review with the client (icons needed later: phone, socials, map pin, menu, etc.):
+- **Lucide** (successor of Feather) — minimal, consistent, MIT.
+- **Phosphor** — flexible weights, broader set.
+- **Heroicons** — Tailwind-team, simple set.
+
+No icon library is installed yet; the mobile menu uses a text "Menu" button for now.

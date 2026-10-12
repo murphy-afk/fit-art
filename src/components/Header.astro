@@ -27,16 +27,14 @@ const { current } = Astro.props;
         type="button"
         aria-expanded="false"
         aria-controls="nav-menu"
-        aria-label="Apri menu">☰</button
-      >
+        aria-label="Apri menu">Menu</button>
       <ul id="nav-menu" class="nav-menu">
         {
           NAV.map((item) => (
             <li>
               <a
                 href={item.href}
-                aria-current={current === item.slug ? 'page' : undefined}
-              >
+                aria-current={current === item.slug ? 'page' : undefined}>
                 {item.label}
               </a>
             </li>
@@ -46,7 +44,7 @@ const { current } = Astro.props;
     </nav>
 
     <a class="header-cta" href={SITE.phones[0].href}>
-      Chiama: {SITE.phones[0].label}
+      Chiama {SITE.phones[0].label}
     </a>
   </div>
 </header>
@@ -54,8 +52,37 @@ const { current } = Astro.props;
 <script is:inline>
   const btn = document.getElementById('nav-toggle');
   const menu = document.getElementById('nav-menu');
+
+  const setOpen = (open) => {
+    if (!btn || !menu) return;
+    menu.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Chiudi menu' : 'Apri menu');
+  };
+
   btn?.addEventListener('click', () => {
-    const open = menu?.classList.toggle('open');
-    btn?.setAttribute('aria-expanded', String(open));
+    setOpen(!menu?.classList.contains('open'));
+  });
+
+  // Chiude il menu quando si preme Esc (tastiera)
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menu?.classList.contains('open')) {
+      setOpen(false);
+      btn?.focus();
+    }
+  });
+
+  // Chiude il menu quando si clicca fuori
+  document.addEventListener('click', (event) => {
+    if (!menu?.classList.contains('open')) return;
+    const target = event.target;
+    if (!(target instanceof Node)) return;
+    if (!menu.contains(target) && !btn?.contains(target)) setOpen(false);
+  });
+
+  // Un click su un link richiude il menu prima della navigazione
+  menu?.addEventListener('click', (event) => {
+    const target = event.target;
+    if (target instanceof Element && target.closest('a')) setOpen(false);
   });
 </script>

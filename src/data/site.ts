@@ -32,8 +32,10 @@ export const SITE = {
 export const NAV = [
   { label: 'Home', href: '/', slug: 'home' },
   { label: 'Chi siamo', href: '/chi-siamo', slug: 'chi-siamo' },
-  { label: 'Valutazione Posturale', href: '/valutazione-posturale', slug: 'valutazione-posturale' },
-  { label: "Cos'è il Taping", href: '/cos-e-il-taping', slug: 'cos-e-il-taping' },
+  // Etichette accorciate in Session 3 (navbar meno affollata): i titoli completi
+  // restano nei titoli/H1 delle pagine — docs/DECISIONS.md §Session 3.
+  { label: 'Valutazione', href: '/valutazione-posturale', slug: 'valutazione-posturale' },
+  { label: 'Taping', href: '/cos-e-il-taping', slug: 'cos-e-il-taping' },
   { label: 'Foto', href: '/foto', slug: 'foto' },
   { label: 'Safeguarding', href: '/safeguarding', slug: 'safeguarding' },
   { label: 'Contatti', href: '/contatti', slug: 'contatti' },
