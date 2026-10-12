@@ -1,17 +1,18 @@
 /* ==========================================================================
-   Design tokens — docs/BRAND.md (palette derivata da Instagram @fitartstudiofitness)
-   Dark premium: near-black, off-white, bronzo caldo.
+   Design tokens — docs/BRAND.md (palette originale da Instagram @fitartstudiofitness,
+   accento rivisto in Session 3 su feedback client: verde-grigio chiaro, non bronzo)
+   Dark premium: near-black, off-white, verde-grigio chiaro.
    ========================================================================== */
 
 :root {
   /* Colori */
   --color-bg: #0a0a0a; /* sfondo base */
   --color-bg-alt: #131313; /* sfondo alternativo / footer */
-  --color-surface: #1e1e1e; /* card, sezioni */
+  --color-surface: #1e1e1e; /* card, sezioni, navbar */
   --color-text: #f5f5f5; /* testo principale */
-  --color-accent: #966b50; /* bronzo/terracotta — CTA e highlight */
-  --color-accent-strong: #b08262; /* bronzo più chiaro — hover */
-  --color-tint: #f2e7d4; /* beige caldo — sezioni chiare */
+  --color-accent: #a3bfae; /* verde-grigio chiaro — CTA e highlight */
+  --color-accent-strong: #bcd3c4; /* verde-grigio più chiaro — hover */
+  --color-tint: #e9f0ea; /* verde-grigio chiarissimo — highlight, sezioni chiare */
   --color-muted: #b1b3b0; /* testo secondario, bordi */
 
   /* Tipografia */
@@ -34,6 +35,12 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
@@ -60,12 +67,32 @@ a:hover {
   color: var(--color-accent-strong);
 }
 
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 h1,
 h2,
 h3 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
   line-height: 1.15;
   font-weight: 800;
   letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2rem, 1.6rem + 2vw, 3rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 1.25rem + 1.2vw, 2.25rem);
+}
+
+h3 {
+  font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
 }
 
 /* ---------- Layout ---------- */
@@ -82,22 +109,41 @@ main {
   padding-block: 2.5rem;
 }
 
+/* Skip link: visibile solo al focus da tastiera (a11y) */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius);
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
 /* ---------- Header ---------- */
 
 .site-header {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgb(10 10 10 / 0.92);
+  /* Più chiaro del contenuto (#0A0A0A) per distinguerlo — Session 3 */
+  background: rgb(30 30 30 / 0.94);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgb(255 255 255 / 0.06);
+  border-bottom: 1px solid rgb(255 255 255 / 0.08);
 }
 
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.75rem;
   min-height: var(--header-h);
 }
 
@@ -117,8 +163,9 @@ main {
 }
 
 .brand .brand-name {
-  font-size: 1.125rem;
+  font-size: 1.05rem;
   line-height: 1.2;
+  white-space: nowrap;
 }
 
 .brand small {
@@ -129,23 +176,30 @@ main {
   letter-spacing: 0.04em;
 }
 
-/* Navigazione: mobile-first, nascosta dietro il toggle */
+/* Navigazione: mobile-first (hamburger sotto 64rem), testo "Menu" — nessun glifo/emoji */
 .nav-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border: 1px solid rgb(255 255 255 / 0.12);
+  min-height: 2.75rem;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid rgb(255 255 255 / 0.14);
   border-radius: var(--radius);
   background: var(--color-surface);
   color: var(--color-text);
-  font-size: 1.25rem;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   cursor: pointer;
 }
 
 .nav-menu {
   display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-menu.open {
@@ -155,7 +209,7 @@ main {
   flex-direction: column;
   gap: 0.25rem;
   padding: 0.75rem 1.25rem 1rem;
-  background: var(--color-bg-alt);
+  background: var(--color-surface);
   border-bottom: 1px solid rgb(255 255 255 / 0.08);
 }
 
@@ -169,15 +223,17 @@ main {
 }
 
 .nav-menu a:hover {
-  background: var(--color-surface);
+  background: rgb(255 255 255 / 0.08);
   color: var(--color-tint);
 }
 
+/* Pagina corrente: colore + spessore (non solo colore, a11y) */
 .nav-menu a[aria-current='page'] {
   color: var(--color-accent);
+  font-weight: 700;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 64rem) {
   .nav-toggle {
     display: none;
   }
@@ -188,15 +244,21 @@ main {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.125rem;
     padding: 0;
     background: none;
     border: 0;
   }
 
   .nav-menu a {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.95rem;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  /* Tagline nascosta su desktop per non affollare la navbar (Session 3) */
+  .brand small {
+    display: none;
   }
 }
 
@@ -208,7 +270,7 @@ main {
   padding: 0.55rem 1rem;
   border-radius: var(--radius);
   background: var(--color-accent);
-  color: #fff;
+  color: var(--color-bg); /* testo scuro sull'accent chiaro — contrasto AA */
   font-weight: 700;
   font-size: 0.9rem;
   text-decoration: none;
@@ -217,7 +279,7 @@ main {
 
 .header-cta:hover {
   background: var(--color-accent-strong);
-  color: #fff;
+  color: var(--color-bg);
 }
 
 @media (min-width: 64rem) {
@@ -283,7 +345,7 @@ main {
   }
 }
 
-/* ---------- Stub page blocks (segnaposto per le sessioni 3–4) ---------- */
+/* ---------- Stub page blocks (segnaposto per le sessioni 4–5) ---------- */
 
 .hero {
   padding-block: 2rem;
@@ -306,7 +368,7 @@ main {
 
 .stub {
   margin-top: 2rem;
-  border: 1px dashed rgb(150 107 80 / 0.55);
+  border: 1px dashed rgb(163 191 174 / 0.55);
   background: var(--color-surface);
   border-radius: var(--radius);
   padding: 1.25rem;

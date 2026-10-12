@@ -1,7 +1,9 @@
 # Brand & Style — derived from Instagram @fitartstudiofitness
 
 Source: https://www.instagram.com/fitartstudiofitness/ (Fit'art – StudioFitness ROSATE, 889 followers, 40 posts)
-Profile: "•Allenamenti personalizzati •Preparazione atletica •Posturologia •Chinesiologia •Massoterapia @fitart_massoterapia 📍Rosate"
+Profile: "•Allenamenti personalizzati •Preparazione atletica •Posturologia •Chinesiologia •Massoterapia @fitart_massoterapia Rosate"
+
+Note: in Session 3 the client replaced the bronze/beige accent with **light grayish green** (`#A3BFAE` / `#BCD3C4` / `#E9F0EA`) — the table below is the original Instagram analysis; final tokens live in `docs/DECISIONS.md` §Session 3 and `src/styles/global.css`.
 
 ## Visual identity (from palette analysis of 19 recent posts + profile pic)
 
