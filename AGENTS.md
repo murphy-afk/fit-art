@@ -70,12 +70,12 @@ Note: the accent was bronze/orange (`#966B50`) in Session 2; the client changed 
 4. Update docs (ROADMAP status, DECISIONS if needed).
 5. Present to client; **commit only after explicit approval.**
 
-## Current state (Session 4 done, 2026-10-13)
+## Current state (Session 5 done, 2026-10-13)
 
-- Skeleton complete and polished: layouts, tokens (accent = light gray-green), header/footer, 7 route stubs; build passes.
-- **Homepage complete** (Session 4, approved): full-bleed hero, hours, 8 services (5 with MP4 videos), Anna success story, gallery teaser with tour video, phone CTA.
+- Skeleton + **homepage (Session 4)** + **all 6 content pages (Session 5)** complete: Chi siamo, Valutazione Posturale, Cos'è il Taping, Foto, Safeguarding, Contatti. Build passes.
 - Navbar = surface (lighter than content), horizontal nav only at `>= 64rem`, shortened labels; a11y basics (skip-link, focus-visible, reduced motion, keyboard-friendly menu).
 - Code style rules in force: no standalone `>`/`/>` lines, zero emojis; icons only from **Lucide** (`@lucide/astro`). Style audit (`node check-style.cjs`) passes with zero hits.
-- **Next: Session 5 — Content pages** (Chi siamo, Valutazione Posturale, Cos'è il Taping, Foto, Safeguarding, Contatti).
-- Open items: official logo, official email, Facebook URL confirmation, safeguarding documents ("Modello Organizzativo e Codice di Condotta"), **4 new service descriptions to approve (DECISIONS §Session 4)**.
+- Contact form on `/contatti` is **UI-only** (`action="#"` placeholder; real handling in Session 6).
+- **Next: Session 6 — SEO, accessibility, performance, forms** (meta tags per page, sitemap.xml, robots.txt, favicon, 404, form handling, a11y/perf pass).
+- Open items: official logo, official email (placeholder `info@fitartfitness.it`), Facebook URL confirmation, safeguarding documents ("Modello Organizzativo e Codice di Condotta").
 - When the GitHub Pages repo exists, set `base: '/NOME-REPO/'` in `astro.config.mjs` (Session 7 — deploy).
