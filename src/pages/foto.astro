@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE } from '../data/site';
+import { SITE, path } from '../data/site';
 import { IMG } from '../data/images';
 
 /**
@@ -38,7 +38,7 @@ const photos = [
       <div class="gallery-grid">
         <video
           class="gallery-item gallery-video"
-          src="/videos/palestra-tour.mp4"
+          src={path('/videos/palestra-tour.mp4')}
           controls
           preload="metadata"
           playsinline
@@ -69,7 +69,7 @@ const photos = [
       </p>
       <p class="section-action">
         <a class="btn btn-primary" href={SITE.phones[0].href}>Chiamaci: {SITE.phones[0].label}</a>
-        <a class="btn btn-ghost" href="/contatti">Contatti e come arrivare</a>
+        <a class="btn btn-ghost" href={path('/contatti')}>Contatti e come arrivare</a>
       </p>
     </div>
   </section>

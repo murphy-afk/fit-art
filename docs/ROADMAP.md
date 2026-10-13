@@ -15,7 +15,7 @@ Working rules (from the client brief):
 | 4 | Homepage (done, approved) | "Implement homepage: hero, hours, services with videos, success story, gallery teaser, CTA" | Homepage complete and presented for review |
 | 5 | Content pages (done, approved) | "Implement Chi siamo, Valutazione Posturale, Cos'è il Taping, Foto, Safeguarding, Contatti" | All content pages complete and presented for review |
 | 6 | SEO, accessibility, performance, forms (done, approved) | "Meta tags, sitemap.xml, robots.txt, favicon, image optimization, a11y pass, contact form handling, 404 page" | Production-ready build; docs updated |
-| 7 | Final review & deploy | "Review everything, apply feedback, deploy, write handover docs" | Live site + handover documentation |
+| 7 | Final review & deploy (done) | "Review everything, apply feedback, deploy, write handover docs" | Live site + handover documentation |
 
 Session 1 is where the client answers the open questions (see `docs/DECISIONS.md`). Sessions 2–6 each end with a review checkpoint; nothing is committed without approval.
 
@@ -101,3 +101,34 @@ Production-readiness pass:
 
 - **Icon library decided: Lucide** — installed as `@lucide/astro` (see `docs/DECISIONS.md` §Icon library). First icons added: `Menu` (nav toggle), `Phone` (header CTA).
 - **Language policy**: site content stays Italian; documentation and code comments are kept in English. Italian sections of the docs and Italian code comments translated to English; arrow characters in docs replaced with `->` (clears the style audit).
+
+## Session 7 — deliverables (2026-10-13)
+
+Client decisions at session start: deploy target = **GitHub Pages project URL**
+(`https://murphy-afk.github.io/fit-art/`, custom domain swapped in later), no
+additional content feedback, deploy with the existing placeholders.
+
+- **Deploy config** (`astro.config.mjs`): `site: 'https://murphy-afk.github.io'`,
+  `base: '/fit-art/'` with a comment documenting the switch back to
+  `site: 'https://fitartfitness.it', base: '/'` when the custom domain is connected.
+- **Base-path fix (review blocker)**: Astro only prefixes bundled assets — all
+  hand-written links and `public/` files 404'd under the base. New `path()` helper
+  in `src/data/site.ts`, applied in Header (brand, logo, NAV), BaseLayout (favicons,
+  `og:image`, JSON-LD `url`), and every page CTA/video `href`/`src`; `public/robots.txt`
+  sitemap URL updated. Canonical/OG URLs, sitemap (7 URLs) and JSON-LD verified consistent.
+- **CI/CD**: `.github/workflows/deploy.yml` — push to `main` -> install -> style
+  audit -> build -> deploy to Pages (Node 22, `npm ci`). One manual step remains:
+  repo Settings -> Pages -> Source "GitHub Actions" (no API access from here).
+- **Independent review findings applied**: footer prototype note no longer shows
+  the internal session number; `scroll-padding-top: var(--header-h)` so anchors and
+  the skip-link land below the sticky header; dead `.stub` CSS removed (stubs gone
+  since Session 5); `npm run check` script added for the style audit.
+- **Handover docs**: `docs/HANDOVER.md` (structure, commands, deploy, custom-domain
+  switch, placeholder swap list, working rules) + root `README.md`.
+- Verification: `npm run build` -> 8 pages; `npm run check` -> 0 hits; local
+  `astro preview` of `dist/` — every page, nav link, video, favicon, OG image,
+  sitemap and robots.txt returns 200 under `/fit-art/`.
+- **Open for later**: real Formspree ID, official logo (rerun favicon script),
+  official email, safeguarding documents, video captions (WCAG 1.2.x — confirm
+  whether the promo clips contain speech), custom-domain switch (HANDOVER §4).
+- No commit yet — awaiting client approval (then push to `main` triggers the deploy).

@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE } from '../data/site';
+import { SITE, path } from '../data/site';
 
 /**
  * Content recovered via OCR from the images of the old page
@@ -161,7 +161,7 @@ const benefits = [
         <a class="btn btn-primary" href={SITE.phones[0].href}>
           Chiedi info: {SITE.phones[0].label}
         </a>
-        <a class="btn btn-ghost" href="/contatti">Contatti</a>
+        <a class="btn btn-ghost" href={path('/contatti')}>Contatti</a>
       </p>
     </div>
   </section>

@@ -1,6 +1,6 @@
 ---
 import { Menu, Phone } from '@lucide/astro';
-import { NAV, SITE } from '../data/site';
+import { NAV, SITE, path } from '../data/site';
 import type { NavSlug } from '../data/site';
 
 interface Props {
@@ -12,9 +12,9 @@ const { current } = Astro.props;
 
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="/" aria-label="Fit'Art — Home">
+    <a class="brand" href={path('/')} aria-label="Fit'Art — Home">
       <!-- Logo candidate: Instagram profile picture (docs/DECISIONS.md) — replace with the official logo when available -->
-      <img src="/images/logo-s150x150.jpg" alt="" width="40" height="40" />
+      <img src={path('/images/logo-s150x150.jpg')} alt="" width="40" height="40" />
       <span class="brand-name">
         {SITE.brand}
         <small>{SITE.tagline} · {SITE.city}</small>
@@ -34,7 +34,7 @@ const { current } = Astro.props;
           NAV.map((item) => (
             <li>
               <a
-                href={item.href}
+                href={path(item.href)}
                 aria-current={current === item.slug ? 'page' : undefined}>
                 {item.label}
               </a>

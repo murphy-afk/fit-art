@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE } from '../data/site';
+import { SITE, path } from '../data/site';
 import { IMG } from '../data/images';
 
 /**
@@ -151,7 +151,7 @@ const galleryPhotos = [
               {service.video ? (
                 <video
                   class="service-media"
-                  src={service.video}
+                  src={path(service.video)}
                   poster={service.poster?.src}
                   controls
                   preload="metadata"
@@ -228,7 +228,7 @@ const galleryPhotos = [
       <div class="gallery-grid">
         <video
           class="gallery-item gallery-video"
-          src="/videos/palestra-tour.mp4"
+          src={path('/videos/palestra-tour.mp4')}
           controls
           preload="metadata"
           playsinline
@@ -247,7 +247,7 @@ const galleryPhotos = [
         }
       </div>
       <p class="section-action">
-        <a class="btn btn-ghost" href="/foto">Vedi tutte le foto</a>
+        <a class="btn btn-ghost" href={path('/foto')}>Vedi tutte le foto</a>
       </p>
     </div>
   </section>
@@ -269,7 +269,7 @@ const galleryPhotos = [
             </a>
           ))
         }
-        <a class="btn btn-ghost" href="/contatti">Contatti e come arrivare</a>
+        <a class="btn btn-ghost" href={path('/contatti')}>Contatti e come arrivare</a>
       </div>
     </div>
   </section>

@@ -1,6 +1,9 @@
-# robots.txt — Fit'Art (Session 6)
+# robots.txt - Fit'Art (Session 6)
 # Allow everything; point crawlers at the generated sitemap.
+# NOTE: URLs must match `site` + `base` in astro.config.mjs.
+# Session 7: GitHub Pages project site -> swap when the custom domain is connected:
+#   Sitemap: https://fitartfitness.it/sitemap-index.xml
 User-agent: *
 Allow: /
 
-Sitemap: https://fitartfitness.it/sitemap-index.xml
+Sitemap: https://murphy-afk.github.io/fit-art/sitemap-index.xml

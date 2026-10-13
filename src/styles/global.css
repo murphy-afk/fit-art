@@ -35,6 +35,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Anchors/skip-link land below the sticky header instead of under it */
+  scroll-padding-top: var(--header-h);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -359,7 +361,7 @@ main {
   }
 }
 
-/* ---------- Stub page blocks (placeholders for sessions 4–5) ---------- */
+/* ---------- Shared page blocks (hero, eyebrow, lede) ---------- */
 
 .hero {
   padding-block: 2rem;
@@ -378,20 +380,6 @@ main {
   color: var(--color-muted);
   font-size: 1.125rem;
   max-width: 42rem;
-}
-
-.stub {
-  margin-top: 2rem;
-  border: 1px dashed rgb(163 191 174 / 0.55);
-  background: var(--color-surface);
-  border-radius: var(--radius);
-  padding: 1.25rem;
-  color: var(--color-muted);
-  font-size: 0.95rem;
-}
-
-.stub strong {
-  color: var(--color-tint);
 }
 
 /* ==========================================================================

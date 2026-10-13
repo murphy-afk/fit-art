@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE } from '../data/site';
+import { SITE, path } from '../data/site';
 
 /**
  * 404 page — Session 6. GitHub Pages automatically serves /404.html for any
@@ -19,8 +19,8 @@ import { SITE } from '../data/site';
       Torna alla home o contattaci per qualsiasi informazione.
     </p>
     <p class="section-action">
-      <a class="btn btn-primary" href="/">Torna alla home</a>
-      <a class="btn btn-ghost" href="/contatti">Contatti</a>
+      <a class="btn btn-primary" href={path('/')}>Torna alla home</a>
+      <a class="btn btn-ghost" href={path('/contatti')}>Contatti</a>
       <a class="btn btn-ghost" href={SITE.phones[0].href}>Chiama {SITE.phones[0].label}</a>
     </p>
   </section>
