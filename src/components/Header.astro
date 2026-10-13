@@ -1,4 +1,5 @@
 ---
+import { Menu, Phone } from '@lucide/astro';
 import { NAV, SITE } from '../data/site';
 import type { NavSlug } from '../data/site';
 
@@ -12,7 +13,7 @@ const { current } = Astro.props;
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="/" aria-label="Fit'Art — Home">
-      <!-- Logo candidato: foto profilo Instagram (docs/DECISIONS.md) — sostituire con il logo ufficiale quando disponibile -->
+      <!-- Logo candidate: Instagram profile picture (docs/DECISIONS.md) — replace with the official logo when available -->
       <img src="/images/logo-s150x150.jpg" alt="" width="40" height="40" />
       <span class="brand-name">
         {SITE.brand}
@@ -27,7 +28,7 @@ const { current } = Astro.props;
         type="button"
         aria-expanded="false"
         aria-controls="nav-menu"
-        aria-label="Apri menu">Menu</button>
+        aria-label="Apri menu"><Menu size={16} aria-hidden="true" />Menu</button>
       <ul id="nav-menu" class="nav-menu">
         {
           NAV.map((item) => (
@@ -44,6 +45,7 @@ const { current } = Astro.props;
     </nav>
 
     <a class="header-cta" href={SITE.phones[0].href}>
+      <Phone size={16} aria-hidden="true" />
       Chiama {SITE.phones[0].label}
     </a>
   </div>
@@ -64,7 +66,7 @@ const { current } = Astro.props;
     setOpen(!menu?.classList.contains('open'));
   });
 
-  // Chiude il menu quando si preme Esc (tastiera)
+  // Close the menu on Esc (keyboard)
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && menu?.classList.contains('open')) {
       setOpen(false);
@@ -72,7 +74,7 @@ const { current } = Astro.props;
     }
   });
 
-  // Chiude il menu quando si clicca fuori
+  // Close the menu when clicking outside
   document.addEventListener('click', (event) => {
     if (!menu?.classList.contains('open')) return;
     const target = event.target;
@@ -80,7 +82,7 @@ const { current } = Astro.props;
     if (!menu.contains(target) && !btn?.contains(target)) setOpen(false);
   });
 
-  // Un click su un link richiude il menu prima della navigazione
+  // Clicking a link closes the menu before navigating
   menu?.addEventListener('click', (event) => {
     const target = event.target;
     if (target instanceof Element && target.closest('a')) setOpen(false);

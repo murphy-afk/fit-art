@@ -1,21 +1,21 @@
 /* ==========================================================================
-   Design tokens — docs/BRAND.md (palette originale da Instagram @fitartstudiofitness,
-   accento rivisto in Session 3 su feedback client: verde-grigio chiaro, non bronzo)
-   Dark premium: near-black, off-white, verde-grigio chiaro.
+   Design tokens — docs/BRAND.md (original palette from Instagram @fitartstudiofitness,
+   accent revised in Session 3 on client feedback: light grayish green, not bronze)
+   Dark premium: near-black, off-white, light grayish green.
    ========================================================================== */
 
 :root {
-  /* Colori */
-  --color-bg: #0a0a0a; /* sfondo base */
-  --color-bg-alt: #131313; /* sfondo alternativo / footer */
-  --color-surface: #1e1e1e; /* card, sezioni, navbar */
-  --color-text: #f5f5f5; /* testo principale */
-  --color-accent: #a3bfae; /* verde-grigio chiaro — CTA e highlight */
-  --color-accent-strong: #bcd3c4; /* verde-grigio più chiaro — hover */
-  --color-tint: #e9f0ea; /* verde-grigio chiarissimo — highlight, sezioni chiare */
-  --color-muted: #b1b3b0; /* testo secondario, bordi */
+  /* Colors */
+  --color-bg: #0a0a0a; /* base background */
+  --color-bg-alt: #131313; /* alternate background / footer */
+  --color-surface: #1e1e1e; /* cards, sections, navbar */
+  --color-text: #f5f5f5; /* main text */
+  --color-accent: #a3bfae; /* light grayish green — CTA and highlights */
+  --color-accent-strong: #bcd3c4; /* lighter grayish green — hover */
+  --color-tint: #e9f0ea; /* very light grayish green — highlights, light sections */
+  --color-muted: #b1b3b0; /* secondary text, borders */
 
-  /* Tipografia */
+  /* Typography */
   --font-sans: 'Segoe UI', system-ui, -apple-system, Roboto, 'Helvetica Neue', Arial, sans-serif;
 
   /* Layout */
@@ -109,7 +109,7 @@ main {
   padding-block: 2.5rem;
 }
 
-/* Skip link: visibile solo al focus da tastiera (a11y) */
+/* Skip link: visible only on keyboard focus (a11y) */
 .skip-link {
   position: absolute;
   left: 1rem;
@@ -133,7 +133,7 @@ main {
   position: sticky;
   top: 0;
   z-index: 10;
-  /* Più chiaro del contenuto (#0A0A0A) per distinguerlo — Session 3 */
+  /* Lighter than the content (#0A0A0A) so it stands out — Session 3 */
   background: rgb(30 30 30 / 0.94);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgb(255 255 255 / 0.08);
@@ -176,11 +176,12 @@ main {
   letter-spacing: 0.04em;
 }
 
-/* Navigazione: mobile-first (hamburger sotto 64rem), testo "Menu" — nessun glifo/emoji */
+/* Navigation: mobile-first (hamburger below 64rem), "Menu" text — no glyph/emoji */
 .nav-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.4rem;
   min-height: 2.75rem;
   padding: 0.5rem 1.1rem;
   border: 1px solid rgb(255 255 255 / 0.14);
@@ -227,7 +228,7 @@ main {
   color: var(--color-tint);
 }
 
-/* Pagina corrente: colore + spessore (non solo colore, a11y) */
+/* Current page: color + weight (not color alone, a11y) */
 .nav-menu a[aria-current='page'] {
   color: var(--color-accent);
   font-weight: 700;
@@ -256,13 +257,13 @@ main {
     white-space: nowrap;
   }
 
-  /* Tagline nascosta su desktop per non affollare la navbar (Session 3) */
+  /* Brand tagline hidden on desktop to keep the navbar uncrowded (Session 3) */
   .brand small {
     display: none;
   }
 }
 
-/* CTA telefono nell'header (solo desktop) */
+/* Phone CTA in the header (desktop only) */
 .header-cta {
   display: none;
   align-items: center;
@@ -270,7 +271,7 @@ main {
   padding: 0.55rem 1rem;
   border-radius: var(--radius);
   background: var(--color-accent);
-  color: var(--color-bg); /* testo scuro sull'accent chiaro — contrasto AA */
+  color: var(--color-bg); /* dark text on light accent — AA contrast */
   font-weight: 700;
   font-size: 0.9rem;
   text-decoration: none;
@@ -345,7 +346,7 @@ main {
   }
 }
 
-/* ---------- Stub page blocks (segnaposto per le sessioni 4–5) ---------- */
+/* ---------- Stub page blocks (placeholders for sessions 4–5) ---------- */
 
 .hero {
   padding-block: 2rem;
@@ -378,4 +379,317 @@ main {
 
 .stub strong {
   color: var(--color-tint);
+}
+
+/* ==========================================================================
+   Homepage — Session 4 (hero, hours, services, story, gallery, CTA)
+   ========================================================================== */
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.9rem;
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--radius);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: var(--color-bg); /* dark text on light accent — AA contrast */
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-strong);
+  color: var(--color-bg);
+}
+
+.btn-ghost {
+  border: 1px solid rgb(255 255 255 / 0.28);
+  background: rgb(10 10 10 / 0.35);
+  color: var(--color-text);
+}
+
+.btn-ghost:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent-strong);
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+  padding-block: 3.5rem;
+}
+
+.section-alt {
+  background: var(--color-bg-alt);
+}
+
+.section-action {
+  margin: 2rem 0 0;
+}
+
+/* ---------- Hero full-bleed ---------- */
+
+.home-hero {
+  position: relative;
+  /* Pulls the hero onto main's default padding for a full-bleed effect */
+  margin-block-start: -2.5rem;
+  min-height: min(78vh, 42rem);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.home-hero-media {
+  position: absolute;
+  inset: 0;
+}
+
+.home-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+/* Dark overlay so the text stays legible over the photo */
+.home-hero-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgb(10 10 10 / 0.55) 0%, rgb(10 10 10 / 0.25) 45%, rgb(10 10 10 / 0.92) 100%);
+}
+
+.home-hero-inner {
+  position: relative;
+  padding-block: 5rem 3.5rem;
+}
+
+.home-hero h1 {
+  max-width: 16ch;
+}
+
+.home-hero-lede {
+  color: var(--color-text);
+}
+
+.home-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+/* ---------- Hours ---------- */
+
+.hours-grid {
+  display: grid;
+  gap: var(--gap);
+  margin-top: 1.75rem;
+}
+
+.hours-card {
+  background: var(--color-surface);
+  border: 1px solid rgb(255 255 255 / 0.07);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+}
+
+.hours-card h3 {
+  margin-bottom: 0.35rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+  font-weight: 700;
+}
+
+.hours-time {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-accent);
+}
+
+.hours-address {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* ---------- Services ---------- */
+
+.services-grid {
+  display: grid;
+  gap: var(--gap);
+  margin-top: 2rem;
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 1px solid rgb(255 255 255 / 0.07);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.service-media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--color-bg);
+}
+
+.service-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem 1.35rem 1.5rem;
+  flex: 1;
+}
+
+.service-body h3 {
+  margin: 0;
+}
+
+.service-body p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+/* Pilates: 8 benefits in an expandable block */
+.service-details {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.service-details summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.service-details summary:hover {
+  color: var(--color-accent-strong);
+}
+
+.service-details ul {
+  margin: 0.75rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--color-muted);
+  display: grid;
+  gap: 0.35rem;
+}
+
+/* ---------- Success story ---------- */
+
+.story-grid {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.story-text .btn {
+  margin-top: 1.25rem;
+}
+
+.story-media {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.story-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+/* ---------- Gallery ---------- */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.gallery-item {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.gallery-video {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+}
+
+/* ---------- Final CTA ---------- */
+
+.home-cta {
+  background: var(--color-surface);
+}
+
+.home-cta-inner {
+  text-align: center;
+}
+
+.home-cta-inner .lede {
+  margin-inline: auto;
+}
+
+.home-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 1.75rem;
+}
+
+/* ---------- Breakpoint ---------- */
+
+@media (min-width: 48rem) {
+  .hours-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .story-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .gallery-video {
+    grid-column: span 2;
+    grid-row: span 2;
+    aspect-ratio: auto;
+    height: 100%;
+  }
+}
+
+@media (min-width: 64rem) {
+  .services-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }

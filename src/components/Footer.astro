@@ -19,7 +19,7 @@ import { SITE } from '../data/site';
         {SITE.phones.map((phone) => (
           <li><a href={phone.href}>{phone.label}</a></li>
         ))}
-        <!-- PLACEHOLDER EMAIL (docs/DECISIONS.md §1): sostituire con l'email ufficiale -->
+        <!-- PLACEHOLDER EMAIL (docs/DECISIONS.md §1): swap in the official email -->
         <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
         <li>{SITE.hours.weekday}</li>
         <li>{SITE.hours.weekend}</li>

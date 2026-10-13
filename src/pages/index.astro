@@ -1,25 +1,272 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+
+/**
+ * Homepage services (docs/CONTENT-INVENTORY.md §Home).
+ * `video` = MP4 downloaded from the old site (public/videos/); without `video` the photo is used.
+ * `poster` = video preview image (public/images/).
+ * Descriptions marked `copy: 'new'` did not exist on the old site: they were
+ * written for Session 4 and need client approval (docs/DECISIONS.md §Session 4).
+ */
+const services = [
+  {
+    name: 'Functional Training',
+    desc: "I nostri programmi personalizzati e la nostra esperienza ti permetteranno di curare il tuo corpo con le metodiche più avanzate scientificamente e più adeguate alle tue esigenze.",
+    video: '/videos/functional-training.mp4',
+    poster: '/images/hero-functional.jpg',
+    copy: 'old',
+  },
+  {
+    name: 'Pilates',
+    desc: "Che cos'è il Pilates: un metodo di allenamento che insegna a prendere coscienza del proprio corpo, per rafforzarlo, correggere la postura e migliorare la fluidità e la precisione dei movimenti. Nel Pilates il corpo si muove come un sistema integrato e gran parte del lavoro è concentrato sui muscoli che favoriscono il controllo della postura.",
+    benefits: [
+      'Rinforza e tonifica i muscoli, ma non aumenta la massa muscolare',
+      "Favorisce l'assunzione di posture corrette, proteggendo dal mal di schiena",
+      'Fa acquisire una maggiore consapevolezza della dinamica del proprio corpo, migliorando il rapporto mente-corpo',
+      'Contribuisce a dare maggiore sicurezza a livello fisico e psicologico, con un effetto anti-stress',
+      'Aiuta a respirare meglio, con benefici su tutto il sistema cardiorespiratorio',
+      'Nel bambino aiuta a correggere atteggiamenti posturali scorretti (cifosi, lordosi, ecc.)',
+      'Rafforzando gli addominali, aiuta ad avere un ventre più piatto',
+      "Migliora l'equilibrio e la coordinazione",
+    ],
+    video: '/videos/pilates.mp4',
+    poster: '/images/pilates.jpg',
+    copy: 'old',
+  },
+  {
+    name: 'Indoor Cycling',
+    desc: 'La pedalata indoor a ritmo di musica, stimolata da un ex ciclista professionista: ti farà vivere il ciclismo come mai lo avevi provato.',
+    image: '/images/indoor-cycling.jpg',
+    copy: 'old',
+  },
+  {
+    name: 'Dimagrire Veramente',
+    desc: 'Modella il tuo corpo e perdi i centimetri che vuoi con i nostri programmi di allenamento personalizzati.',
+    image: '/images/dimagrire.jpg',
+    copy: 'old',
+  },
+  {
+    name: 'Ginnastica Posturale',
+    desc: 'Esercizi mirati per correggere la postura e prevenire dolori e compensi.',
+    image: '/images/ginnastica-posturale.jpg',
+    copy: 'new',
+  },
+  {
+    name: 'Ginnastica contro il mal di schiena',
+    desc: 'Lavoro specifico per alleviare e prevenire il mal di schiena.',
+    video: '/videos/mal-di-schiena.mp4',
+    copy: 'new',
+  },
+  {
+    name: 'Preparazione Atletica',
+    desc: 'Programmi di preparazione per migliorare la prestazione e la condizione atletica.',
+    video: '/videos/preparazione-atletica.mp4',
+    poster: '/images/preparazione-atletica.jpg',
+    copy: 'new',
+  },
+  {
+    name: 'Rieducazione funzionale dopo infortuni e operazioni',
+    desc: 'Recupero del movimento dopo infortuni e operazioni, con un percorso personalizzato.',
+    video: '/videos/rieducazione-funzionale.mp4',
+    copy: 'new',
+  },
+];
+
+const galleryPhotos = [
+  { src: '/images/gallery-1.jpg', alt: "Sala corsi della palestra Fit'Art" },
+  { src: '/images/gallery-2.jpg', alt: 'Attrezzature per il fitness' },
+  { src: '/images/gallery-3.jpg', alt: 'Zona di allenamento Fit\'Art' },
+  { src: '/images/gallery-4.jpg', alt: 'Dettaglio degli spazi della palestra' },
+];
 ---
 
 <BaseLayout title="Home" current="home">
-  <section class="container hero">
-    <p class="eyebrow">Palestra &amp; galleria d'arte — Rosate (MI)</p>
-    <h1>Fit'Art — l'arte nel fitness</h1>
-    <p class="lede">
-      Stub della homepage. Contenuti completi nella <strong>Session 4</strong> del
-      roadmap.
-    </p>
+  <!-- Hero full-bleed — Session 4 -->
+  <section class="home-hero">
+    <div class="home-hero-media" aria-hidden="true">
+      <img
+        src="/images/hero-functional.jpg"
+        alt=""
+        width="1600"
+        height="900"
+        loading="eager"
+        fetchpriority="high" />
+    </div>
+    <div class="container home-hero-inner">
+      <p class="eyebrow">Palestra &amp; galleria d'arte — Rosate (MI)</p>
+      <h1>Fit'Art — l'arte nel fitness</h1>
+      <p class="lede home-hero-lede">
+        La nostra esperienza decennale, a disposizione per il tuo benessere, a
+        portata di mano in qualsiasi momento della giornata.
+      </p>
+      <div class="home-hero-actions">
+        <a class="btn btn-primary" href={SITE.phones[0].href}>Chiama il {SITE.phones[0].label}</a>
+        <a class="btn btn-ghost" href="#servizi">Scopri i corsi</a>
+      </div>
+    </div>
   </section>
 
-  <div class="container">
-    <div class="stub">
-      <strong>Da implementare (Session 4):</strong> hero con foto full-bleed ·
-      orari (Lun–Ven 06:00–23:00, Sab–Dom 08:00–18:00) · servizi con video
-      (Functional Training, Pilates, Indoor Cycling, Dimagrire Veramente,
-      Ginnastica Posturale, Ginnastica contro il mal di schiena, Preparazione
-      Atletica, Rieducazione funzionale) · storia di successo "Anna ha perso 40
-      chili" · teaser galleria foto · CTA telefono 320 309 5913 / 346 362 9565.
+  <!-- Hours — Session 4 -->
+  <section class="section home-hours" aria-labelledby="orari-title">
+    <div class="container">
+      <p class="eyebrow">I nostri orari</p>
+      <h2 id="orari-title">Aperti tutti i giorni</h2>
+      <div class="hours-grid">
+        <div class="hours-card">
+          <h3>Lunedì — Venerdì</h3>
+          <p class="hours-time">06:00 — 23:00</p>
+        </div>
+        <div class="hours-card">
+          <h3>Sabato — Domenica</h3>
+          <p class="hours-time">08:00 — 18:00</p>
+        </div>
+        <div class="hours-card">
+          <h3>Dove siamo</h3>
+          <p class="hours-time hours-address">{SITE.address}</p>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Services with videos — Session 4 -->
+  <section class="section section-alt" id="servizi" aria-labelledby="servizi-title">
+    <div class="container">
+      <p class="eyebrow">I servizi</p>
+      <h2 id="servizi-title">Le migliori attrezzature, un ambiente curato</h2>
+      <p class="lede">
+        Dove il benessere è il protagonista: scegli il corso più adatto a te e,
+        dove disponibile, guardalo in azione.
+      </p>
+
+      <div class="services-grid">
+        {
+          services.map((service) => (
+            <article class="service-card">
+              {service.video ? (
+                <video
+                  class="service-media"
+                  src={service.video}
+                  poster={service.poster}
+                  controls
+                  preload="metadata"
+                  playsinline />
+              ) : (
+                <img
+                  class="service-media"
+                  src={service.image}
+                  alt=""
+                  width="640"
+                  height="360"
+                  loading="lazy" />
+              )}
+              <div class="service-body">
+                <h3>{service.name}</h3>
+                <p>{service.desc}</p>
+                {service.benefits && (
+                  <details class="service-details">
+                    <summary>Gli 8 vantaggi del Pilates</summary>
+                    <ul>
+                      {service.benefits.map((item) => (
+                        <li>{item}</li>
+                      ))}
+                    </ul>
+                  </details>
+                )}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Success story — Session 4 -->
+  <section class="section" aria-labelledby="storia-title">
+    <div class="container story-grid">
+      <div class="story-text">
+        <p class="eyebrow">Storia di successo — Dimagrire veramente</p>
+        <h2 id="storia-title">Anna ha perso 40 chili in meno di un anno</h2>
+        <p class="lede">
+          Grazie ai nostri programmi di allenamento e a una dieta bilanciata.
+          Modella il tuo corpo e perdi i centimetri che vuoi con i nostri
+          programmi di allenamento personalizzati.
+        </p>
+        <a class="btn btn-primary" href={SITE.phones[1].href}>Parliamone: {SITE.phones[1].label}</a>
+      </div>
+      <div class="story-media">
+        <img
+          src="/images/storia-anna-1.jpg"
+          alt="Anna, storia di successo di Fit'Art"
+          width="800"
+          height="600"
+          loading="lazy" />
+        <img
+          src="/images/storia-anna-2.jpg"
+          alt="Allenamento personalizzato alla palestra Fit'Art"
+          width="800"
+          height="600"
+          loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery teaser — Session 4 -->
+  <section class="section section-alt" aria-labelledby="galleria-title">
+    <div class="container">
+      <p class="eyebrow">Palestra &amp; galleria d'arte</p>
+      <h2 id="galleria-title">Guarda la palestra da vicino</h2>
+      <p class="lede">
+        L'unica palestra in Italia che è anche una galleria d'arte: le foto e i
+        video degli spazi, dei corsi e delle esposizioni.
+      </p>
+      <div class="gallery-grid">
+        <video
+          class="gallery-item gallery-video"
+          src="/videos/palestra-tour.mp4"
+          controls
+          preload="metadata"
+          playsinline
+          aria-label="Video tour della palestra">
+          Il tuo browser non supporta la riproduzione video.
+        </video>
+        {
+          galleryPhotos.map((photo) => (
+            <img
+              class="gallery-item"
+              src={photo.src}
+              alt={photo.alt}
+              width="640"
+              height="480"
+              loading="lazy" />
+          ))
+        }
+      </div>
+      <p class="section-action">
+        <a class="btn btn-ghost" href="/foto">Vedi tutte le foto</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Final CTA — Session 4 -->
+  <section class="section home-cta" aria-labelledby="cta-title">
+    <div class="container home-cta-inner">
+      <h2 id="cta-title">Visita la palestra</h2>
+      <p class="lede">
+        Chiama per tutte le info e per avere un appuntamento per visitare la
+        palestra. Valuteremo insieme le tue esigenze e le tue richieste per il
+        tuo benessere.
+      </p>
+      <div class="home-cta-actions">
+        {
+          SITE.phones.map((phone) => (
+            <a class="btn btn-primary" href={phone.href}>
+              {phone.label}
+            </a>
+          ))
+        }
+        <a class="btn btn-ghost" href="/contatti">Contatti e come arrivare</a>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
