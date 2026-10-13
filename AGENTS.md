@@ -72,7 +72,7 @@ Note: the accent was bronze/orange (`#966B50`) in Session 2; the client changed 
 
 ## Current state (Session 7 done, 2026-10-13)
 
-- Skeleton + homepage (Session 4) + all 6 content pages (Session 5) + production pass (Session 6) + **final review & deploy setup (Session 7)** complete: SEO meta, sitemap/robots, favicon set, 404, Formspree-ready form, a11y pass; `site`/`base` set for GitHub Pages (`https://murphy-afk.github.io/fit-art/`); deploy via `.github/workflows/deploy.yml` on push to `main` (repo Settings -> Pages -> Source: "GitHub Actions" must be set once). Build passes (8 pages), `npm run check` passes (0 hits).
+- Skeleton + homepage (Session 4) + all 6 content pages (Session 5) + production pass (Session 6) + **final review & deploy (Session 7)** complete: SEO meta, sitemap/robots, favicon set, 404, Formspree-ready form, a11y pass; `site`/`base` set for GitHub Pages. **Live at https://murphy-afk.github.io/fit-art/** — deploy via `.github/workflows/deploy.yml` on push to `main` (Pages source = "GitHub Actions", enabled 2026-10-13; audit + build run in CI). Build passes (8 pages), `npm run check` passes (0 hits).
 - Images live in `src/assets/images/` (astro:assets `<Image>`, WebP); `src/data/images.ts` is the import hub. Logo remains in `public/images/` (favicon source; `scripts/generate-favicons.cjs`).
 - **All internal links and `public/` URLs must go through `path()` (from `src/data/site.ts`)** — Astro does not prefix hand-written URLs with `base`.
 - Contact form posts to `SITE.formspreeEndpoint` in `src/data/site.ts` — still the `YOUR_FORM_ID` placeholder (client must create the Formspree account, one-line swap).

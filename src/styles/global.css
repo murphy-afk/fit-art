@@ -191,14 +191,17 @@ main {
   letter-spacing: 0.04em;
 }
 
-/* Navigation: mobile-first (hamburger below 64rem), "Menu" text — no glyph/emoji */
+/* Navigation: mobile-first (hamburger below 64rem).
+   Icon-only (Lucide Menu); the accessible name comes from aria-label
+   "Apri/Chiudi menu" on the button — client request, Session 7 follow-up. */
 .nav-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
   min-height: 2.75rem;
-  padding: 0.5rem 1.1rem;
+  min-width: 2.75rem;
+  padding: 0.5rem;
   border: 1px solid rgb(255 255 255 / 0.14);
   border-radius: var(--radius);
   background: var(--color-surface);
