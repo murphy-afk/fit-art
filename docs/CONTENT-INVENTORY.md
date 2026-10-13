@@ -1,15 +1,15 @@
-# Content Inventory — fitartfitness.it
+# Content Inventory - fitartfitness.it
 
 Scan date: 2026-10-09 · Source: https://www.fitartfitness.it (Italian, 8 live pages, built with WebSite X5 / Incomedia)
 
 ## Business info
-- **Name:** Palestra Fit'Art — Fit'Art ASD
+- **Name:** Palestra Fit'Art - Fit'Art ASD
 - **Address:** Via Alessandro Manzoni 33, 20088 Rosate (MI), Italia
-- **Phones:** 320 309 5913 / 346 362 9565 (Massimo); +39 334 226 851 (Aurora Spinoccia — from business-card image on the postural-evaluation page)
+- **Phones:** 320 309 5913 / 346 362 9565 (Massimo); +39 334 226 851 (Aurora Spinoccia - from business-card image on the postural-evaluation page)
 - **Emails found:** `info@example.com` (placeholder/broken), `fitart2020@gmail.com` (safeguarding responsible), `auroraspinoccia@gmail.com` (Aurora Spinoccia)
 - **Hours:** Mon–Fri 06:00–23:00 · Sat–Sun 08:00–18:00
-- **Social:** Facebook = real gym page; YouTube and X links point to **"Incomedia"** (the old site-builder vendor — wrong/broken)
-- **USP:** "the only gym in Italy that is also an art gallery" — personal/collective art exhibitions and photography reviews inside the gym
+- **Social:** Facebook = real gym page; YouTube and X links point to **"Incomedia"** (the old site-builder vendor - wrong/broken)
+- **USP:** "the only gym in Italy that is also an art gallery" - personal/collective art exhibitions and photography reviews inside the gym
 
 ## Pages
 
@@ -30,14 +30,14 @@ Scan date: 2026-10-09 · Source: https://www.fitartfitness.it (Italian, 8 live p
 ### Contatti (`contatti.html`)
 - Address, phones, `info@example.com` (placeholder!)
 
-### Valutazione Posturale (`valutazione-posturale-.html`) — content in images (recovered via OCR)
+### Valutazione Posturale (`valutazione-posturale-.html`) - content in images (recovered via OCR)
 - "È ora disponibile il servizio di Valutazione Posturale e Analisi Baropodometrica"
 - Cos'è la postura; perché la postura può alterarsi (appoggio plantare, distribuzione del peso, statica e dinamica del passo, differenze dx/sx, compensi)
 - Esame baropodometrico: appoggio del piede in statica/dinamica, analisi pressioni plantari, sovraccarichi e asimmetrie, report chiaro con immagini
 - Cosa ottieni: maggiore consapevolezza, indicazioni personalizzate, base per un lavoro posturale mirato
 - Aree del corpo: cervicale/spalle, schiena/lombare, bacino/anche, ginocchia/piedi
 
-### Cos'è il Taping (`cos-e-il-taping.html`) — content in images (recovered via OCR)
+### Cos'è il Taping (`cos-e-il-taping.html`) - content in images (recovered via OCR)
 - Kinesio taping brochure: a cosa serve (edemi, ematomi sottocutanei, tendiniti, artrosi cervicali, contratture, tensioni muscolari)
 - 6 benefici: supporto muscolare, riduzione del dolore, funzione articolare, riabilitazione, sport/performance, dolori cronici
 - Durata applicazione: da alcune ore fino a un massimo (giorni); numero applicazioni variabile
@@ -48,11 +48,11 @@ Scan date: 2026-10-09 · Source: https://www.fitartfitness.it (Italian, 8 live p
 
 ### Safeguarding (`safeguarding.html`)
 - Definition + why it matters in sport; 7 components (protezione minori, formazione, screening, ambiente sicuro, politiche di segnalazione, coinvolgimento genitori, supporto iscritti)
-- Responsible: Prof. Massimo Spinoccia — fitart2020@gmail.com
+- Responsible: Prof. Massimo Spinoccia - fitart2020@gmail.com
 - "Modello Organizzativo e Codice di Condotta" mentioned but **documents not linked (missing)**
 
 ### Accedi (`accedi.html`)
-- Non-functional admin/user login — leftover from site builder, security risk
+- Non-functional admin/user login - leftover from site builder, security risk
 
 ## Assets
 - ~30 images (hero, gallery, brochures, badges), 6+ MP4 videos (`files/`, `videos/`), favicon.png

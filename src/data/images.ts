@@ -1,5 +1,5 @@
 /**
- * Central image imports — Session 6 (astro:assets migration).
+ * Central image imports - Session 6 (astro:assets migration).
  * Images moved from public/images/ to src/assets/images/ so Astro can
  * optimize them (compressed output, responsive srcset, hashed URLs).
  * The logo stays in public/images/ (it is also the favicon source).

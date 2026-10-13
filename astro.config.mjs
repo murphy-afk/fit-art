@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  // Hosting: GitHub Pages (decided in Session 1 — docs/DECISIONS.md).
+  // Hosting: GitHub Pages (decided in Session 1 - docs/DECISIONS.md).
   // Session 7: deployed as a project site -> site = user pages host, base = repo name.
   // When fitartfitness.it is pointed at GitHub Pages (custom domain), change to:
   //   site: 'https://fitartfitness.it', base: '/',

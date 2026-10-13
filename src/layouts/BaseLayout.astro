@@ -14,9 +14,9 @@ interface Props {
 const { title, description, current } = Astro.props;
 
 const defaultDescription =
-  "Fit'Art — palestra e galleria d'arte a Rosate (MI). Allenamenti personalizzati, preparazione atletica, posturologia, chinesiologia, massoterapia.";
+  "Fit'Art: palestra e galleria d'arte a Rosate (MI). Allenamenti personalizzati, preparazione atletica, posturologia, chinesiologia, massoterapia.";
 
-const fullTitle = `${title} — Fit'Art StudioFitness Rosate`;
+const fullTitle = `${title} · Fit'Art StudioFitness Rosate`;
 const pageDescription = description ?? defaultDescription;
 // Absolute URLs for canonical / OG (requires `site` in astro.config.mjs)
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
@@ -24,7 +24,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 const ogImageUrl = new URL(path('/og-image.jpg'), Astro.site);
 
 /**
- * LocalBusiness structured data (schema.org) — helps Google show the gym's
+ * LocalBusiness structured data (schema.org) - helps Google show the gym's
  * name, address, hours and phone in search results. Contact data comes from
  * src/data/site.ts (single source of truth).
  */
@@ -71,11 +71,11 @@ const jsonLd = {
     <meta name="description" content={pageDescription} />
     <link rel="canonical" href={canonicalUrl} />
 
-    <!-- Favicon (generated from the IG logo in Session 6 — swap with the official logo when available) -->
+    <!-- Favicon (generated from the IG logo in Session 6 - swap with the official logo when available) -->
     <link rel="icon" type="image/png" sizes="32x32" href={path('/favicon-32.png')} />
     <link rel="icon" type="image/png" sizes="16x16" href={path('/favicon-16.png')} />
     <link rel="apple-touch-icon" href={path('/apple-touch-icon.png')} />
-    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="theme-color" content="#121110" />
 
     <!-- Open Graph / Twitter (share previews) -->
     <meta property="og:type" content="website" />

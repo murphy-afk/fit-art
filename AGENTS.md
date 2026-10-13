@@ -1,10 +1,10 @@
-# AGENTS.md — Fit'Art website project
+# AGENTS.md - Fit'Art website project
 
 Read this first, then the docs in `docs/` (ROADMAP -> DECISIONS -> BRAND -> CONTENT-INVENTORY).
 
 ## What this is
 
-Astro static site for **Palestra Fit'Art (Fit'Art ASD)** — gym + art gallery in Rosate (MI), Italy. Redesign of the old `fitartfitness.it` (built with WebSite X5 / Incomedia). **Single language: Italian.** Hosting: GitHub Pages (prototype).
+Astro static site for **Palestra Fit'Art (Fit'Art ASD)** - gym + art gallery in Rosate (MI), Italy. Redesign of the old `fitartfitness.it` (built with WebSite X5 / Incomedia). **Single language: Italian.** Hosting: GitHub Pages (prototype).
 
 ## Non-negotiable rules (client brief)
 
@@ -17,65 +17,68 @@ Astro static site for **Palestra Fit'Art (Fit'Art ASD)** — gym + art gallery i
 
 - `npm install`
 - `npm run dev` -> http://localhost:4321
-- `npm run build` -> `dist/` — **must pass at the end of every session**
+- `npm run build` -> `dist/` - **must pass at the end of every session**
 - `npm run preview` -> preview the production build
-- `node check-style.cjs` — style audit: reports lines containing only `>`/`/>` and any emoji-like characters (rules below)
+- `node check-style.cjs` - style audit: reports lines containing only `>`/`/>`, any emoji-like characters and any em-dash (rules below)
 
 ## Project layout
 
-- `src/layouts/BaseLayout.astro` — HTML shell (`lang="it"`, meta, favicon)
-- `src/components/Header.astro` / `Footer.astro` — shared chrome (nav, mobile toggle, contacts, socials)
-- `src/data/site.ts` — **single source of truth** for contacts, hours, socials, NAV. Change data here, never hardcode it in components.
-- `src/styles/global.css` — design tokens + all CSS (hand-written, no framework)
-- `src/pages/*.astro` — one file per route
-- `public/images/` — static assets (`logo-s150x150.jpg` = Instagram profile pic, temporary logo)
-- `docs/` — BRAND.md (visual identity), CONTENT-INVENTORY.md (full old-site content, incl. OCR of image-based text), DECISIONS.md, ROADMAP.md
+- `src/layouts/BaseLayout.astro` - HTML shell (`lang="it"`, meta, favicon)
+- `src/components/Header.astro` / `Footer.astro` - shared chrome (nav, mobile toggle, contacts, socials)
+- `src/data/site.ts` - **single source of truth** for contacts, hours, socials, NAV. Change data here, never hardcode it in components.
+- `src/styles/global.css` - design tokens + all CSS (hand-written, no framework)
+- `src/pages/*.astro` - one file per route
+- `public/images/` - static assets (`logo-s150x150.jpg` = Instagram profile pic, temporary logo)
+- `docs/` - BRAND.md (visual identity), CONTENT-INVENTORY.md (full old-site content, incl. OCR of image-based text), DECISIONS.md, ROADMAP.md
 
 ## Design tokens (from `docs/BRAND.md`)
 
-Dark premium: near-black backgrounds, off-white bold type, warm bronze accent, photography-first.
+Dark premium: warm near-black backgrounds, off-white bold type, light gray-green interactive accent + warm sand decorative accent, photography-first.
 
 | Role | Token | Hex |
 |------|-------|-----|
-| Base bg | `--color-bg` | `#0A0A0A` |
-| Alt bg | `--color-bg-alt` | `#131313` |
-| Surface (incl. navbar) | `--color-surface` | `#1E1E1E` |
+| Base bg | `--color-bg` | `#121110` |
+| Alt bg | `--color-bg-alt` | `#1B1917` |
+| Surface (incl. navbar) | `--color-surface` | `#262321` |
 | Text | `--color-text` | `#F5F5F5` |
-| Accent (light gray-green) | `--color-accent` | `#A3BFAE` |
+| Accent (interactive: links, buttons) | `--color-accent` | `#A3BFAE` |
 | Accent hover | `--color-accent-strong` | `#BCD3C4` |
+| Sand (decorative: eyebrows, highlights) | `--color-sand` | `#E6D5B8` |
+| Sand hover / light | `--color-sand-strong` | `#F2E7D4` |
 | Light tint | `--color-tint` | `#E9F0EA` |
-| Muted | `--color-muted` | `#B1B3B0` |
+| Muted | `--color-muted` | `#B8B6B2` |
 
-Note: the accent was bronze/orange (`#966B50`) in Session 2; the client changed it to **light grayish green** in Session 3 (see `docs/DECISIONS.md` §Session 3). Navbar bg must stay visibly lighter than the page bg (surface vs base).
+Note: the accent was bronze/orange (`#966B50`) in Session 2; the client changed it to **light grayish green** in Session 3 (see `docs/DECISIONS.md` §Session 3). In the Session 7 follow-up the client had the scheme lifted (all dark tones raised + warm-tinted) and a **warm sand second accent** added for decorative highlights (green stays for interactive elements) - see `docs/DECISIONS.md` §Session 7 follow-up. Navbar bg must stay visibly lighter than the page bg (surface vs base).
 
 ## Conventions
 
-- **Language split (client rule, 2026-10-13)**: all site content/UI text is **Italian** — never translate it. All **documentation** (`docs/`, this file) and **code comments** are in **English**.
+- **Language split (client rule, 2026-10-13)**: all site content/UI text is **Italian** - never translate it. All **documentation** (`docs/`, this file) and **code comments** are in **English**.
 - Mobile-first CSS; breakpoints at `48rem` and `64rem` (full horizontal nav only at `>= 64rem`; hamburger below).
 - **Placeholders stay marked** with comments pointing to `docs/DECISIONS.md`: email `info@fitartfitness.it`, Facebook URL (`pending`), logo. Do not remove the markers.
-- Content must match `docs/CONTENT-INVENTORY.md`. Some old-site content exists **only inside images** (OCR-recovered — see the "Valutazione Posturale" and "Cos'è il Taping" inventory entries).
+- Content must match `docs/CONTENT-INVENTORY.md`. Some old-site content exists **only inside images** (OCR-recovered - see the "Valutazione Posturale" and "Cos'è il Taping" inventory entries).
 - Do **not** rebuild the old "Accedi" admin page (dropped in Session 1).
 - No new pages or features beyond the roadmap without client approval.
 
 ## Code style rules (client brief, Session 3)
 
 - **No line may contain only `>` or `/>`.** Always close the tag on the previous line (e.g. `aria-label="…">Menu</button>`), never leave a dangling bracket line.
-- **Absolutely no emojis anywhere** (source, docs, UI). Icons come **only from Lucide** (`@lucide/astro`, decided by the client — see `docs/DECISIONS.md` §Icon library). No glyph substitutes either (e.g. no hamburger-trigram characters); use text labels or Lucide icons.
+- **Absolutely no emojis anywhere** (source, docs, UI). Icons come **only from Lucide** (`@lucide/astro`, decided by the client - see `docs/DECISIONS.md` §Icon library). No glyph substitutes either (e.g. no hamburger-trigram characters); use text labels or Lucide icons. **Exception (client-requested)**: social-media brand logos (Instagram, Facebook, TikTok) are not in Lucide, so the footer uses hand-drawn inline SVGs in Lucide's style (see `docs/DECISIONS.md` §Session 7 follow-up).
+- **No em-dashes** in source, docs or UI (client rule, Session 7 follow-up). Use plain hyphens, colons, commas or the middle dot `·` instead. Enforced by the style audit.
 
 ## Session workflow
 
 1. Read the current session row in `docs/ROADMAP.md`.
 2. Implement; keep stubs and docs in sync.
-3. `npm run build` — verify it passes.
+3. `npm run build` - verify it passes.
 4. Update docs (ROADMAP status, DECISIONS if needed).
 5. Present to client; **commit only after explicit approval.**
 
 ## Current state (Session 7 done, 2026-10-13)
 
-- Skeleton + homepage (Session 4) + all 6 content pages (Session 5) + production pass (Session 6) + **final review & deploy (Session 7)** complete: SEO meta, sitemap/robots, favicon set, 404, Formspree-ready form, a11y pass; `site`/`base` set for GitHub Pages. **Live at https://murphy-afk.github.io/fit-art/** — deploy via `.github/workflows/deploy.yml` on push to `main` (Pages source = "GitHub Actions", enabled 2026-10-13; audit + build run in CI). Build passes (8 pages), `npm run check` passes (0 hits).
+- Skeleton + homepage (Session 4) + all 6 content pages (Session 5) + production pass (Session 6) + **final review & deploy (Session 7)** complete: SEO meta, sitemap/robots, favicon set, 404, Formspree-ready form, a11y pass; `site`/`base` set for GitHub Pages. **Live at https://murphy-afk.github.io/fit-art/** - deploy via `.github/workflows/deploy.yml` on push to `main` (Pages source = "GitHub Actions", enabled 2026-10-13; audit + build run in CI). Build passes (8 pages), `npm run check` passes (0 hits).
 - Images live in `src/assets/images/` (astro:assets `<Image>`, WebP); `src/data/images.ts` is the import hub. Logo remains in `public/images/` (favicon source; `scripts/generate-favicons.cjs`).
-- **All internal links and `public/` URLs must go through `path()` (from `src/data/site.ts`)** — Astro does not prefix hand-written URLs with `base`.
-- Contact form posts to `SITE.formspreeEndpoint` in `src/data/site.ts` — still the `YOUR_FORM_ID` placeholder (client must create the Formspree account, one-line swap).
+- **All internal links and `public/` URLs must go through `path()` (from `src/data/site.ts`)** - Astro does not prefix hand-written URLs with `base`.
+- Contact form posts to `SITE.formspreeEndpoint` in `src/data/site.ts` - still the `YOUR_FORM_ID` placeholder (client must create the Formspree account, one-line swap).
 - Code style rules in force: no standalone `>`/`/>` lines, zero emojis; icons only from **Lucide** (`@lucide/astro`). Style audit: `npm run check` (or `node check-style.cjs`).
 - Open items: official logo (then rerun `scripts/generate-favicons.cjs`), official email (placeholder `info@fitartfitness.it`), safeguarding documents ("Modello Organizzativo e Codice di Condotta"), real Formspree form ID, video captions (confirm speech content), custom-domain switch (see `docs/HANDOVER.md` §4).
 - Handover: `docs/HANDOVER.md` + root `README.md`.

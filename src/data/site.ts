@@ -1,12 +1,12 @@
 /**
- * Shared site data — Fit'Art ASD.
+ * Shared site data - Fit'Art ASD.
  * Source: docs/CONTENT-INVENTORY.md and docs/DECISIONS.md (Session 0-1).
  */
 
 /**
  * Base path from astro.config.mjs ('/fit-art/' on GitHub Pages project site).
  * Astro prefixes bundled assets itself, but template links (href/src) and
- * public/ files are NOT auto-prefixed — always build internal URLs with path().
+ * public/ files are NOT auto-prefixed - always build internal URLs with path().
  * When the custom domain is connected (base '/'), path() simply drops the prefix.
  */
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -27,13 +27,13 @@ export const SITE = {
   // PLACEHOLDER (docs/DECISIONS.md §1): swap in the official email once known.
   email: 'info@fitartfitness.it',
   hours: {
-    weekday: 'Lun–Ven 06:00–23:00',
-    weekend: 'Sab–Dom 08:00–18:00',
+    weekday: 'Lun-Ven 06:00-23:00',
+    weekend: 'Sab-Dom 08:00-18:00',
   },
   socials: [
     { label: 'Instagram', href: 'https://www.instagram.com/fitartstudiofitness/' },
     { label: 'TikTok', href: 'https://www.tiktok.com/@fitartstudiofitness' },
-    // Official Facebook page — confirmed by the client (Session 6 close, 2026-10-13).
+    // Official Facebook page - confirmed by the client (Session 6 close, 2026-10-13).
     // Replaces the estimated handle that was marked `pending`.
     { label: 'Facebook', href: 'https://www.facebook.com/share/19c2zGVGed/' },
   ],
@@ -45,17 +45,19 @@ export const SITE = {
   formspreeEndpoint: 'https://formspree.io/f/YOUR_FORM_ID',
 } as const;
 
-/** Main navigation — live pages of the old site (the "Accedi" page was removed in Session 1). */
+/** Main navigation - live pages of the old site (the "Accedi" page was removed in Session 1).
+ *  Order per the client (Session 7 follow-up): Taping, Valutazione and Safeguarding
+ *  are grouped together as the last three items; Foto and Contatti come before them. */
 export const NAV = [
   { label: 'Home', href: '/', slug: 'home' },
   { label: 'Chi siamo', href: '/chi-siamo', slug: 'chi-siamo' },
   // Labels shortened in Session 3 (less crowded navbar): full titles stay in the
-  // page `<title>`/H1 — docs/DECISIONS.md §Session 3.
-  { label: 'Valutazione', href: '/valutazione-posturale', slug: 'valutazione-posturale' },
-  { label: 'Taping', href: '/cos-e-il-taping', slug: 'cos-e-il-taping' },
+  // page `<title>`/H1 - docs/DECISIONS.md §Session 3.
   { label: 'Foto', href: '/foto', slug: 'foto' },
-  { label: 'Safeguarding', href: '/safeguarding', slug: 'safeguarding' },
   { label: 'Contatti', href: '/contatti', slug: 'contatti' },
+  { label: 'Taping', href: '/cos-e-il-taping', slug: 'cos-e-il-taping' },
+  { label: 'Valutazione', href: '/valutazione-posturale', slug: 'valutazione-posturale' },
+  { label: 'Safeguarding', href: '/safeguarding', slug: 'safeguarding' },
 ] as const;
 
 export type NavSlug = (typeof NAV)[number]['slug'];
