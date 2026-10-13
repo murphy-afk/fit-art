@@ -6,6 +6,9 @@ const dirs = ['src', 'docs', 'public', '.'];
 const exts = new Set(['.astro', '.ts', '.css', '.md', '.mjs', '.json']);
 const emojiRe = /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{2190}-\u{21FF}\u{1F1E6}-\u{1F1FF}]/u;
 const standaloneTag = /^\s*(\/?>|>)\s*$/;
+// Client rule (Session 7 follow-up): no em-dashes in source, docs or UI.
+// Plain hyphens (and en-dashes in range notation) are allowed.
+const emDashRe = /—/;
 
 function walk(d, out) {
   for (const e of fs.readdirSync(d, { withFileTypes: true })) {
@@ -38,6 +41,10 @@ for (const f of files) {
         'EMOJI ' + f + ':' + (i + 1) + ': ' + line.trim().slice(0, 110) + '  ==> ' +
         [...m].map((c) => 'U+' + c.codePointAt(0).toString(16).toUpperCase()).join(',')
       );
+    }
+    if (emDashRe.test(line)) {
+      hits++;
+      console.log('DASH  ' + f + ':' + (i + 1) + ': ' + line.trim().slice(0, 110));
     }
   });
 }

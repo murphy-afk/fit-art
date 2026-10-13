@@ -1,19 +1,22 @@
 /* ==========================================================================
-   Design tokens — docs/BRAND.md (original palette from Instagram @fitartstudiofitness,
-   accent revised in Session 3 on client feedback: light grayish green, not bronze)
-   Dark premium: near-black, off-white, light grayish green.
+   Design tokens - docs/BRAND.md (original palette from Instagram @fitartstudiofitness,
+   accent revised in Session 3 on client feedback: light grayish green, not bronze;
+   lifted + second warm sand accent in the Session 7 follow-up, see docs/DECISIONS.md).
+   Dark premium: warm near-black, off-white, light grayish green + warm sand.
    ========================================================================== */
 
 :root {
   /* Colors */
-  --color-bg: #0a0a0a; /* base background */
-  --color-bg-alt: #131313; /* alternate background / footer */
-  --color-surface: #1e1e1e; /* cards, sections, navbar */
+  --color-bg: #121110; /* base background (lifted from #0A0A0A, warm-tinted) */
+  --color-bg-alt: #1b1917; /* alternate background / footer (lifted from #131313) */
+  --color-surface: #262321; /* cards, sections, navbar (lifted from #1E1E1E) */
   --color-text: #f5f5f5; /* main text */
-  --color-accent: #a3bfae; /* light grayish green — CTA and highlights */
-  --color-accent-strong: #bcd3c4; /* lighter grayish green — hover */
-  --color-tint: #e9f0ea; /* very light grayish green — highlights, light sections */
-  --color-muted: #b1b3b0; /* secondary text, borders */
+  --color-accent: #a3bfae; /* light grayish green - interactive elements (links, buttons) */
+  --color-accent-strong: #bcd3c4; /* lighter grayish green - hover */
+  --color-sand: #e6d5b8; /* warm sand/champagne - decorative highlights (Session 7 follow-up) */
+  --color-sand-strong: #f2e7d4; /* lighter warm sand - hover / gradients */
+  --color-tint: #e9f0ea; /* very light grayish green - highlights, light sections */
+  --color-muted: #b8b6b2; /* secondary text, borders (lifted from #B1B3B0) */
 
   /* Typography */
   --font-sans: 'Segoe UI', system-ui, -apple-system, Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -148,8 +151,9 @@ main {
   position: sticky;
   top: 0;
   z-index: 10;
-  /* Lighter than the content (#0A0A0A) so it stands out — Session 3 */
-  background: rgb(30 30 30 / 0.94);
+  /* Lighter than the content so it stands out - Session 3
+     (tone follows the lifted surface token, Session 7 follow-up) */
+  background: rgb(38 35 33 / 0.94);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgb(255 255 255 / 0.08);
 }
@@ -193,7 +197,7 @@ main {
 
 /* Navigation: mobile-first (hamburger below 64rem).
    Icon-only (Lucide Menu); the accessible name comes from aria-label
-   "Apri/Chiudi menu" on the button — client request, Session 7 follow-up. */
+   "Apri/Chiudi menu" on the button - client request, Session 7 follow-up. */
 .nav-toggle {
   display: inline-flex;
   align-items: center;
@@ -289,7 +293,7 @@ main {
   padding: 0.55rem 1rem;
   border-radius: var(--radius);
   background: var(--color-accent);
-  color: var(--color-bg); /* dark text on light accent — AA contrast */
+  color: var(--color-bg); /* dark text on light accent - AA contrast */
   font-weight: 700;
   font-size: 0.9rem;
   text-decoration: none;
@@ -358,6 +362,24 @@ main {
   color: var(--color-muted);
 }
 
+/* Social links with brand icon logos (Session 7 follow-up) */
+.social-list a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.2rem 0;
+  color: var(--color-text);
+}
+
+.social-list a:hover {
+  color: var(--color-sand-strong);
+}
+
+.social-icon {
+  flex: none;
+  color: var(--color-sand);
+}
+
 @media (min-width: 48rem) {
   .footer-grid {
     grid-template-columns: 2fr 1fr 1fr;
@@ -372,7 +394,7 @@ main {
 
 .eyebrow {
   margin: 0 0 0.75rem;
-  color: var(--color-accent);
+  color: var(--color-sand);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-size: 0.8rem;
@@ -386,7 +408,7 @@ main {
 }
 
 /* ==========================================================================
-   Content pages — Session 5 (feature cards, prose, contacts, form)
+   Content pages - Session 5 (feature cards, prose, contacts, form)
    ========================================================================== */
 
 /* ---------- Feature cards (used by Chi siamo, Valutazione, Safeguarding) ---------- */
@@ -407,7 +429,7 @@ main {
 .feature-card h3 {
   margin: 0 0 0.5rem;
   font-size: 1.05rem;
-  color: var(--color-accent);
+  color: var(--color-sand);
 }
 
 .feature-card p {
@@ -464,7 +486,7 @@ main {
 
 .callout {
   margin-top: 2rem;
-  border-left: 3px solid var(--color-accent);
+  border-left: 3px solid var(--color-sand);
   background: var(--color-surface);
   border-radius: 0 var(--radius) var(--radius) 0;
   padding: 1.25rem 1.5rem;
@@ -472,7 +494,7 @@ main {
 
 .callout h3 {
   margin-top: 0;
-  color: var(--color-accent);
+  color: var(--color-sand);
 }
 
 .callout p {
@@ -518,7 +540,7 @@ main {
   font-weight: 600;
 }
 
-/* ---------- Contact form (UI only — handling in Session 6) ---------- */
+/* ---------- Contact form (UI only - handling in Session 6) ---------- */
 
 .contact-form {
   display: grid;
@@ -548,6 +570,12 @@ main {
   font: inherit;
 }
 
+/* Only vertical resizing: horizontal resizing would stretch the grid track
+   and push the other form fields (client report, Session 7 follow-up) */
+.form-field textarea {
+  resize: vertical;
+}
+
 .form-field input::placeholder,
 .form-field textarea::placeholder {
   color: var(--color-muted);
@@ -569,7 +597,7 @@ main {
 }
 
 /* ==========================================================================
-   Homepage — Session 4 (hero, hours, services, story, gallery, CTA)
+   Homepage - Session 4 (hero, hours, services, story, gallery, CTA)
    ========================================================================== */
 
 /* ---------- Buttons ---------- */
@@ -592,7 +620,7 @@ main {
 
 .btn-primary {
   background: var(--color-accent);
-  color: var(--color-bg); /* dark text on light accent — AA contrast */
+  color: var(--color-bg); /* dark text on light accent - AA contrast */
 }
 
 .btn-primary:hover {
@@ -602,7 +630,7 @@ main {
 
 .btn-ghost {
   border: 1px solid rgb(255 255 255 / 0.28);
-  background: rgb(10 10 10 / 0.35);
+  background: rgb(18 17 16 / 0.35);
   color: var(--color-text);
 }
 
@@ -652,13 +680,14 @@ main {
   object-position: center 30%;
 }
 
-/* Dark overlay so the text stays legible over the photo */
+/* Warm-dark overlay so the text stays legible over the photo
+   (tone follows the lifted base token, Session 7 follow-up) */
 .home-hero-media::after {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgb(10 10 10 / 0.55) 0%, rgb(10 10 10 / 0.25) 45%, rgb(10 10 10 / 0.92) 100%);
+    linear-gradient(180deg, rgb(18 17 16 / 0.55) 0%, rgb(18 17 16 / 0.25) 45%, rgb(18 17 16 / 0.92) 100%);
 }
 
 .home-hero-inner {
@@ -668,10 +697,15 @@ main {
 
 .home-hero h1 {
   max-width: 16ch;
+  /* Bigger than the global h1 scale (client feedback, Session 7 follow-up) */
+  font-size: clamp(2.5rem, 1.9rem + 3.2vw, 4.25rem);
 }
 
 .home-hero-lede {
   color: var(--color-text);
+  /* Slightly bigger than the global lede to match the enlarged headline
+     (client feedback, Session 7 follow-up) */
+  font-size: 1.25rem;
 }
 
 .home-hero-actions {
@@ -709,7 +743,7 @@ main {
   margin: 0;
   font-size: 1.35rem;
   font-weight: 800;
-  color: var(--color-accent);
+  color: var(--color-sand);
 }
 
 .hours-address {
@@ -833,8 +867,11 @@ main {
 
 /* ---------- Final CTA ---------- */
 
+/* Warm sand-tinted gradient: a lighter, more pleasant section that still
+   keeps the dark identity (Session 7 follow-up) */
 .home-cta {
-  background: var(--color-surface);
+  background:
+    linear-gradient(160deg, var(--color-surface) 0%, #322b23 55%, #3d3327 100%);
 }
 
 .home-cta-inner {

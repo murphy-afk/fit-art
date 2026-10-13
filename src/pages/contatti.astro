@@ -3,12 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../data/site';
 
 /**
- * Contatti page — Session 5; form handling added in Session 6.
+ * Contatti page - Session 5; form handling added in Session 6.
  * GitHub Pages is static, so the form posts to Formspree via fetch
  * (docs/DECISIONS.md §Session 6). Until SITE.formspreeEndpoint contains a real
  * form ID, submitting shows the "in fase di collaudo" note instead of sending.
  */
-// Google Maps link for the gym — confirmed by the client (Session 7).
+// Google Maps link for the gym - confirmed by the client (Session 7).
 const mapHref = 'https://maps.app.goo.gl/Uf1LsX99xcg7mxeU6';
 const formspreeReady = !SITE.formspreeEndpoint.includes('YOUR_FORM_ID');
 ---
@@ -27,7 +27,7 @@ const formspreeReady = !SITE.formspreeEndpoint.includes('YOUR_FORM_ID');
     </p>
   </section>
 
-  <!-- Contact cards — data from src/data/site.ts -->
+  <!-- Contact cards - data from src/data/site.ts -->
   <section class="section" aria-labelledby="recapiti-title">
     <div class="container">
       <h2 id="recapiti-title">Recapiti</h2>
@@ -68,7 +68,7 @@ const formspreeReady = !SITE.formspreeEndpoint.includes('YOUR_FORM_ID');
     </div>
   </section>
 
-  <!-- Contact form — Formspree wiring (Session 6). Native POST as no-JS fallback. -->
+  <!-- Contact form - Formspree wiring (Session 6). Native POST as no-JS fallback. -->
   <section class="section section-alt" aria-labelledby="form-title">
     <div class="container">
       <h2 id="form-title">Scrivici</h2>

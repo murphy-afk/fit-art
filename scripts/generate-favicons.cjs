@@ -1,7 +1,7 @@
 // Session 6: generate favicons + OG share image from the existing logo/hero.
 // The logo is a circle on a square JPEG (white corners): the favicons apply a
 // circular mask so the corners become transparent.
-// NOTE: the logo is still the temporary IG profile pic (150x150) — regenerate
+// NOTE: the logo is still the temporary IG profile pic (150x150) - regenerate
 // these files when the official logo arrives (docs/DECISIONS.md §Open).
 const sharp = require('sharp');
 const fs = require('fs');

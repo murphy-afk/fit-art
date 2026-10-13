@@ -1,4 +1,4 @@
-# Handover — Fit'Art website
+# Handover - Fit'Art website
 
 Session 7 deliverable (see `docs/ROADMAP.md`). This is the technical guide for
 whoever maintains the site after the project.
@@ -41,7 +41,7 @@ Requires Node 20+ (CI uses Node 22).
 | `.github/workflows/deploy.yml` | Builds + deploys to GitHub Pages on every push to `main` |
 
 **To change site data (phone numbers, hours, socials, nav, form endpoint): edit
-`src/data/site.ts` only** — components read from it.
+`src/data/site.ts` only** - components read from it.
 
 ## 4. Deploy (GitHub Pages)
 
@@ -63,11 +63,11 @@ Requires Node 20+ (CI uses Node 22).
 1. Repo Settings -> Pages -> Custom domain: `fitartfitness.it` (+ DNS A/CNAME records at the registrar).
 2. In `astro.config.mjs`: `site: 'https://fitartfitness.it', base: '/'`.
 3. In `public/robots.txt`: `Sitemap: https://fitartfitness.it/sitemap-index.xml`.
-4. Rebuild/deploy. `path()` then returns plain `/...` paths — no other changes needed.
+4. Rebuild/deploy. `path()` then returns plain `/...` paths - no other changes needed.
 
 > Note: on a *project* site crawlers never read `/fit-art/robots.txt` (they only
 > fetch `robots.txt` from the domain root), so the sitemap hint there is inert
-> until the custom domain is connected — where it becomes the real discovery path.
+> until the custom domain is connected - where it becomes the real discovery path.
 
 ## 5. Open placeholders (swap when available)
 
@@ -90,8 +90,8 @@ All are marked in code and safe to deploy as-is:
 
 ## 7. Where the docs are
 
-- `docs/ROADMAP.md` — session plan and per-session deliverables.
-- `docs/DECISIONS.md` — every decision and why (hosting, colors, Formspree...).
-- `docs/BRAND.md` — visual identity/tokens (accent superseded by DECISIONS §Session 3).
-- `docs/CONTENT-INVENTORY.md` — full content of the old site (incl. OCR).
-- `AGENTS.md` — conventions for AI/agents working in this repo.
+- `docs/ROADMAP.md` - session plan and per-session deliverables.
+- `docs/DECISIONS.md` - every decision and why (hosting, colors, Formspree...).
+- `docs/BRAND.md` - visual identity/tokens (accent superseded by DECISIONS §Session 3).
+- `docs/CONTENT-INVENTORY.md` - full content of the old site (incl. OCR).
+- `AGENTS.md` - conventions for AI/agents working in this repo.
