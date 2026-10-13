@@ -8,42 +8,64 @@ Working rules (from the client brief):
 
 | # | Session | Planned prompt (summary) | Goal / deliverable |
 |---|---------|--------------------------|--------------------|
-| 0 | Content scan (done) | "Scan all content on fitartfitness.it, including text inside images" | Complete content inventory → `docs/CONTENT-INVENTORY.md` (OCR used for image-based content) |
-| 1 | Decisions & content freeze (done) | "Answer the open questions: email, socials, media reuse, admin page, contact form, hosting, visual style" | `docs/DECISIONS.md` finalized; brand style from Instagram → `docs/BRAND.md`; hosting = GitHub Pages; logo = IG profile pic |
+| 0 | Content scan (done) | "Scan all content on fitartfitness.it, including text inside images" | Complete content inventory -> `docs/CONTENT-INVENTORY.md` (OCR used for image-based content) |
+| 1 | Decisions & content freeze (done) | "Answer the open questions: email, socials, media reuse, admin page, contact form, hosting, visual style" | `docs/DECISIONS.md` finalized; brand style from Instagram -> `docs/BRAND.md`; hosting = GitHub Pages; logo = IG profile pic |
 | 2 | Scaffolding & design system (done, feedback applied in Session 3) | "Set up the Astro project: layouts (header/nav/footer), design tokens, responsive mobile-first, all routes stubbed" | Running Astro skeleton with shared layout and navigation; docs updated |
 | 3 | Refinement & polish (done, approved) | "Review the skeleton: typography/token polish, responsive + mobile nav check, a11y basics, build performance, apply Session 2 feedback" | Polished skeleton ready for content; docs updated |
-| 4 | Homepage | "Implement homepage: hero, hours, services with videos, success story, gallery teaser, CTA" | Homepage complete and presented for review |
+| 4 | Homepage (done, approved) | "Implement homepage: hero, hours, services with videos, success story, gallery teaser, CTA" | Homepage complete and presented for review |
 | 5 | Content pages | "Implement Chi siamo, Valutazione Posturale, Cos'è il Taping, Foto, Safeguarding, Contatti" | All content pages complete and presented for review |
 | 6 | SEO, accessibility, performance, forms | "Meta tags, sitemap.xml, robots.txt, favicon, image optimization, a11y pass, contact form handling, 404 page" | Production-ready build; docs updated |
 | 7 | Final review & deploy | "Review everything, apply feedback, deploy, write handover docs" | Live site + handover documentation |
 
 Session 1 is where the client answers the open questions (see `docs/DECISIONS.md`). Sessions 2–6 each end with a review checkpoint; nothing is committed without approval.
 
-## Session 2 — deliverables (2026-10-10, in attesa di review)
+## Session 2 — deliverables (2026-10-10, awaiting review)
 
-- **Astro 7.3.8**, output statico (`astro.config.mjs`; `base` per GitHub Pages da impostare al deploy, Session 7).
-- `src/layouts/BaseLayout.astro` — shell HTML (`lang="it"`, viewport, meta description, favicon temporaneo = logo IG).
-- `src/components/Header.astro` — logo, brand, nav 7 voci, toggle mobile (aria-expanded/aria-controls), CTA telefono (desktop).
-- `src/components/Footer.astro` — indirizzo, telefoni, email placeholder, social (IG, TikTok, FB), orari.
-- `src/styles/global.css` — design token da `docs/BRAND.md` (`#0A0A0A`, `#1E1E1E`, `#F5F5F5`, `#966B50`, `#F2E7D4`, `#B1B3B0`), mobile-first, breakpoint 48/64rem.
-- `src/data/site.ts` — dati condivisi (contatti, orari, social, NAV).
-- Route stub: `/`, `/chi-siamo`, `/valutazione-posturale`, `/cos-e-il-taping`, `/foto`, `/safeguarding`, `/contatti` (blocco "stub" visibile con i contenuti previsti per Sessioni 4–5).
-- Build verificata: `npm run build` → `dist/`, 7 pagine generate.
-- **Pending**: conferma URL Facebook (stimato dall'handle IG), logo ufficiale, email ufficiale, favicon definitivo (Session 6).
-- Nota: nessun commit — in attesa di approvazione del client (regole del brief). Feedback di review raccolto e applicato in Session 3.
-- **Prossimo**: Session 3 — Refinement & polish del skeleton (prompt nella tabella sopra).
+- **Astro 7.3.8**, static output (`astro.config.mjs`; `base` for GitHub Pages to be set at deploy time, Session 7).
+- `src/layouts/BaseLayout.astro` — HTML shell (`lang="it"`, viewport, meta description, temporary favicon = IG logo).
+- `src/components/Header.astro` — logo, brand, 7-item nav, mobile toggle (aria-expanded/aria-controls), phone CTA (desktop).
+- `src/components/Footer.astro` — address, phones, placeholder email, socials (IG, TikTok, FB), hours.
+- `src/styles/global.css` — design tokens from `docs/BRAND.md` (`#0A0A0A`, `#1E1E1E`, `#F5F5F5`, `#966B50`, `#F2E7D4`, `#B1B3B0`), mobile-first, breakpoints at 48/64rem.
+- `src/data/site.ts` — shared data (contacts, hours, socials, NAV).
+- Route stubs: `/`, `/chi-siamo`, `/valutazione-posturale`, `/cos-e-il-taping`, `/foto`, `/safeguarding`, `/contatti` (visible "stub" block listing the contents planned for Sessions 4–5).
+- Build verified: `npm run build` -> `dist/`, 7 pages generated.
+- **Pending**: Facebook URL confirmation (estimated from the IG handle), official logo, official email, definitive favicon (Session 6).
+- Note: no commit — awaiting client approval (brief rules). Review feedback collected and applied in Session 3.
+- **Next**: Session 3 — Refinement & polish of the skeleton (prompt in the table above).
 
-## Session 3 — deliverables (2026-10-10, approvata dal client)
+## Session 3 — deliverables (2026-10-10, approved by the client)
 
-Feedback del client sulla Session 2 applicato (vedi `docs/DECISIONS.md` §Session 3):
+Client feedback on Session 2 applied (see `docs/DECISIONS.md` §Session 3):
 
-- **Navbar più chiara**: header da `#0A0A0A/92%` a surface `#1E1E1E/94%` + blur — distinguibile dall'area contenuti (che resta `#0A0A0A`).
-- **Accento rimosso dall'arancio**: palette bronze/beige (`#966B50`, `#B08262`, `#F2E7D4`) sostituita con **verde-grigio chiaro** (`#A3BFAE`, `#BCD3C4`, `#E9F0EA`); testo CTA scuro per il contrasto; bordo dashed degli stub aggiornato.
-- **Navbar snellita**: nav orizzontale completa solo da `64rem` (hamburger testuale "Menu" sotto), etichette accorciate ("Valutazione", "Taping"; titoli completi in `<title>`/H1), tagline brand nascosta su desktop, spaziatura più compatta.
-- **A11y basics**: skip-link "Salta al contenuto", `:focus-visible`, `prefers-reduced-motion`, `aria-label` toggle Apri/Chiudi menu, chiusura menu con Esc / click fuori / click link, pagina corrente evidenziata anche con spessore (non solo colore).
-- **Code style (nuove regole in AGENTS.md)**: nessuna riga con solo `>` o `/>` (corrette 2 in Header.astro); zero emoji ovunque (rimosse anche da docs; il glifo hamburger sostituito dal testo "Menu"). Audit ripetibile: `node check-style.cjs`.
-- **Tipografia/token polish**: scale h1/h2/h3 con `clamp()`, `text-wrap: balance`, margini di default ridotti, token commentati.
-- **Docs aggiornati**: AGENTS.md (regole code style, token aggiornati), DECISIONS.md (§Session 3 + voce aperta scelta icon library), BRAND.md (nota rinvio a DECISIONS), ROADMAP.
-- Build verificata: `npm run build` → `dist/`, 7 pagine.
-- **Aperto**: scegliere insieme la icon library (Lucide / Phosphor / Heroicons — `docs/DECISIONS.md`).
-- **Prossimo**: Session 4 — Homepage.
+- **Lighter navbar**: header changed from `#0A0A0A/92%` to surface `#1E1E1E/94%` + blur — distinguishable from the content area (which stays `#0A0A0A`).
+- **Accent moved off orange**: bronze/beige palette (`#966B50`, `#B08262`, `#F2E7D4`) replaced with **light grayish green** (`#A3BFAE`, `#BCD3C4`, `#E9F0EA`); CTA text dark for contrast; stub dashed border updated.
+- **Slimmer navbar**: full horizontal nav only at `>= 64rem` (textual "Menu" hamburger below), shortened labels ("Valutazione", "Taping"; full titles in `<title>`/H1), brand tagline hidden on desktop, tighter spacing.
+- **A11y basics**: skip-link "Salta al contenuto", `:focus-visible`, `prefers-reduced-motion`, `aria-label` toggle Apri/Chiudi menu, menu closes on Esc / outside click / link click, current page marked with weight (not only color).
+- **Code style (new rules in AGENTS.md)**: no line with only `>` or `/>` (2 fixed in Header.astro); zero emojis everywhere (also removed from docs; the hamburger glyph replaced by the text "Menu"). Repeatable audit: `node check-style.cjs`.
+- **Typography/token polish**: h1/h2/h3 scale with `clamp()`, `text-wrap: balance`, reduced default margins, commented tokens.
+- **Docs updated**: AGENTS.md (code style rules, updated tokens), DECISIONS.md (§Session 3 + open item for icon library choice), BRAND.md (pointer note to DECISIONS), ROADMAP.
+- Build verified: `npm run build` -> `dist/`, 7 pages.
+- **Open**: choose the icon library together with the client (Lucide / Phosphor / Heroicons — `docs/DECISIONS.md`).
+- **Next**: Session 4 — Homepage.
+
+## Session 4 — deliverables (2026-10-13, approved by the client)
+
+Complete homepage (`src/pages/index.astro` + a dedicated section in `src/styles/global.css`):
+
+- **Full-bleed hero**: `hero-functional.jpg` with dark overlay, the decennial claim from the old site, "Chiama" CTA (tel:) + "Scopri i corsi" anchor.
+- **Hours**: 3 cards (Mon–Fri 06–23, Sat–Sun 08–18, address) sourced from `SITE` in `src/data/site.ts`.
+- **Services**: 8-service grid — 5 with **MP4 videos** downloaded from the old site (Functional Training, Pilates, Mal di schiena, Preparazione Atletica, Rieducazione funzionale; posters where available), 3 with photos (Indoor Cycling, Dimagrire, Ginnastica Posturale). Original text descriptions from the old site where they existed; Pilates with the full description + **8 benefits** in an expandable `<details>`.
+- **Success story**: "Anna ha perso 40 chili in meno di un anno" + 2 photos + phone CTA.
+- **Gallery teaser**: tour video (`palestra-tour.mp4`) + 4 photos + link to `/foto`; "galleria d'arte" claim.
+- **Final CTA**: both phone numbers + `/contatti` link, with the sentence "Valuteremo insieme le tue esigenze…".
+- Content verified by re-fetching `fitartfitness.it/index.html` (original texts).
+- **Approval requested**: 4 **new** service descriptions (Posturale, Mal di schiena, Preparazione Atletica, Rieducazione) — no texts existed on the old site, written for Session 4 (see `docs/DECISIONS.md` §Session 4).
+- Style audit `node check-style.cjs`: zero hits in `src/` (28 pre-existing hits were arrow characters in docs, left untouched at the time).
+- Build verified: `npm run build` -> `dist/`, 7 pages.
+- No commit — awaiting client approval.
+- **Next**: Session 5 — content pages (Chi siamo, Valutazione Posturale, Cos'è il Taping, Foto, Safeguarding, Contatti).
+
+## Session 4 follow-up (2026-10-13, client instructions — approved)
+
+- **Icon library decided: Lucide** — installed as `@lucide/astro` (see `docs/DECISIONS.md` §Icon library). First icons added: `Menu` (nav toggle), `Phone` (header CTA).
+- **Language policy**: site content stays Italian; documentation and code comments are kept in English. Italian sections of the docs and Italian code comments translated to English; arrow characters in docs replaced with `->` (clears the style audit).
