@@ -382,6 +382,180 @@ main {
 }
 
 /* ==========================================================================
+   Content pages — Session 5 (feature cards, prose, contacts, form)
+   ========================================================================== */
+
+/* ---------- Feature cards (used by Chi siamo, Valutazione, Safeguarding) ---------- */
+
+.feature-grid {
+  display: grid;
+  gap: var(--gap);
+  margin-top: 1.75rem;
+}
+
+.feature-card {
+  background: var(--color-surface);
+  border: 1px solid rgb(255 255 255 / 0.07);
+  border-radius: var(--radius);
+  padding: 1.35rem 1.5rem;
+}
+
+.feature-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+  color: var(--color-accent);
+}
+
+.feature-card p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.feature-card ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+/* Numbered variant (Safeguarding components) */
+.feature-num {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+}
+
+/* ---------- Page media (photo band inside a content page) ---------- */
+
+.page-media {
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-top: 2rem;
+  background: var(--color-surface);
+}
+
+/* ---------- Prose (long-form text sections) ---------- */
+
+.prose {
+  max-width: 46rem;
+}
+
+.prose p {
+  color: var(--color-muted);
+}
+
+.prose strong {
+  color: var(--color-text);
+}
+
+/* ---------- Callout (highlight box inside a page) ---------- */
+
+.callout {
+  margin-top: 2rem;
+  border-left: 3px solid var(--color-accent);
+  background: var(--color-surface);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.25rem 1.5rem;
+}
+
+.callout h3 {
+  margin-top: 0;
+  color: var(--color-accent);
+}
+
+.callout p {
+  margin-bottom: 0;
+  color: var(--color-muted);
+}
+
+.callout p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Contact cards (Contatti) ---------- */
+
+.contact-grid {
+  display: grid;
+  gap: var(--gap);
+  margin-top: 1.75rem;
+}
+
+.contact-card {
+  background: var(--color-surface);
+  border: 1px solid rgb(255 255 255 / 0.07);
+  border-radius: var(--radius);
+  padding: 1.35rem 1.5rem;
+}
+
+.contact-card h2 {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+  font-weight: 700;
+}
+
+.contact-card p {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.contact-card a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ---------- Contact form (UI only — handling in Session 6) ---------- */
+
+.contact-form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.75rem;
+  max-width: 40rem;
+}
+
+.form-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.form-field label {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgb(255 255 255 / 0.16);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: var(--color-muted);
+}
+
+.form-note {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* ==========================================================================
    Homepage — Session 4 (hero, hours, services, story, gallery, CTA)
    ========================================================================== */
 
@@ -393,7 +567,9 @@ main {
   justify-content: center;
   min-height: 2.9rem;
   padding: 0.65rem 1.4rem;
+  border: 0;
   border-radius: var(--radius);
+  font: inherit;
   font-weight: 700;
   font-size: 1rem;
   text-decoration: none;
@@ -433,6 +609,9 @@ main {
 }
 
 .section-action {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   margin: 2rem 0 0;
 }
 
@@ -668,6 +847,14 @@ main {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -690,6 +877,10 @@ main {
 
 @media (min-width: 64rem) {
   .services-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .contact-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }

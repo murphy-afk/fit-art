@@ -1,24 +1,139 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+/**
+ * Original text from the old site's Safeguarding page
+ * (docs/CONTENT-INVENTORY.md §Safeguarding).
+ * The "Modello Organizzativo e Codice di Condotta" documents were missing on
+ * the old site too — kept as a placeholder until the gym provides the files
+ * (docs/DECISIONS.md §Open).
+ */
+const components = [
+  {
+    name: 'Protezione dei minori',
+    desc: 'Implementazione di politiche e procedure specifiche per prevenire abusi e maltrattamenti.',
+  },
+  {
+    name: 'Formazione e sensibilizzazione',
+    desc: 'Educazione di istruttori, personal trainer, volontari e staff sul riconoscimento e la gestione dei segnali di abuso.',
+  },
+  {
+    name: 'Screening e controlli',
+    desc: 'Verifica dei precedenti penali e delle referenze di chi lavora a stretto contatto con i minori.',
+  },
+  {
+    name: 'Ambiente sicuro',
+    desc: "Assicurarsi che la struttura sia sicura e che le attività al suo interno siano organizzate per minimizzare i rischi.",
+  },
+  {
+    name: 'Politiche di segnalazione',
+    desc: 'Procedure chiare per la segnalazione e la gestione di preoccupazioni o incidenti.',
+  },
+  {
+    name: 'Coinvolgimento dei genitori',
+    desc: 'Informare e coinvolgere i genitori nelle politiche di safeguarding.',
+  },
+  {
+    name: "Supporto agli iscritti",
+    desc: 'Fornire supporto emotivo e psicologico agli iscritti in caso di necessità.',
+  },
+];
 ---
 
-<BaseLayout title="Safeguarding" current="safeguarding">
+<BaseLayout
+  title="Safeguarding"
+  current="safeguarding"
+  description="Il safeguarding alla palestra Fit'Art a Rosate (MI): le misure per proteggere bambini, giovani e persone vulnerabili, e il responsabile contro abusi, violenze e discriminazioni.">
   <section class="container hero">
     <p class="eyebrow">Sicurezza</p>
     <h1>Safeguarding</h1>
     <p class="lede">
-      Stub della pagina. Contenuti completi nella <strong>Session 5</strong>.
+      Tutte le misure e le pratiche adottate per proteggere bambini, giovani e
+      persone vulnerabili.
     </p>
   </section>
 
-  <div class="container">
-    <div class="stub">
-      <strong>Da implementare (Session 5):</strong> definizione e importanza dello
-      safeguarding nello sport · 7 componenti (protezione minori, formazione,
-      screening, ambiente sicuro, politiche di segnalazione, coinvolgimento
-      genitori, supporto iscritti) · responsabile Prof. Massimo Spinoccia —
-      fitart2020@gmail.com · "Modello Organizzativo e Codice di Condotta" come
-      segnaposto finché non arrivano i documenti (docs/DECISIONS.md).
+  <!-- Che cos'è — original text from the old site -->
+  <section class="section" aria-labelledby="cosa-title">
+    <div class="container">
+      <h2 id="cosa-title">Che cos'è il safeguarding?</h2>
+      <div class="prose">
+        <p>
+          Il Safeguarding si riferisce a tutte le misure e le pratiche adottate
+          per proteggere i bambini, i giovani e le persone vulnerabili da
+          abusi, maltrattamenti e sfruttamenti. Nel contesto sportivo, questo
+          significa creare un <strong>ambiente sicuro</strong> dove tutti
+          possano partecipare alle attività senza timore di subire danni fisici
+          o emotivi.
+        </p>
+        <p>
+          Garantire la sicurezza degli iscritti non solo protegge la loro
+          salute e il loro benessere, ma promuove anche un ambiente positivo e
+          inclusivo.
+        </p>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Perché è importante — original text from the old site -->
+  <section class="section section-alt" aria-labelledby="perche-title">
+    <div class="container">
+      <h2 id="perche-title">Perché il safeguarding è importante nello sport?</h2>
+      <div class="prose">
+        <p>
+          Nello sport, i giovani atleti sono particolarmente vulnerabili a vari
+          tipi di abusi, inclusi abusi fisici, emotivi e sessuali. Il
+          safeguarding mira a prevenire questi abusi e a rispondere
+          adeguatamente in caso di segnalazioni di comportamenti
+          inappropriati.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Le 7 componenti — original list from the old site -->
+  <section class="section" aria-labelledby="componenti-title">
+    <div class="container">
+      <h2 id="componenti-title">Principali componenti del safeguarding nella nostra palestra</h2>
+      <div class="feature-grid">
+        {
+          components.map((component, index) => (
+            <article class="feature-card">
+              <span class="feature-num">{String(index + 1).padStart(2, '0')}</span>
+              <h3>{component.name}</h3>
+              <p>{component.desc}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Responsabile — original text from the old site -->
+  <section class="section section-alt" aria-labelledby="responsabile-title">
+    <div class="container">
+      <h2 id="responsabile-title">Il responsabile</h2>
+      <div class="callout">
+        <h3>Prof. Massimo Spinoccia</h3>
+        <p>
+          È stato nominato come nostro Responsabile contro abusi, violenze e
+          discriminazioni. Il responsabile può essere contattato tramite email
+          all'indirizzo:
+        </p>
+        <p>
+          <a href="mailto:fitart2020@gmail.com">fitart2020@gmail.com</a>
+        </p>
+      </div>
+
+      <!-- PLACEHOLDER (docs/DECISIONS.md §Open): documents not yet provided by the gym -->
+      <div class="callout">
+        <h3>Modello Organizzativo e Codice di Condotta</h3>
+        <p>
+          I documenti "Modello Organizzativo e Codice di Condotta" saranno
+          disponibili a breve: stiamo raccogliendo i file originali dalla
+          palestra.
+        </p>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

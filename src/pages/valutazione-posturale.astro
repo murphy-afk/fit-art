@@ -1,26 +1,168 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+
+/**
+ * Content recovered via OCR from the images of the old page
+ * (docs/CONTENT-INVENTORY.md §Valutazione Posturale).
+ * `copy: 'new'` items are connective sentences written for Session 5 — the
+ * section content itself is from the original brochure.
+ */
+const bodyAreas = [
+  'Zona cervicale e spalle',
+  'Schiena e zona lombare',
+  'Bacino e anche',
+  'Ginocchia o piedi',
+];
+
+const benefits = [
+  'Maggiore consapevolezza',
+  'Indicazioni personalizzate',
+  'Base per un lavoro posturale mirato',
+];
 ---
 
-<BaseLayout title="Valutazione Posturale" current="valutazione-posturale">
+<BaseLayout
+  title="Valutazione Posturale"
+  current="valutazione-posturale"
+  description="Valutazione posturale e analisi baropodometrica a Rosate (MI): appoggio plantare in statica e dinamica, pressioni plantari, sovraccarichi e asimmetrie, con report chiaro e indicazioni personalizzate.">
   <section class="container hero">
     <p class="eyebrow">Servizi</p>
     <h1>Valutazione Posturale e Analisi Baropodometrica</h1>
     <p class="lede">
-      Stub della pagina. Testo originale recuperato via OCR dalle immagini
-      (docs/CONTENT-INVENTORY.md). Contenuti completi nella
-      <strong>Session 5</strong>.
+      È ora disponibile il servizio di Valutazione Posturale e Analisi
+      Baropodometrica.
     </p>
   </section>
 
-  <div class="container">
-    <div class="stub">
-      <strong>Da implementare (Session 5):</strong> cos'è la postura · perché si
-      altera (appoggio plantare, distribuzione del peso, statica/dinamica del
-      passo, differenze dx/sx, compensi) · esame baropodometrico (statica e
-      dinamica, pressioni plantari, sovraccarichi e asimmetrie, report con
-      immagini) · cosa ottieni · aree del corpo (cervicale/spalle, schiena/lombare,
-      bacino/ananche, ginocchia/piedi).
+  <!-- Cos'è la postura — original text from the brochure -->
+  <section class="section" aria-labelledby="postura-title">
+    <div class="container">
+      <h2 id="postura-title">Cos'è la postura?</h2>
+      <div class="prose">
+        <p>
+          È il modo in cui il corpo si adatta alla gravità e si organizza per
+          mantenere equilibrio e movimento.
+        </p>
+        <p>
+          Il corpo si adatta continuamente a tensioni, appoggi e abitudini: il
+          posturologo studia questi equilibri per individuare le cause di
+          dolori, rigidità o compensi. Tutto parte da come poggi i piedi.
+        </p>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Perché si altera + cosa analizziamo — original lists from the brochure -->
+  <section class="section section-alt" aria-labelledby="alterarsi-title">
+    <div class="container">
+      <h2 id="alterarsi-title">Perché la postura può alterarsi?</h2>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3>Le cause</h3>
+          <ul>
+            <li>Appoggi asimmetrici</li>
+            <li>Sovraccarichi plantari</li>
+            <li>Compensi che si instaurano nel tempo</li>
+          </ul>
+        </article>
+        <article class="feature-card">
+          <h3>Cosa analizziamo</h3>
+          <ul>
+            <li>Distribuzione del peso</li>
+            <li>Statica e dinamica del passo</li>
+            <li>Differenze tra destra e sinistra</li>
+            <li>Appoggio plantare</li>
+          </ul>
+        </article>
+        <article class="feature-card">
+          <h3>Postura scorretta?</h3>
+          <p>
+            La postura influenza ogni movimento del corpo: un'alterazione può
+            generare dolori e tensioni in diverse aree.
+          </p>
+          <ul>
+            {
+              bodyAreas.map((area) => (
+                <li>{area}</li>
+              ))
+            }
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Esame baropodometrico — original text from the flyer -->
+  <section class="section" aria-labelledby="esame-title">
+    <div class="container">
+      <h2 id="esame-title">L'esame baropodometrico</h2>
+      <div class="prose">
+        <p>Valutazione dell'appoggio del piede in statica e in dinamica:</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3>L'esame</h3>
+          <ul>
+            <li>Analisi delle pressioni plantari</li>
+            <li>Studio dell'equilibrio e della postura</li>
+            <li>Individuazione di sovraccarichi e asimmetrie</li>
+          </ul>
+        </article>
+        <article class="feature-card">
+          <h3>I risultati</h3>
+          <p>
+            Report chiaro con immagini e indicazioni utili. Ideale per
+            sportivi, bambini e adulti con dolori a piedi, ginocchia o schiena.
+          </p>
+        </article>
+        <article class="feature-card">
+          <h3>Il piede parla, il corpo risponde</h3>
+          <p>
+            Scopriamo insieme da dove provengono i tuoi disagi e i tuoi
+            compensi.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cosa ottieni — original list from the brochure -->
+  <section class="section section-alt" aria-labelledby="ottieni-title">
+    <div class="container">
+      <p class="eyebrow">La postura inizia dai piedi</p>
+      <h2 id="ottieni-title">Cosa ottieni</h2>
+      <div class="feature-grid">
+        {
+          benefits.map((benefit) => (
+            <article class="feature-card">
+              <p>{benefit}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <!-- Direct contact for this service only (from the original flyer of the
+           old site) — docs/DECISIONS.md §Session 5. -->
+      <div class="callout">
+        <h3>Per la Valutazione Posturale</h3>
+        <p>
+          Il servizio di Valutazione Posturale e Analisi Baropodometrica è
+          seguito da <strong>Aurora Spinoccia</strong>: per info e
+          appuntamenti dedicati a questo servizio puoi contattarla direttamente.
+        </p>
+        <p>
+          <a href="tel:+393342266851">+39 334 226 6851</a> ·
+          <a href="mailto:auroraspinoccia@gmail.com">auroraspinoccia@gmail.com</a>
+        </p>
+      </div>
+
+      <p class="section-action">
+        <a class="btn btn-primary" href={SITE.phones[0].href}>
+          Chiedi info: {SITE.phones[0].label}
+        </a>
+        <a class="btn btn-ghost" href="/contatti">Contatti</a>
+      </p>
+    </div>
+  </section>
 </BaseLayout>

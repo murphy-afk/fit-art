@@ -1,22 +1,114 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+
+/**
+ * Areas of the gym — from the old site's "Chi siamo" page
+ * (original text: docs/CONTENT-INVENTORY.md §Chi siamo).
+ */
+const areas = [
+  {
+    name: 'Area cardio-tonica',
+    desc: "L'area di allenamento cardiotonico, per il lavoro aerobico e il rafforzamento generale del corpo.",
+  },
+  {
+    name: 'Sala corsi fitness e pilates',
+    desc: 'La sala dedicata ai corsi di fitness e Pilates, con spazio curato per il lavoro in gruppo.',
+  },
+  {
+    name: 'Attrezzature per l\'allenamento muscolare',
+    desc: "Un grande spazio con le attrezzature per l'allenamento muscolare.",
+  },
+  {
+    name: 'Training Zone',
+    desc: 'La TRAINING ZONE per tutti gli allenamenti a corpo libero e il FUNCTIONAL TRAINING.',
+  },
+];
 ---
 
-<BaseLayout title="Chi siamo" current="chi-siamo">
+<BaseLayout
+  title="Chi siamo"
+  current="chi-siamo"
+  description="Fit'Art: l'unica palestra in Italia che è anche una galleria d'arte. Spazi per cardio, corsi fitness e pilates, allenamento muscolare e functional training a Rosate (MI).">
   <section class="container hero">
     <p class="eyebrow">La palestra</p>
     <h1>Chi siamo</h1>
     <p class="lede">
-      Stub della pagina. Contenuti completi nella <strong>Session 5</strong>.
+      Offriamo un completo spazio per lo sviluppo e l'allenamento fisico.
     </p>
   </section>
 
-  <div class="container">
-    <div class="stub">
-      <strong>Da implementare (Session 5):</strong> aree (cardio, sala corsi
-      fitness e pilates, attrezzi muscle-training, TRAINING ZONE bodyweight +
-      functional training) · USP galleria d'arte con mostre e rassegne
-      fotografiche · team di professionisti.
+  <!-- Gli spazi — original areas from the old site -->
+  <section class="section" aria-labelledby="spazi-title">
+    <div class="container">
+      <h2 id="spazi-title">Gli spazi</h2>
+      <p class="lede">
+        Abbiamo l'area di allenamento cardiotonico, la sala corsi fitness e
+        pilates, un grande spazio per le attrezzature per l'allenamento
+        muscolare e la TRAINING ZONE.
+      </p>
+      <div class="feature-grid">
+        {
+          areas.map((area) => (
+            <article class="feature-card">
+              <h3>{area.name}</h3>
+              <p>{area.desc}</p>
+            </article>
+          ))
+        }
+      </div>
+      <img
+        class="page-media"
+        src="/images/gallery-1.jpg"
+        alt="La sala corsi della palestra Fit'Art"
+        width="1400"
+        height="600"
+        loading="lazy" />
     </div>
-  </div>
+  </section>
+
+  <!-- Galleria d'arte — the USP from the old site -->
+  <section class="section section-alt" aria-labelledby="arte-title">
+    <div class="container">
+      <p class="eyebrow">Palestra &amp; galleria d'arte</p>
+      <h2 id="arte-title">Siamo l'unica palestra in Italia ad essere una galleria d'arte</h2>
+      <div class="prose">
+        <p>
+          Nei nostri spazi vengono allestite <strong>mostre d'arte personali e
+          collettive</strong> e <strong>rassegne fotografiche</strong>: così da
+          noi puoi, oltre che migliorare la tua estetica, stimolare il tuo
+          gusto artistico ed estetico.
+        </p>
+      </div>
+      <img
+        class="page-media"
+        src="/images/gallery-2.jpg"
+        alt="Gli spazi Fit'Art, dove si alternano allenamento e mostre d'arte"
+        width="1400"
+        height="600"
+        loading="lazy" />
+    </div>
+  </section>
+
+  <!-- Team — original claim from the old site -->
+  <section class="section" aria-labelledby="team-title">
+    <div class="container">
+      <h2 id="team-title">Una squadra di professionisti</h2>
+      <div class="prose">
+        <p>
+          Contiamo su una squadra di professionisti pronta a sviluppare un
+          programma che si adatti alle tue richieste e ti aiuti a raggiungere 
+          <strong> ogni tuo obiettivo</strong>.
+        </p>
+        <p>
+          Ti invitiamo a scoprire di più sui nostri servizi. Non esitare a
+          contattarci per richiedere un'attenzione personalizzata.
+        </p>
+      </div>
+      <p class="section-action">
+        <a class="btn btn-primary" href={SITE.phones[0].href}>Chiamaci: {SITE.phones[0].label}</a>
+        <a class="btn btn-ghost" href="/contatti">Contatti</a>
+      </p>
+    </div>
+  </section>
 </BaseLayout>

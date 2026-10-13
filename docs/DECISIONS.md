@@ -73,4 +73,13 @@ Session 1 CLOSED — all decisions made (2026-10-10).
    - Rieducazione funzionale — "Recupero del movimento dopo infortuni e operazioni, con un percorso personalizzato."
 3. **Pilates: 8 benefits + full description** rendered in an expandable `<details>` inside the Pilates card (long content, doesn't fit a grid card).
 4. **Gallery claim**: used "L'unica palestra in Italia che è anche una galleria d'arte" (USP from the old site, reworded) — to confirm with the client.
-5. **Style audit**: the arrow characters that pre-dated the rule were flagged by `check-style.cjs` (range U+2190–21FF in the emoji regex); while translating the docs to English (Session 4 follow-up) they were all replaced with `->`, so the audit now passes with zero hits.
+5. **Style audit**: the arrow characters that pre-dated the rule were flagged by `check-style.cjs` (range U+2190-21FF in the emoji regex); while translating the docs to English (Session 4 follow-up) they were all replaced with `->`, so the audit now passes with zero hits.
+
+## Session 5 — content pages (2026-10-13)
+
+1. **Content sourcing**: Chi siamo and Safeguarding texts re-fetched verbatim from the live old site. Taping and Valutazione Posturale texts **transcribed from the original brochure/infographic images** (they existed only inside images); the 5 Taping brochure pages are also kept as images on the page ("La brochure" gallery).
+2. **New assets downloaded** (see "Media assets" above): `taping-page-1..5.jpg`, `foto-palestra.jpg`. The other 6 photos of the old Foto page were already local (4 as `gallery-*.jpg`, 2 as service photos) - the Foto page reuses them, so all 7 originals are now on the site.
+3. **Aurora Spinoccia / posturology contact**: the Valutazione Posturale flyer lists a dedicated contact for the service (Aurora Spinoccia, auroraspinoccia@gmail.com, +39 334 226 6851). **DECIDED (client)**: published **only on the Valutazione Posturale page**, in a dedicated callout ("Per la Valutazione Posturale") that makes it explicit her contact is for that service only; not added anywhere else (not in Contatti, not in the footer).
+4. **Contact form**: UI built (nome, email, telefono facoltativo, messaggio) with `action="#"` and a visible note ("il modulo e in fase di collaudo") - per decision 5 above, handling (e.g. Formspree) comes in Session 6.
+5. **Google Maps**: Contatti uses a Google Maps **search link** (opens in a new tab), not an embedded iframe - keeps the page light; can upgrade to an embed in Session 6/7 if wanted.
+6. **Footer note** updated from "Session 3" to "Session 5".

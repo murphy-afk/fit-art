@@ -1,26 +1,196 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+
+/**
+ * Content transcribed from the kinesio taping brochure (5 pages) hosted on the
+ * old site — text existed only inside images (docs/CONTENT-INVENTORY.md §Cos'è il Taping).
+ * The brochure images are kept in public/images/taping-page-*.jpg.
+ */
+const uses = [
+  'Piccoli edemi ed ematomi sottocutanei',
+  'Tendiniti e artrosi cervicali',
+  'Alleviare il dolore da contratture e tensioni muscolari',
+];
+
+const benefits = [
+  {
+    name: 'Supporto muscolare',
+    desc: 'Il kinesio taping fornisce un sostegno leggero ai muscoli, contribuendo a prevenire lesioni e favorire il recupero.',
+  },
+  {
+    name: 'Riduzione del dolore',
+    desc: 'Le strisce elastiche possono aiutare a ridurre il dolore muscolare e articolare, facilitando la circolazione sanguigna e linfatica.',
+  },
+  {
+    name: 'Miglioramento della funzione articolare',
+    desc: 'Questa tecnica può migliorare la gamma di movimento e la funzione articolare, consentendo di tornare alle attività quotidiane più rapidamente.',
+  },
+  {
+    name: 'Riabilitazione',
+    desc: 'Spesso usato nella riabilitazione post-operatoria o dopo infortuni sportivi per accelerare il recupero.',
+  },
+  {
+    name: 'Sport e performance',
+    desc: 'Molti atleti utilizzano il kinesiotaping per supportare i muscoli durante gli allenamenti e le competizioni.',
+  },
+  {
+    name: 'Dolori cronici',
+    desc: "Può essere una soluzione non invasiva per chi soffre di dolori muscolari o articolari cronici.",
+  },
+];
+
+const brochurePages = [
+  { src: '/images/taping-page-1.jpg', alt: 'Copertina della brochure sul kinesio taping — Fit\u2019Art' },
+  { src: '/images/taping-page-2.jpg', alt: 'Il nastro: descrizione del kinesio tape' },
+  { src: '/images/taping-page-3.jpg', alt: 'A cosa serve e benefici del kinesio taping' },
+  { src: '/images/taping-page-4.jpg', alt: 'Il kinesiotaping come pratica terapeutica' },
+  { src: '/images/taping-page-5.jpg', alt: 'Concetti generali, durata dell\u2019applicazione e controindicazioni' },
+];
 ---
 
-<BaseLayout title="Cos'è il Taping" current="cos-e-il-taping">
+<BaseLayout
+  title="Cos'è il Taping"
+  current="cos-e-il-taping"
+  description="Il kinesio taping alla palestra Fit'Art a Rosate (MI): a cosa serve, benefici, durata dell'applicazione e controindicazioni.">
   <section class="container hero">
     <p class="eyebrow">Servizi</p>
     <h1>Cos'è il Taping</h1>
     <p class="lede">
-      Stub della pagina. Testo originale recuperato via OCR dalle immagini
-      (docs/CONTENT-INVENTORY.md). Contenuti completi nella
-      <strong>Session 5</strong>.
+      Il kinesiotaping è una pratica terapeutica versatile che offre numerosi
+      benefici per la salute muscolare e articolare.
     </p>
   </section>
 
-  <div class="container">
-    <div class="stub">
-      <strong>Da implementare (Session 5):</strong> kinesio taping — a cosa serve
-      (edemi, ematomi sottocutanei, tendiniti, artrosi cervicali, contratture,
-      tensioni muscolari) · 6 benefici (supporto muscolare, riduzione del dolore,
-      funzione articolare, riabilitazione, sport/performance, dolori cronici) ·
-      durata dell'applicazione · controindicazioni (trauma acuto, ferite e
-      problemi cutanei; pelle priva di peli, oli, creme o unguenti).
+  <!-- Il nastro — original text from the brochure -->
+  <section class="section" aria-labelledby="nastro-title">
+    <div class="container">
+      <h2 id="nastro-title">Il nastro</h2>
+      <div class="prose">
+        <p>
+          È costituito da uno strato di cotone di pochi millimetri di
+          spessore, con adesivo acrilico spalmato in modo ondulato, protetto
+          da un liner di carta rimovibile.
+        </p>
+        <p><strong>È resistente all'acqua.</strong></p>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- A cosa serve — original text from the brochure -->
+  <section class="section section-alt" aria-labelledby="serve-title">
+    <div class="container">
+      <h2 id="serve-title">A cosa serve</h2>
+      <div class="prose">
+        <p>Si ricorre all'utilizzo del kinesio tape, per esempio in caso di:</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3>Indicatori</h3>
+          <ul>
+            {
+              uses.map((use) => (
+                <li>{use}</li>
+              ))
+            }
+          </ul>
+        </article>
+        <article class="feature-card">
+          <h3>Nella riabilitazione</h3>
+          <p>
+            Il kinesio taping non rilascia principi attivi e, se applicato
+            correttamente, può essere un valido aiuto nella riabilitazione.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefici — original 6 benefits from the brochure -->
+  <section class="section" aria-labelledby="benefici-title">
+    <div class="container">
+      <h2 id="benefici-title">Quali sono i benefici?</h2>
+      <div class="feature-grid">
+        {
+          benefits.map((benefit) => (
+            <article class="feature-card">
+              <h3>{benefit.name}</h3>
+              <p>{benefit.desc}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Concetti generali + controindicazioni — original text from the brochure -->
+  <section class="section section-alt" aria-labelledby="generali-title">
+    <div class="container">
+      <h2 id="generali-title">Concetti generali</h2>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3>Zona corporea</h3>
+          <p>
+            Pelle asciutta e pulita, meglio se priva di peli, oli, creme o
+            unguenti; in caso contrario detergere la pelle con alcol o acqua e
+            sapone.
+          </p>
+        </article>
+        <article class="feature-card">
+          <h3>Durata dell'applicazione</h3>
+          <ul>
+            <li>Da alcune ore fino a un massimo di 5 giorni</li>
+            <li>Il numero delle applicazioni è illimitato</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="callout">
+        <h3>Controindicazioni</h3>
+        <p>
+          Soggetti con pelle sensibile · immediato post-operatorio · trauma
+          acuto · ferite e problemi circolatori · tumori.
+        </p>
+      </div>
+
+      <div class="callout">
+        <p>
+          Il kinesiotaping è una pratica terapeutica versatile che offre
+          numerosi benefici per la salute muscolare e articolare. Tuttavia, è
+          importante che l'applicazione sia accompagnata da esercizio e/o
+          trattamenti.
+        </p>
+      </div>
+
+      <p class="section-action">
+        <a class="btn btn-primary" href={SITE.phones[0].href}>
+          Chiedi info: {SITE.phones[0].label}
+        </a>
+        <a class="btn btn-ghost" href="/contatti">Contatti</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Brochure gallery — original images preserved from the old site -->
+  <section class="section" aria-labelledby="brochure-title">
+    <div class="container">
+      <h2 id="brochure-title">La brochure</h2>
+      <p class="lede">
+        La brochure originale del kinesio taping, scaricata dal vecchio sito.
+      </p>
+      <div class="gallery-grid">
+        {
+          brochurePages.map((page) => (
+            <img
+              class="gallery-item"
+              src={page.src}
+              alt={page.alt}
+              width="640"
+              height="360"
+              loading="lazy" />
+          ))
+        }
+      </div>
+    </div>
+  </section>
 </BaseLayout>

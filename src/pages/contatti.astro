@@ -1,24 +1,106 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+
+/**
+ * Contatti page — Session 5.
+ * Form is UI-only for now: GitHub Pages is static, so the action is a
+ * placeholder and submission handling comes in Session 6
+ * (docs/DECISIONS.md §5, Formspree if requested).
+ */
+const mapHref =
+  'https://www.google.com/maps/search/?api=1&query=Via+Alessandro+Manzoni+33,+20088+Rosate+(MI)';
 ---
 
-<BaseLayout title="Contatti" current="contatti">
+<BaseLayout
+  title="Contatti"
+  current="contatti"
+  description="Contatti della palestra Fit'Art a Rosate (MI): Via Alessandro Manzoni 33, telefoni 320 309 5913 / 346 362 9565, orari e modulo di contatto.">
   <section class="container hero">
     <p class="eyebrow">Contatti</p>
     <h1>Contatti</h1>
     <p class="lede">
-      Stub della pagina. Form e dettagli completi nella <strong>Session 5</strong>
-      (UI) e <strong>Session 6</strong> (gestione invii).
+      Chiama per tutte le info e per fissare un appuntamento per visitare la
+      palestra. Valuteremo insieme le tue esigenze e le tue richieste per il
+      tuo benessere.
     </p>
   </section>
 
-  <div class="container">
-    <div class="stub">
-      <strong>Da implementare (Session 5–6):</strong> indirizzo (Via Alessandro
-      Manzoni 33, 20088 Rosate MI) · telefoni 320 309 5913 / 346 362 9565 ·
-      email placeholder info@fitartfitness.it (docs/DECISIONS.md §1) · form di
-      contatto con action placeholder (GitHub Pages è statico; Formspree in
-      seguito se richiesto).
+  <!-- Contact cards — data from src/data/site.ts -->
+  <section class="section" aria-labelledby="recapiti-title">
+    <div class="container">
+      <h2 id="recapiti-title">Recapiti</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h2>Dove siamo</h2>
+          <p>{SITE.address}</p>
+          <p>
+            <a href={mapHref} rel="noopener" target="_blank">
+              Apri in Google Maps
+            </a>
+          </p>
+        </div>
+        <div class="contact-card">
+          <h2>Telefono</h2>
+          <p>
+            {
+              SITE.phones.map((phone, index) => (
+                <>
+                  {index > 0 && ' / '}
+                  <a href={phone.href}>{phone.label}</a>
+                </>
+              ))
+            }
+          </p>
+        </div>
+        <div class="contact-card">
+          <h2>Email</h2>
+          <!-- PLACEHOLDER (docs/DECISIONS.md §1): swap in the official email -->
+          <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+        </div>
+        <div class="contact-card">
+          <h2>Orari</h2>
+          <p>{SITE.hours.weekday}</p>
+          <p>{SITE.hours.weekend}</p>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Contact form — UI only; handling in Session 6 -->
+  <section class="section section-alt" aria-labelledby="form-title">
+    <div class="container">
+      <h2 id="form-title">Scrivici</h2>
+      <p class="lede">
+        Compila il modulo e ti ricontatteremo appena possibile.
+      </p>
+      <!-- PLACEHOLDER ACTION (docs/DECISIONS.md §5): GitHub Pages is static —
+           wire up Formspree (or similar) in Session 6. -->
+      <form class="contact-form" action="#" method="post">
+        <div class="form-field">
+          <label for="nome">Nome</label>
+          <input id="nome" name="nome" type="text" autocomplete="name" required />
+        </div>
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="form-field">
+          <label for="telefono">Telefono (facoltativo)</label>
+          <input id="telefono" name="telefono" type="tel" autocomplete="tel" />
+        </div>
+        <div class="form-field">
+          <label for="messaggio">Messaggio</label>
+          <textarea id="messaggio" name="messaggio" rows="5" required></textarea>
+        </div>
+        <p class="section-action">
+          <button class="btn btn-primary" type="submit">Invia</button>
+        </p>
+        <p class="form-note">
+          Il modulo è in fase di collaudo: l'invio sarà attivo a breve. Per
+          ora puoi scriverci a {SITE.email} o chiamarci.
+        </p>
+      </form>
+    </div>
+  </section>
 </BaseLayout>
