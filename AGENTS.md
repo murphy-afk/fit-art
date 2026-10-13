@@ -70,12 +70,12 @@ Note: the accent was bronze/orange (`#966B50`) in Session 2; the client changed 
 4. Update docs (ROADMAP status, DECISIONS if needed).
 5. Present to client; **commit only after explicit approval.**
 
-## Current state (Session 6 done, 2026-10-13)
+## Current state (Session 7 done, 2026-10-13)
 
-- Skeleton + **homepage (Session 4)** + **all 6 content pages (Session 5)** + **production pass (Session 6)** complete: SEO meta (canonical, OG/Twitter, JSON-LD), sitemap.xml + robots.txt, favicon set + OG image, 404 page, Formspree-ready contact form, a11y pass. Build passes (8 pages).
+- Skeleton + homepage (Session 4) + all 6 content pages (Session 5) + production pass (Session 6) + **final review & deploy setup (Session 7)** complete: SEO meta, sitemap/robots, favicon set, 404, Formspree-ready form, a11y pass; `site`/`base` set for GitHub Pages (`https://murphy-afk.github.io/fit-art/`); deploy via `.github/workflows/deploy.yml` on push to `main` (repo Settings -> Pages -> Source: "GitHub Actions" must be set once). Build passes (8 pages), `npm run check` passes (0 hits).
 - Images live in `src/assets/images/` (astro:assets `<Image>`, WebP); `src/data/images.ts` is the import hub. Logo remains in `public/images/` (favicon source; `scripts/generate-favicons.cjs`).
+- **All internal links and `public/` URLs must go through `path()` (from `src/data/site.ts`)** — Astro does not prefix hand-written URLs with `base`.
 - Contact form posts to `SITE.formspreeEndpoint` in `src/data/site.ts` — still the `YOUR_FORM_ID` placeholder (client must create the Formspree account, one-line swap).
-- Code style rules in force: no standalone `>`/`/>` lines, zero emojis; icons only from **Lucide** (`@lucide/astro`). Style audit (`node check-style.cjs`) passes with zero hits.
-- Navbar = surface (lighter than content), horizontal nav only at `>= 64rem`, shortened labels; a11y basics (skip-link, focus-visible, reduced motion, keyboard-friendly menu, visually-hidden hints, aria-live form status).
-- Open items: official logo (then rerun `scripts/generate-favicons.cjs`), official email (placeholder `info@fitartfitness.it`), safeguarding documents ("Modello Organizzativo e Codice di Condotta"), real Formspree form ID.
-- When the GitHub Pages repo exists, set `base: '/NOME-REPO/'` in `astro.config.mjs` (Session 7 — deploy). Note: `astro.config.mjs` `site` is `https://fitartfitness.it` — canonical URLs, sitemap and JSON-LD depend on it; confirm/adjust at deploy.
+- Code style rules in force: no standalone `>`/`/>` lines, zero emojis; icons only from **Lucide** (`@lucide/astro`). Style audit: `npm run check` (or `node check-style.cjs`).
+- Open items: official logo (then rerun `scripts/generate-favicons.cjs`), official email (placeholder `info@fitartfitness.it`), safeguarding documents ("Modello Organizzativo e Codice di Condotta"), real Formspree form ID, video captions (confirm speech content), custom-domain switch (see `docs/HANDOVER.md` §4).
+- Handover: `docs/HANDOVER.md` + root `README.md`.

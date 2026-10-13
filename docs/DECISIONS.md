@@ -93,3 +93,14 @@ Session 1 CLOSED — all decisions made (2026-10-10).
 5. **Facebook URL**: CONFIRMED by the client at Session 6 close (2026-10-13): https://www.facebook.com/share/19c2zGVGed/ — the `pending` marker and the estimated handle were removed from `src/data/site.ts`.
 6. **404 page**: new `src/pages/404.astro` (Italian, CTA home/contatti/telefono); excluded from the sitemap.
 7. **Favicon corners** (follow-up, client request): the logo JPEG is a circle on a white square, so the generated icons had white corners — `scripts/generate-favicons.cjs` now applies a circular mask and the corners are transparent. Regenerated `favicon-16/32.png` + `apple-touch-icon.png`.
+
+## Session 7 — final review & deploy (2026-10-13)
+
+1. **Deploy target -> GitHub Pages project URL (client)**. Live at `https://murphy-afk.github.io/fit-art/`; the custom domain (`fitartfitness.it`) is connected later — the exact switch steps (astro.config `site`/`base`, robots.txt, DNS) are in `docs/HANDOVER.md` §4.
+2. **Placeholder items ship as-is (client)**: Formspree ID, official logo/favicon, official email, safeguarding documents all stay marked and are swapped later (one line each — HANDOVER §5).
+3. **No further content feedback (client)**: Sessions 4-6 accepted as built; Session 7 applies only the technical review findings.
+4. **Base-path handling (technical)**: `path()` in `src/data/site.ts` prefixes internal links and `public/` assets with `base` (Astro does not do this for hand-written URLs). All site URLs go through it; it collapses to plain `/...` when `base` becomes `/`.
+5. **Deploy automation**: GitHub Actions workflow (`.github/workflows/deploy.yml`) builds and deploys on push to `main`, running the style audit first. Pages source must be set once to "GitHub Actions" (manual, repo Settings -> Pages).
+6. **Review fixes**: footer prototype note loses its internal "(Session N)" suffix (not site content); `scroll-padding-top` added for the sticky header; dead `.stub` CSS removed; `npm run check` added.
+7. **Video captions (open, WCAG)**: the service/tour videos have `aria-label` but no captions track. To confirm whether the promo MP4s contain speech; if they do, captions or a transcript come in a follow-up.
+8. **Google Maps link corrected (client, 2026-10-13)**: the Contatti address card now points to `https://maps.app.goo.gl/Uf1LsX99xcg7mxeU6` (was a generic `google.com/maps/search/?query=...` URL built from the address).

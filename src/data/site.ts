@@ -3,6 +3,17 @@
  * Source: docs/CONTENT-INVENTORY.md and docs/DECISIONS.md (Session 0-1).
  */
 
+/**
+ * Base path from astro.config.mjs ('/fit-art/' on GitHub Pages project site).
+ * Astro prefixes bundled assets itself, but template links (href/src) and
+ * public/ files are NOT auto-prefixed — always build internal URLs with path().
+ * When the custom domain is connected (base '/'), path() simply drops the prefix.
+ */
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+export const path = (p: string): string =>
+  p === '/' ? `${BASE}/` : `${BASE}${p.startsWith('/') ? p : `/${p}`}`;
+
 export const SITE = {
   name: "Fit'Art ASD",
   brand: "Fit'Art StudioFitness",

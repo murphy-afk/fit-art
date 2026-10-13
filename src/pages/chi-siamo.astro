@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE } from '../data/site';
+import { SITE, path } from '../data/site';
 import { IMG } from '../data/images';
 
 /**
@@ -107,7 +107,7 @@ const areas = [
       </div>
       <p class="section-action">
         <a class="btn btn-primary" href={SITE.phones[0].href}>Chiamaci: {SITE.phones[0].label}</a>
-        <a class="btn btn-ghost" href="/contatti">Contatti</a>
+        <a class="btn btn-ghost" href={path('/contatti')}>Contatti</a>
       </p>
     </div>
   </section>

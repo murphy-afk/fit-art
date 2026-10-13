@@ -1,7 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE } from '../data/site';
+import { SITE, path } from '../data/site';
 import type { NavSlug } from '../data/site';
 import '../styles/global.css';
 
@@ -20,7 +20,8 @@ const fullTitle = `${title} — Fit'Art StudioFitness Rosate`;
 const pageDescription = description ?? defaultDescription;
 // Absolute URLs for canonical / OG (requires `site` in astro.config.mjs)
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const ogImageUrl = new URL('/og-image.jpg', Astro.site);
+// public/ files are not auto-prefixed with `base` -> build the path with path()
+const ogImageUrl = new URL(path('/og-image.jpg'), Astro.site);
 
 /**
  * LocalBusiness structured data (schema.org) — helps Google show the gym's
@@ -32,7 +33,7 @@ const jsonLd = {
   '@type': 'HealthClub',
   name: SITE.brand,
   description: defaultDescription,
-  url: Astro.site?.toString(),
+  url: canonicalUrl.toString(),
   image: ogImageUrl.toString(),
   telephone: SITE.phones.map((p) => p.href.replace('tel:', '')),
   address: {
@@ -71,9 +72,9 @@ const jsonLd = {
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Favicon (generated from the IG logo in Session 6 — swap with the official logo when available) -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href={path('/favicon-32.png')} />
+    <link rel="icon" type="image/png" sizes="16x16" href={path('/favicon-16.png')} />
+    <link rel="apple-touch-icon" href={path('/apple-touch-icon.png')} />
     <meta name="theme-color" content="#0a0a0a" />
 
     <!-- Open Graph / Twitter (share previews) -->
