@@ -127,6 +127,19 @@ main {
   top: 1rem;
 }
 
+/* Visually hidden but available to screen readers (a11y) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 /* ---------- Header ---------- */
 
 .site-header {
@@ -495,7 +508,7 @@ main {
   padding: 1.35rem 1.5rem;
 }
 
-.contact-card h2 {
+.contact-card h3 {
   margin: 0 0 0.5rem;
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -553,6 +566,15 @@ main {
   color: var(--color-muted);
   font-size: 0.85rem;
   margin: 0;
+}
+
+/* Honeypot field (anti-spam): visually hidden but present in the DOM */
+.form-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 /* ==========================================================================

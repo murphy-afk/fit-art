@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../data/site';
+import { IMG } from '../data/images';
 
 /**
  * Content transcribed from the kinesio taping brochure (5 pages) hosted on the
@@ -41,11 +43,11 @@ const benefits = [
 ];
 
 const brochurePages = [
-  { src: '/images/taping-page-1.jpg', alt: 'Copertina della brochure sul kinesio taping — Fit\u2019Art' },
-  { src: '/images/taping-page-2.jpg', alt: 'Il nastro: descrizione del kinesio tape' },
-  { src: '/images/taping-page-3.jpg', alt: 'A cosa serve e benefici del kinesio taping' },
-  { src: '/images/taping-page-4.jpg', alt: 'Il kinesiotaping come pratica terapeutica' },
-  { src: '/images/taping-page-5.jpg', alt: 'Concetti generali, durata dell\u2019applicazione e controindicazioni' },
+  { src: IMG.tapingPage1, alt: 'Copertina della brochure sul kinesio taping — Fit\u2019Art' },
+  { src: IMG.tapingPage2, alt: 'Il nastro: descrizione del kinesio tape' },
+  { src: IMG.tapingPage3, alt: 'A cosa serve e benefici del kinesio taping' },
+  { src: IMG.tapingPage4, alt: 'Il kinesiotaping come pratica terapeutica' },
+  { src: IMG.tapingPage5, alt: 'Concetti generali, durata dell\u2019applicazione e controindicazioni' },
 ];
 ---
 
@@ -181,13 +183,12 @@ const brochurePages = [
       <div class="gallery-grid">
         {
           brochurePages.map((page) => (
-            <img
+            <Image
               class="gallery-item"
               src={page.src}
               alt={page.alt}
-              width="640"
-              height="360"
-              loading="lazy" />
+              width={1100}
+              sizes="(min-width: 48rem) 25vw, 50vw" />
           ))
         }
       </div>

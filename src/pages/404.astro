@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+
+/**
+ * 404 page — Session 6. GitHub Pages automatically serves /404.html for any
+ * unknown URL, so this file is picked up without extra config (Session 7 deploy).
+ */
+---
+
+<BaseLayout
+  title="Pagina non trovata"
+  description="La pagina che cerchi non esiste. Torna alla home di Fit'Art o contatta la palestra a Rosate (MI).">
+  <section class="container hero">
+    <p class="eyebrow">Errore 404</p>
+    <h1>Questa pagina non esiste</h1>
+    <p class="lede">
+      Il link che hai seguito non è valido o la pagina è stata spostata.
+      Torna alla home o contattaci per qualsiasi informazione.
+    </p>
+    <p class="section-action">
+      <a class="btn btn-primary" href="/">Torna alla home</a>
+      <a class="btn btn-ghost" href="/contatti">Contatti</a>
+      <a class="btn btn-ghost" href={SITE.phones[0].href}>Chiama {SITE.phones[0].label}</a>
+    </p>
+  </section>
+</BaseLayout>

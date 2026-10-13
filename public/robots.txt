@@ -1,0 +1,6 @@
+# robots.txt — Fit'Art (Session 6)
+# Allow everything; point crawlers at the generated sitemap.
+User-agent: *
+Allow: /
+
+Sitemap: https://fitartfitness.it/sitemap-index.xml

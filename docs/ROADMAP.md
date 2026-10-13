@@ -14,7 +14,7 @@ Working rules (from the client brief):
 | 3 | Refinement & polish (done, approved) | "Review the skeleton: typography/token polish, responsive + mobile nav check, a11y basics, build performance, apply Session 2 feedback" | Polished skeleton ready for content; docs updated |
 | 4 | Homepage (done, approved) | "Implement homepage: hero, hours, services with videos, success story, gallery teaser, CTA" | Homepage complete and presented for review |
 | 5 | Content pages (done, approved) | "Implement Chi siamo, Valutazione Posturale, Cos'è il Taping, Foto, Safeguarding, Contatti" | All content pages complete and presented for review |
-| 6 | SEO, accessibility, performance, forms | "Meta tags, sitemap.xml, robots.txt, favicon, image optimization, a11y pass, contact form handling, 404 page" | Production-ready build; docs updated |
+| 6 | SEO, accessibility, performance, forms (done, approved) | "Meta tags, sitemap.xml, robots.txt, favicon, image optimization, a11y pass, contact form handling, 404 page" | Production-ready build; docs updated |
 | 7 | Final review & deploy | "Review everything, apply feedback, deploy, write handover docs" | Live site + handover documentation |
 
 Session 1 is where the client answers the open questions (see `docs/DECISIONS.md`). Sessions 2–6 each end with a review checkpoint; nothing is committed without approval.
@@ -80,6 +80,22 @@ All 6 content pages implemented (stubs replaced):
 - Style audit `node check-style.cjs`: zero hits. Build verified: `npm run build` -> `dist/`, 7 pages.
 - Client approval received (including Aurora Spinoccia's contact published on the Valutazione Posturale page only — see `docs/DECISIONS.md` §Session 5). Committed as `c31ded9`.
 - **Next**: Session 6 — SEO, accessibility, performance, forms (meta tags, sitemap, robots.txt, favicon, 404, form handling).
+
+## Session 6 — deliverables (2026-10-13, approved by the client)
+
+Production-readiness pass:
+
+- **Meta / SEO** (`src/layouts/BaseLayout.astro`): canonical URL, Open Graph + Twitter card tags (per-page title/description, `og:locale it_IT`, 1200x630 share image), `theme-color`, and **JSON-LD structured data** (`HealthClub`: name, address, phones, opening hours, socials — all from `src/data/site.ts`). Homepage `<title>`/description rewritten (was just "Home").
+- **sitemap.xml**: `@astrojs/sitemap` integration in `astro.config.mjs` (7 pages; `/404` filtered out). **robots.txt** in `public/` points to it.
+- **Favicon set** generated from the IG logo (still the temporary logo): `favicon-32.png`, `favicon-16.png`, `apple-touch-icon.png` + `og-image.jpg` (hero photo, darkened). Regenerator script: `scripts/generate-favicons.cjs` — rerun when the official logo arrives.
+- **404 page** (`src/pages/404.astro`): Italian error page with home/contatti/phone CTAs; GitHub Pages serves it automatically from `dist/404.html`.
+- **Images migrated to astro:assets** (client decision, see DECISIONS §Session 6): the 18 content photos moved `public/images/` -> `src/assets/images/`, imported via new `src/data/images.ts`, rendered with `<Image>` (auto WebP, `sizes`, `decoding=async`; e.g. hero 101->32 kB). Logo stays in `public/images/` (favicon source). Videos unchanged in `public/videos/`.
+- **Contact form wired for Formspree** (client decision): endpoint in `SITE.formspreeEndpoint` (placeholder `YOUR_FORM_ID`), fetch-based submit with success/error status (`aria-live`), honeypot field, submit disabled while sending, no-JS native POST fallback; while the placeholder is in place the form shows the "in fase di collaudo" note and does not submit.
+- **A11y pass**: Contatti card headings fixed (`h2` -> `h3` under the "Recapiti" `h2`), service videos got `aria-label` + fallback text, `.visually-hidden` utility + "(si apre in una nuova finestra)" hints on Maps/social links, form status is a `role="status"` live region, honeypot visually hidden.
+- Style audit `node check-style.cjs`: zero hits. Build verified: `npm run build` -> `dist/`, 8 pages (7 + 404) + sitemap + robots.txt + favicon set.
+- **Still open (Session 7)**: real Formspree form ID, official logo (regenerate favicons/OG image), official email. ~~Facebook URL~~ — confirmed by the client at session close (https://www.facebook.com/share/19c2zGVGed/).
+- Client approval received (including the Facebook URL above). Committed with the Session 6 changes.
+- **Next**: Session 7 — final review & deploy.
 
 ## Session 4 follow-up (2026-10-13, client instructions — approved)
 
