@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../data/site';
+import { IMG } from '../data/images';
 
 /**
  * Areas of the gym — from the old site's "Chi siamo" page
@@ -57,13 +59,12 @@ const areas = [
           ))
         }
       </div>
-      <img
+      <Image
         class="page-media"
-        src="/images/gallery-1.jpg"
+        src={IMG.gallery1}
         alt="La sala corsi della palestra Fit'Art"
-        width="1400"
-        height="600"
-        loading="lazy" />
+        width={534}
+        sizes="(min-width: 72rem) 72rem, 100vw" />
     </div>
   </section>
 
@@ -80,13 +81,12 @@ const areas = [
           gusto artistico ed estetico.
         </p>
       </div>
-      <img
+      <Image
         class="page-media"
-        src="/images/gallery-2.jpg"
+        src={IMG.gallery2}
         alt="Gli spazi Fit'Art, dove si alternano allenamento e mostre d'arte"
-        width="1400"
-        height="600"
-        loading="lazy" />
+        width={534}
+        sizes="(min-width: 72rem) 72rem, 100vw" />
     </div>
   </section>
 

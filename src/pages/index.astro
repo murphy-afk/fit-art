@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../data/site';
+import { IMG } from '../data/images';
 
 /**
  * Homepage services (docs/CONTENT-INVENTORY.md §Home).
@@ -14,7 +16,7 @@ const services = [
     name: 'Functional Training',
     desc: "I nostri programmi personalizzati e la nostra esperienza ti permetteranno di curare il tuo corpo con le metodiche più avanzate scientificamente e più adeguate alle tue esigenze.",
     video: '/videos/functional-training.mp4',
-    poster: '/images/hero-functional.jpg',
+    poster: IMG.heroFunctional,
     copy: 'old',
   },
   {
@@ -31,25 +33,25 @@ const services = [
       "Migliora l'equilibrio e la coordinazione",
     ],
     video: '/videos/pilates.mp4',
-    poster: '/images/pilates.jpg',
+    poster: IMG.pilates,
     copy: 'old',
   },
   {
     name: 'Indoor Cycling',
     desc: 'La pedalata indoor a ritmo di musica, stimolata da un ex ciclista professionista: ti farà vivere il ciclismo come mai lo avevi provato.',
-    image: '/images/indoor-cycling.jpg',
+    image: IMG.indoorCycling,
     copy: 'old',
   },
   {
     name: 'Dimagrire Veramente',
     desc: 'Modella il tuo corpo e perdi i centimetri che vuoi con i nostri programmi di allenamento personalizzati.',
-    image: '/images/dimagrire.jpg',
+    image: IMG.dimagrire,
     copy: 'old',
   },
   {
     name: 'Ginnastica Posturale',
     desc: 'Esercizi mirati per correggere la postura e prevenire dolori e compensi.',
-    image: '/images/ginnastica-posturale.jpg',
+    image: IMG.ginnasticaPosturale,
     copy: 'new',
   },
   {
@@ -62,7 +64,7 @@ const services = [
     name: 'Preparazione Atletica',
     desc: 'Programmi di preparazione per migliorare la prestazione e la condizione atletica.',
     video: '/videos/preparazione-atletica.mp4',
-    poster: '/images/preparazione-atletica.jpg',
+    poster: IMG.preparazioneAtletica,
     copy: 'new',
   },
   {
@@ -74,22 +76,25 @@ const services = [
 ];
 
 const galleryPhotos = [
-  { src: '/images/gallery-1.jpg', alt: "Sala corsi della palestra Fit'Art" },
-  { src: '/images/gallery-2.jpg', alt: 'Attrezzature per il fitness' },
-  { src: '/images/gallery-3.jpg', alt: 'Zona di allenamento Fit\'Art' },
-  { src: '/images/gallery-4.jpg', alt: 'Dettaglio degli spazi della palestra' },
+  { src: IMG.gallery1, alt: "Sala corsi della palestra Fit'Art" },
+  { src: IMG.gallery2, alt: 'Attrezzature per il fitness' },
+  { src: IMG.gallery3, alt: 'Zona di allenamento Fit\'Art' },
+  { src: IMG.gallery4, alt: 'Dettaglio degli spazi della palestra' },
 ];
 ---
 
-<BaseLayout title="Home" current="home">
+<BaseLayout
+  title="Palestra e galleria d'arte a Rosate (MI)"
+  current="home"
+  description="Fit'Art: palestra e galleria d'arte a Rosate (MI). Functional training, pilates, indoor cycling, preparazione atletica, posturologia e taping. Esperienza decennale, aperti tutti i giorni.">
   <!-- Hero full-bleed — Session 4 -->
   <section class="home-hero">
     <div class="home-hero-media" aria-hidden="true">
-      <img
-        src="/images/hero-functional.jpg"
+      <Image
+        src={IMG.heroFunctional}
         alt=""
-        width="1600"
-        height="900"
+        width={1108}
+        sizes="100vw"
         loading="eager"
         fetchpriority="high" />
     </div>
@@ -147,18 +152,20 @@ const galleryPhotos = [
                 <video
                   class="service-media"
                   src={service.video}
-                  poster={service.poster}
+                  poster={service.poster?.src}
                   controls
                   preload="metadata"
-                  playsinline />
+                  playsinline
+                  aria-label={`Video del corso ${service.name}`}>
+                  Il tuo browser non supporta la riproduzione video.
+                </video>
               ) : (
-                <img
+                <Image
                   class="service-media"
                   src={service.image}
                   alt=""
-                  width="640"
-                  height="360"
-                  loading="lazy" />
+                  width={640}
+                  sizes="(min-width: 64rem) 25vw, (min-width: 48rem) 50vw, 100vw" />
               )}
               <div class="service-body">
                 <h3>{service.name}</h3>
@@ -195,18 +202,16 @@ const galleryPhotos = [
         <a class="btn btn-primary" href={SITE.phones[1].href}>Parliamone: {SITE.phones[1].label}</a>
       </div>
       <div class="story-media">
-        <img
-          src="/images/storia-anna-1.jpg"
+        <Image
+          src={IMG.storiaAnna1}
           alt="Anna, storia di successo di Fit'Art"
-          width="800"
-          height="600"
-          loading="lazy" />
-        <img
-          src="/images/storia-anna-2.jpg"
+          width={534}
+          sizes="(min-width: 48rem) 50vw, 100vw" />
+        <Image
+          src={IMG.storiaAnna2}
           alt="Allenamento personalizzato alla palestra Fit'Art"
-          width="800"
-          height="600"
-          loading="lazy" />
+          width={534}
+          sizes="(min-width: 48rem) 50vw, 100vw" />
       </div>
     </div>
   </section>
@@ -232,13 +237,12 @@ const galleryPhotos = [
         </video>
         {
           galleryPhotos.map((photo) => (
-            <img
+            <Image
               class="gallery-item"
               src={photo.src}
               alt={photo.alt}
-              width="640"
-              height="480"
-              loading="lazy" />
+              width={534}
+              sizes="(min-width: 48rem) 25vw, 50vw" />
           ))
         }
       </div>

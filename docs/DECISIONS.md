@@ -24,7 +24,7 @@ Session 1 CLOSED — all decisions made (2026-10-10).
 - **Language** -> see "Language policy" below (Italian content, English docs/comments).
 - **Logo** -> no official file; use the Instagram profile picture (black bg, white mark) — downloaded at the highest available resolution (150x150) to `public/images/`; replace with the official logo when available.
 - **Email** -> placeholder `info@fitartfitness.it`; swap when the official email is known.
-- **Facebook URL** -> ESTIMATED from the IG handle (`facebook.com/fitartstudiofitness`) — the exact URL wasn't in the content inventory; marked `pending` in `src/data/site.ts`. Confirm before deploy (Session 7).
+- **Facebook URL** -> CONFIRMED by the client (Session 6 close, 2026-10-13): https://www.facebook.com/share/19c2zGVGed/ — replaces the estimated IG handle (`facebook.com/fitartstudiofitness`, previously marked `pending` in `src/data/site.ts`).
 - **Navigation** -> flat structure with the 7 live pages of the old site (Home, Chi siamo, Valutazione Posturale, Cos'è il Taping, Foto, Safeguarding, Contatti); "Accedi" removed (Session 1). No dropdowns; hamburger menu below 48rem.
 - **Favicon** -> temporary = IG logo (`/images/logo-s150x150.jpg`); definitive favicon in Session 6.
 - **Stack** -> Astro 7.3.8 (static output), zero extra runtime dependencies; hand-written CSS with tokens, no framework.
@@ -83,3 +83,12 @@ Session 1 CLOSED — all decisions made (2026-10-10).
 4. **Contact form**: UI built (nome, email, telefono facoltativo, messaggio) with `action="#"` and a visible note ("il modulo e in fase di collaudo") - per decision 5 above, handling (e.g. Formspree) comes in Session 6.
 5. **Google Maps**: Contatti uses a Google Maps **search link** (opens in a new tab), not an embedded iframe - keeps the page light; can upgrade to an embed in Session 6/7 if wanted.
 6. **Footer note** updated from "Session 3" to "Session 5".
+
+## Session 6 — SEO, a11y, performance, forms (2026-10-13)
+
+1. **Contact form handling -> Formspree (client)**. GitHub Pages is static, so the form posts to Formspree via fetch (success/error message in an `aria-live` status region, honeypot anti-spam, native POST fallback without JS). The endpoint lives in `SITE.formspreeEndpoint` (`src/data/site.ts`) as the placeholder `https://formspree.io/f/YOUR_FORM_ID`: **the client creates the free Formspree account and pastes the real ID (single-line swap)**. Until then the form shows the "in fase di collaudo" note and never submits.
+2. **Image optimization -> astro:assets (client)**. The 18 content photos moved from `public/images/` to `src/assets/images/` and are rendered with Astro's `<Image>` (automatic WebP + `sizes` + `decoding=async`, e.g. hero 101 kB -> 32 kB). Central imports in `src/data/images.ts`. The logo stays in `public/images/` because it is also the favicon source; videos stay in `public/videos/`.
+3. **Favicon**: generated from the temporary IG logo (`scripts/generate-favicons.cjs`): `favicon-16/32.png`, `apple-touch-icon.png`, plus a 1200x630 `og-image.jpg` (hero photo, darkened) for social previews. Rerun the script when the official logo arrives.
+4. **Structured data**: JSON-LD `HealthClub` in the layout (address, phones, hours, socials from `src/data/site.ts`) for Google search results.
+5. **Facebook URL**: CONFIRMED by the client at Session 6 close (2026-10-13): https://www.facebook.com/share/19c2zGVGed/ — the `pending` marker and the estimated handle were removed from `src/data/site.ts`.
+6. **404 page**: new `src/pages/404.astro` (Italian, CTA home/contatti/telefono); excluded from the sitemap.

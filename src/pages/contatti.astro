@@ -3,13 +3,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../data/site';
 
 /**
- * Contatti page — Session 5.
- * Form is UI-only for now: GitHub Pages is static, so the action is a
- * placeholder and submission handling comes in Session 6
- * (docs/DECISIONS.md §5, Formspree if requested).
+ * Contatti page — Session 5; form handling added in Session 6.
+ * GitHub Pages is static, so the form posts to Formspree via fetch
+ * (docs/DECISIONS.md §Session 6). Until SITE.formspreeEndpoint contains a real
+ * form ID, submitting shows the "in fase di collaudo" note instead of sending.
  */
 const mapHref =
   'https://www.google.com/maps/search/?api=1&query=Via+Alessandro+Manzoni+33,+20088+Rosate+(MI)';
+const formspreeReady = !SITE.formspreeEndpoint.includes('YOUR_FORM_ID');
 ---
 
 <BaseLayout
@@ -32,16 +33,16 @@ const mapHref =
       <h2 id="recapiti-title">Recapiti</h2>
       <div class="contact-grid">
         <div class="contact-card">
-          <h2>Dove siamo</h2>
+          <h3>Dove siamo</h3>
           <p>{SITE.address}</p>
           <p>
             <a href={mapHref} rel="noopener" target="_blank">
-              Apri in Google Maps
+              Apri in Google Maps<span class="visually-hidden"> (si apre in una nuova finestra)</span>
             </a>
           </p>
         </div>
         <div class="contact-card">
-          <h2>Telefono</h2>
+          <h3>Telefono</h3>
           <p>
             {
               SITE.phones.map((phone, index) => (
@@ -54,12 +55,12 @@ const mapHref =
           </p>
         </div>
         <div class="contact-card">
-          <h2>Email</h2>
+          <h3>Email</h3>
           <!-- PLACEHOLDER (docs/DECISIONS.md §1): swap in the official email -->
           <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
         </div>
         <div class="contact-card">
-          <h2>Orari</h2>
+          <h3>Orari</h3>
           <p>{SITE.hours.weekday}</p>
           <p>{SITE.hours.weekend}</p>
         </div>
@@ -67,16 +68,19 @@ const mapHref =
     </div>
   </section>
 
-  <!-- Contact form — UI only; handling in Session 6 -->
+  <!-- Contact form — Formspree wiring (Session 6). Native POST as no-JS fallback. -->
   <section class="section section-alt" aria-labelledby="form-title">
     <div class="container">
       <h2 id="form-title">Scrivici</h2>
       <p class="lede">
         Compila il modulo e ti ricontatteremo appena possibile.
       </p>
-      <!-- PLACEHOLDER ACTION (docs/DECISIONS.md §5): GitHub Pages is static —
-           wire up Formspree (or similar) in Session 6. -->
-      <form class="contact-form" action="#" method="post">
+      <form
+        class="contact-form"
+        id="contact-form"
+        action={SITE.formspreeEndpoint}
+        method="post"
+        accept-charset="utf-8">
         <div class="form-field">
           <label for="nome">Nome</label>
           <input id="nome" name="nome" type="text" autocomplete="name" required />
@@ -93,14 +97,60 @@ const mapHref =
           <label for="messaggio">Messaggio</label>
           <textarea id="messaggio" name="messaggio" rows="5" required></textarea>
         </div>
+        <!-- Honeypot anti-spam (Formspree ignores it when empty) -->
+        <div class="form-hp" aria-hidden="true">
+          <label for="company">Non compilare questo campo</label>
+          <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
+        </div>
         <p class="section-action">
           <button class="btn btn-primary" type="submit">Invia</button>
         </p>
-        <p class="form-note">
-          Il modulo è in fase di collaudo: l'invio sarà attivo a breve. Per
-          ora puoi scriverci a {SITE.email} o chiamarci.
+        <!-- Status messages are announced to screen readers via aria-live -->
+        <p class="form-note" id="form-status" role="status" aria-live="polite">
+          {
+            formspreeReady
+              ? 'Rispondiamo normalmente entro pochi giorni.'
+              : <>
+                  Il modulo è in fase di collaudo: l'invio sarà attivo a breve. Per
+                  ora puoi scriverci a <a href={`mailto:${SITE.email}`}>{SITE.email}</a> o chiamarci.
+                </>
+          }
         </p>
       </form>
     </div>
   </section>
+
+  <script is:inline define:vars={{ endpoint: SITE.formspreeEndpoint, ready: formspreeReady }}>
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+
+    form?.addEventListener('submit', async (event) => {
+      // No real Formspree endpoint yet: show the placeholder note, don't submit.
+      if (!ready) {
+        event.preventDefault();
+        return;
+      }
+      event.preventDefault();
+      const button = form.querySelector('button[type="submit"]');
+      if (button) button.disabled = true;
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        if (response.ok) {
+          form.reset();
+          status.textContent = 'Messaggio inviato: ti ricontatteremo appena possibile. Grazie!';
+        } else {
+          throw new Error('Formspree responded with an error');
+        }
+      } catch {
+        status.textContent =
+          "C'è stato un problema nell'invio: riprova più tardi oppure chiamaci o scrivici via email.";
+      } finally {
+        if (button) button.disabled = false;
+      }
+    });
+  </script>
 </BaseLayout>

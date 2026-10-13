@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { SITE } from '../data/site';
 import type { NavSlug } from '../data/site';
 import '../styles/global.css';
 
@@ -14,6 +15,50 @@ const { title, description, current } = Astro.props;
 
 const defaultDescription =
   "Fit'Art — palestra e galleria d'arte a Rosate (MI). Allenamenti personalizzati, preparazione atletica, posturologia, chinesiologia, massoterapia.";
+
+const fullTitle = `${title} — Fit'Art StudioFitness Rosate`;
+const pageDescription = description ?? defaultDescription;
+// Absolute URLs for canonical / OG (requires `site` in astro.config.mjs)
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = new URL('/og-image.jpg', Astro.site);
+
+/**
+ * LocalBusiness structured data (schema.org) — helps Google show the gym's
+ * name, address, hours and phone in search results. Contact data comes from
+ * src/data/site.ts (single source of truth).
+ */
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'HealthClub',
+  name: SITE.brand,
+  description: defaultDescription,
+  url: Astro.site?.toString(),
+  image: ogImageUrl.toString(),
+  telephone: SITE.phones.map((p) => p.href.replace('tel:', '')),
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Via Alessandro Manzoni 33',
+    postalCode: '20088',
+    addressLocality: 'Rosate',
+    addressRegion: 'MI',
+    addressCountry: 'IT',
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '06:00',
+      closes: '23:00',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Saturday', 'Sunday'],
+      opens: '08:00',
+      closes: '18:00',
+    },
+  ],
+  sameAs: SITE.socials.map((s) => s.href),
+};
 ---
 
 <!doctype html>
@@ -21,10 +66,32 @@ const defaultDescription =
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title} — Fit'Art StudioFitness Rosate</title>
-    <meta name="description" content={description ?? defaultDescription} />
-    <!-- Temporary favicon: IG logo. Definitive favicon in Session 6. -->
-    <link rel="icon" type="image/jpeg" href="/images/logo-s150x150.jpg" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Favicon (generated from the IG logo in Session 6 — swap with the official logo when available) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- Open Graph / Twitter (share previews) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.brand} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="it_IT" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
     <a class="skip-link" href="#main">Salta al contenuto</a>

@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE } from '../data/site';
+import { IMG } from '../data/images';
 
 /**
  * The 7 gallery photos of the old site's Foto page
@@ -9,13 +11,13 @@ import { SITE } from '../data/site';
  * service photos; foto-palestra.jpg is the remaining one (downloaded in Session 5).
  */
 const photos = [
-  { src: '/images/foto-palestra.jpg', alt: 'Gli spazi della palestra Fit\u2019Art' },
-  { src: '/images/gallery-1.jpg', alt: 'Sala corsi della palestra Fit\u2019Art' },
-  { src: '/images/gallery-2.jpg', alt: 'Attrezzature per il fitness' },
-  { src: '/images/gallery-3.jpg', alt: 'Zona di allenamento Fit\u2019Art' },
-  { src: '/images/gallery-4.jpg', alt: 'Dettaglio degli spazi della palestra' },
-  { src: '/images/ginnastica-posturale.jpg', alt: 'Ginnastica posturale alla palestra Fit\u2019Art' },
-  { src: '/images/preparazione-atletica.jpg', alt: 'Preparazione atletica alla palestra Fit\u2019Art' },
+  { src: IMG.fotoPalestra, alt: 'Gli spazi della palestra Fit\u2019Art' },
+  { src: IMG.gallery1, alt: 'Sala corsi della palestra Fit\u2019Art' },
+  { src: IMG.gallery2, alt: 'Attrezzature per il fitness' },
+  { src: IMG.gallery3, alt: 'Zona di allenamento Fit\u2019Art' },
+  { src: IMG.gallery4, alt: 'Dettaglio degli spazi della palestra' },
+  { src: IMG.ginnasticaPosturale, alt: 'Ginnastica posturale alla palestra Fit\u2019Art' },
+  { src: IMG.preparazioneAtletica, alt: 'Preparazione atletica alla palestra Fit\u2019Art' },
 ];
 ---
 
@@ -45,13 +47,12 @@ const photos = [
         </video>
         {
           photos.map((photo) => (
-            <img
+            <Image
               class="gallery-item"
               src={photo.src}
               alt={photo.alt}
-              width="640"
-              height="480"
-              loading="lazy" />
+              width={534}
+              sizes="(min-width: 48rem) 25vw, 50vw" />
           ))
         }
       </div>

@@ -22,10 +22,16 @@ export const SITE = {
   socials: [
     { label: 'Instagram', href: 'https://www.instagram.com/fitartstudiofitness/' },
     { label: 'TikTok', href: 'https://www.tiktok.com/@fitartstudiofitness' },
-    // TODO(Session 6): confirm the real Facebook page URL — the old site had a real
-    // link, but the exact URL isn't in the content inventory. Handle estimated from the brand.
-    { label: 'Facebook', href: 'https://www.facebook.com/fitartstudiofitness/', pending: true },
+    // Official Facebook page — confirmed by the client (Session 6 close, 2026-10-13).
+    // Replaces the estimated handle that was marked `pending`.
+    { label: 'Facebook', href: 'https://www.facebook.com/share/19c2zGVGed/' },
   ],
+  // PLACEHOLDER (docs/DECISIONS.md §Session 6): the contact form on /contatti posts
+  // to Formspree (GitHub Pages is static). Create the free account at formspree.io,
+  // then replace the whole URL below with "https://formspree.io/f/XXXXXXX".
+  // While it still contains "YOUR_FORM_ID", the form shows the "in collaudo" note
+  // instead of submitting (see src/pages/contatti.astro).
+  formspreeEndpoint: 'https://formspree.io/f/YOUR_FORM_ID',
 } as const;
 
 /** Main navigation — live pages of the old site (the "Accedi" page was removed in Session 1). */
