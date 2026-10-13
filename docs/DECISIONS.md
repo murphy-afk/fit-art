@@ -92,3 +92,4 @@ Session 1 CLOSED — all decisions made (2026-10-10).
 4. **Structured data**: JSON-LD `HealthClub` in the layout (address, phones, hours, socials from `src/data/site.ts`) for Google search results.
 5. **Facebook URL**: CONFIRMED by the client at Session 6 close (2026-10-13): https://www.facebook.com/share/19c2zGVGed/ — the `pending` marker and the estimated handle were removed from `src/data/site.ts`.
 6. **404 page**: new `src/pages/404.astro` (Italian, CTA home/contatti/telefono); excluded from the sitemap.
+7. **Favicon corners** (follow-up, client request): the logo JPEG is a circle on a white square, so the generated icons had white corners — `scripts/generate-favicons.cjs` now applies a circular mask and the corners are transparent. Regenerated `favicon-16/32.png` + `apple-touch-icon.png`.
