@@ -13,7 +13,7 @@ Working rules (from the client brief):
 | 2 | Scaffolding & design system (done, feedback applied in Session 3) | "Set up the Astro project: layouts (header/nav/footer), design tokens, responsive mobile-first, all routes stubbed" | Running Astro skeleton with shared layout and navigation; docs updated |
 | 3 | Refinement & polish (done, approved) | "Review the skeleton: typography/token polish, responsive + mobile nav check, a11y basics, build performance, apply Session 2 feedback" | Polished skeleton ready for content; docs updated |
 | 4 | Homepage (done, approved) | "Implement homepage: hero, hours, services with videos, success story, gallery teaser, CTA" | Homepage complete and presented for review |
-| 5 | Content pages (done, awaiting review) | "Implement Chi siamo, Valutazione Posturale, Cos'è il Taping, Foto, Safeguarding, Contatti" | All content pages complete and presented for review |
+| 5 | Content pages (done, approved) | "Implement Chi siamo, Valutazione Posturale, Cos'è il Taping, Foto, Safeguarding, Contatti" | All content pages complete and presented for review |
 | 6 | SEO, accessibility, performance, forms | "Meta tags, sitemap.xml, robots.txt, favicon, image optimization, a11y pass, contact form handling, 404 page" | Production-ready build; docs updated |
 | 7 | Final review & deploy | "Review everything, apply feedback, deploy, write handover docs" | Live site + handover documentation |
 
@@ -65,7 +65,7 @@ Complete homepage (`src/pages/index.astro` + a dedicated section in `src/styles/
 - No commit — awaiting client approval.
 - **Next**: Session 5 — content pages (Chi siamo, Valutazione Posturale, Cos'è il Taping, Foto, Safeguarding, Contatti).
 
-## Session 5 — deliverables (2026-10-13, awaiting review)
+## Session 5 — deliverables (2026-10-13, approved by the client)
 
 All 6 content pages implemented (stubs replaced):
 
@@ -78,7 +78,7 @@ All 6 content pages implemented (stubs replaced):
 - **Contatti** (`contatti.astro`): 4 recapiti card (indirizzo + Google Maps link, telefoni, email placeholder, orari) + form UI (nome, email, telefono facoltativo, messaggio) con `action="#"` placeholder — invio gestito in Session 6.
 - **New CSS** (`global.css`): `.feature-grid`/`.feature-card`/`.feature-num`, `.page-media`, `.prose`, `.callout`, `.contact-grid`/`.contact-card`, `.contact-form`/`.form-field`/`.form-note`; `.btn` restyled to work on `<button>` too; `.section-action` now a flex row.
 - Style audit `node check-style.cjs`: zero hits. Build verified: `npm run build` -> `dist/`, 7 pages.
-- No commit — awaiting client approval.
+- Client approval received (including Aurora Spinoccia's contact published on the Valutazione Posturale page only — see `docs/DECISIONS.md` §Session 5). Committed as `c31ded9`.
 - **Next**: Session 6 — SEO, accessibility, performance, forms (meta tags, sitemap, robots.txt, favicon, 404, form handling).
 
 ## Session 4 follow-up (2026-10-13, client instructions — approved)
