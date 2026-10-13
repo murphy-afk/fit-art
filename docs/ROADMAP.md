@@ -13,7 +13,7 @@ Working rules (from the client brief):
 | 2 | Scaffolding & design system (done, feedback applied in Session 3) | "Set up the Astro project: layouts (header/nav/footer), design tokens, responsive mobile-first, all routes stubbed" | Running Astro skeleton with shared layout and navigation; docs updated |
 | 3 | Refinement & polish (done, approved) | "Review the skeleton: typography/token polish, responsive + mobile nav check, a11y basics, build performance, apply Session 2 feedback" | Polished skeleton ready for content; docs updated |
 | 4 | Homepage (done, approved) | "Implement homepage: hero, hours, services with videos, success story, gallery teaser, CTA" | Homepage complete and presented for review |
-| 5 | Content pages | "Implement Chi siamo, Valutazione Posturale, Cos'è il Taping, Foto, Safeguarding, Contatti" | All content pages complete and presented for review |
+| 5 | Content pages (done, awaiting review) | "Implement Chi siamo, Valutazione Posturale, Cos'è il Taping, Foto, Safeguarding, Contatti" | All content pages complete and presented for review |
 | 6 | SEO, accessibility, performance, forms | "Meta tags, sitemap.xml, robots.txt, favicon, image optimization, a11y pass, contact form handling, 404 page" | Production-ready build; docs updated |
 | 7 | Final review & deploy | "Review everything, apply feedback, deploy, write handover docs" | Live site + handover documentation |
 
@@ -64,6 +64,22 @@ Complete homepage (`src/pages/index.astro` + a dedicated section in `src/styles/
 - Build verified: `npm run build` -> `dist/`, 7 pages.
 - No commit — awaiting client approval.
 - **Next**: Session 5 — content pages (Chi siamo, Valutazione Posturale, Cos'è il Taping, Foto, Safeguarding, Contatti).
+
+## Session 5 — deliverables (2026-10-13, awaiting review)
+
+All 6 content pages implemented (stubs replaced):
+
+- **Content sourcing**: original texts re-fetched from `fitartfitness.it` (Chi siamo, Safeguarding); Taping and Valutazione Posturale content **transcribed from the brochure/infographic images** (text existed only inside images — docs/CONTENT-INVENTORY.md). New assets downloaded: 5 Taping brochure pages (`public/images/taping-page-1..5.jpg`) + 1 remaining gallery photo (`foto-palestra.jpg`); the other 6 Foto-page photos were already local (4 `gallery-*.jpg` + 2 service photos).
+- **Chi siamo** (`chi-siamo.astro`): original intro, 4 areas (cardio-tonica, sala corsi fitness e pilates, muscle-training, TRAINING ZONE), art-gallery USP section, team claim + CTA.
+- **Valutazione Posturale** (`valutazione-posturale.astro`): cos'è la postura, perché si altera (appoggi asimmetrici, sovraccarichi plantari, compensi), cosa analizziamo, esame baropodometrico (statica/dinamica, pressioni plantari, sovraccarichi e asimmetrie, report con immagini), aree del corpo, cosa ottieni, CTA.
+- **Cos'è il Taping** (`cos-e-il-taping.astro`): il nastro (descrizione), a cosa serve, 6 benefici, concetti generali (durata max 5 gg, applicazioni illimitate, pelle preparata), controindicazioni in a callout, brochure gallery (5 immagini originali).
+- **Foto** (`foto.astro`): tour video + tutte e 7 le foto del vecchio sito + CTA visita.
+- **Safeguarding** (`safeguarding.astro`): definizione, perché è importante, 7 componenti numerate, responsabile Prof. Massimo Spinoccia (fitart2020@gmail.com), placeholder "Modello Organizzativo e Codice di Condotta" (documenti non ancora forniti).
+- **Contatti** (`contatti.astro`): 4 recapiti card (indirizzo + Google Maps link, telefoni, email placeholder, orari) + form UI (nome, email, telefono facoltativo, messaggio) con `action="#"` placeholder — invio gestito in Session 6.
+- **New CSS** (`global.css`): `.feature-grid`/`.feature-card`/`.feature-num`, `.page-media`, `.prose`, `.callout`, `.contact-grid`/`.contact-card`, `.contact-form`/`.form-field`/`.form-note`; `.btn` restyled to work on `<button>` too; `.section-action` now a flex row.
+- Style audit `node check-style.cjs`: zero hits. Build verified: `npm run build` -> `dist/`, 7 pages.
+- No commit — awaiting client approval.
+- **Next**: Session 6 — SEO, accessibility, performance, forms (meta tags, sitemap, robots.txt, favicon, 404, form handling).
 
 ## Session 4 follow-up (2026-10-13, client instructions — approved)
 
