@@ -1,23 +1,19 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE, path } from '../data/site';
+import { SITE, path, addressLine, cityLine } from '../data/site';
 import { IMG } from '../data/images';
 
 /**
- * Homepage services (docs/CONTENT-INVENTORY.md §Home).
- * `video` = MP4 downloaded from the old site (public/videos/); without `video` the photo is used.
- * `poster` = video preview image (public/images/).
- * Descriptions marked `copy: 'new'` did not exist on the old site: they were
- * written for Session 4 and need client approval (docs/DECISIONS.md §Session 4).
+ * Homepage services - SAMPLE content for the template: replace names and
+ * descriptions with the client's real offer (docs/SETUP.md).
+ * Every card shows a photo; all images come from src/data/images.ts.
  */
 const services = [
   {
     name: 'Functional Training',
     desc: "I nostri programmi personalizzati e la nostra esperienza ti permetteranno di curare il tuo corpo con le metodiche più avanzate scientificamente e più adeguate alle tue esigenze.",
-    video: '/videos/functional-training.mp4',
-    poster: IMG.heroFunctional,
-    copy: 'old',
+    image: IMG.fotoPalestra,
   },
   {
     name: 'Pilates',
@@ -32,62 +28,53 @@ const services = [
       'Rafforzando gli addominali, aiuta ad avere un ventre più piatto',
       "Migliora l'equilibrio e la coordinazione",
     ],
-    video: '/videos/pilates.mp4',
-    poster: IMG.pilates,
-    copy: 'old',
+    image: IMG.pilates,
   },
   {
     name: 'Indoor Cycling',
-    desc: 'La pedalata indoor a ritmo di musica, stimolata da un ex ciclista professionista: ti farà vivere il ciclismo come mai lo avevi provato.',
+    desc: 'La pedalata indoor a ritmo di musica: ti farà vivere il ciclismo come mai lo avevi provato.',
     image: IMG.indoorCycling,
-    copy: 'old',
   },
   {
     name: 'Dimagrire Veramente',
     desc: 'Modella il tuo corpo e perdi i centimetri che vuoi con i nostri programmi di allenamento personalizzati.',
     image: IMG.dimagrire,
-    copy: 'old',
   },
   {
     name: 'Ginnastica Posturale',
     desc: 'Esercizi mirati per correggere la postura e prevenire dolori e compensi.',
     image: IMG.ginnasticaPosturale,
-    copy: 'new',
   },
   {
     name: 'Ginnastica contro il mal di schiena',
     desc: 'Lavoro specifico per alleviare e prevenire il mal di schiena.',
-    video: '/videos/mal-di-schiena.mp4',
-    copy: 'new',
+    image: IMG.malDiSchiena,
   },
   {
     name: 'Preparazione Atletica',
     desc: 'Programmi di preparazione per migliorare la prestazione e la condizione atletica.',
-    video: '/videos/preparazione-atletica.mp4',
-    poster: IMG.preparazioneAtletica,
-    copy: 'new',
+    image: IMG.preparazioneAtletica,
   },
   {
     name: 'Rieducazione funzionale dopo infortuni e operazioni',
     desc: 'Recupero del movimento dopo infortuni e operazioni, con un percorso personalizzato.',
-    video: '/videos/rieducazione-funzionale.mp4',
-    copy: 'new',
+    image: IMG.rieducazioneFunzionale,
   },
 ];
 
 const galleryPhotos = [
-  { src: IMG.gallery1, alt: "Sala corsi della palestra Fit'Art" },
+  { src: IMG.gallery1, alt: 'Sala corsi della palestra' },
   { src: IMG.gallery2, alt: 'Attrezzature per il fitness' },
-  { src: IMG.gallery3, alt: 'Zona di allenamento Fit\'Art' },
+  { src: IMG.gallery3, alt: 'Zona di allenamento' },
   { src: IMG.gallery4, alt: 'Dettaglio degli spazi della palestra' },
 ];
 ---
 
 <BaseLayout
-  title="Palestra e galleria d'arte a Rosate (MI)"
+  title="Palestra e centro fitness a [Città (PRO)]"
   current="home"
-  description="Fit'Art: palestra e galleria d'arte a Rosate (MI). Functional training, pilates, indoor cycling, preparazione atletica, posturologia e taping. Esperienza decennale, aperti tutti i giorni.">
-  <!-- Hero full-bleed - Session 4 -->
+  description="[Nome Palestra] a [Città (PRO)]: functional training, pilates, indoor cycling, preparazione atletica, ginnastica posturale e allenamenti personalizzati. Aperti tutti i giorni.">
+  <!-- Hero full-bleed -->
   <section class="home-hero">
     <div class="home-hero-media" aria-hidden="true">
       <Image
@@ -99,11 +86,14 @@ const galleryPhotos = [
         fetchpriority="high" />
     </div>
     <div class="container home-hero-inner">
-      <p class="eyebrow">Palestra &amp; galleria d'arte · Rosate (MI)</p>
-      <h1>Fit'Art: l'arte nel fitness</h1>
+      <p class="eyebrow">{SITE.tagline} · {cityLine}</p>
+      <!-- PLACEHOLDER (docs/SETUP.md): brand + slogan -->
+      <h1>{SITE.brand}: [slogan]</h1>
+      <!-- Sample hero copy - replace with the client's own words (docs/SETUP.md) -->
       <p class="lede home-hero-lede">
-        La nostra esperienza decennale, a disposizione per il tuo benessere, a
-        portata di mano in qualsiasi momento della giornata.
+        La nostra esperienza è a disposizione per il tuo benessere: corsi,
+        allenamenti personalizzati e attrezzature moderne, a portata di mano in
+        qualsiasi momento della giornata.
       </p>
       <div class="home-hero-actions">
         <a class="btn btn-primary" href={SITE.phones[0].href}>Chiama il {SITE.phones[0].label}</a>
@@ -112,61 +102,47 @@ const galleryPhotos = [
     </div>
   </section>
 
-  <!-- Hours - Session 4 -->
+  <!-- Hours -->
   <section class="section home-hours" aria-labelledby="orari-title">
     <div class="container">
       <p class="eyebrow">I nostri orari</p>
       <h2 id="orari-title">Aperti tutti i giorni</h2>
       <div class="hours-grid">
         <div class="hours-card">
-          <h3>Lunedì - Venerdì</h3>
-          <p class="hours-time">06:00-23:00</p>
+          <h3>{SITE.hours.weekday.label}</h3>
+          <p class="hours-time">{SITE.hours.weekday.opens}-{SITE.hours.weekday.closes}</p>
         </div>
         <div class="hours-card">
-          <h3>Sabato - Domenica</h3>
-          <p class="hours-time">08:00-18:00</p>
+          <h3>{SITE.hours.weekend.label}</h3>
+          <p class="hours-time">{SITE.hours.weekend.opens}-{SITE.hours.weekend.closes}</p>
         </div>
         <div class="hours-card">
           <h3>Dove siamo</h3>
-          <p class="hours-time hours-address">{SITE.address}</p>
+          <p class="hours-time hours-address">{addressLine}</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Services with videos - Session 4 -->
+  <!-- Services -->
   <section class="section section-alt" id="servizi" aria-labelledby="servizi-title">
     <div class="container">
       <p class="eyebrow">I servizi</p>
       <h2 id="servizi-title">Le migliori attrezzature, un ambiente curato</h2>
       <p class="lede">
-        Dove il benessere è il protagonista: scegli il corso più adatto a te e,
-        dove disponibile, guardalo in azione.
+        Dove il benessere è il protagonista: scegli il corso più adatto a te.
       </p>
 
       <div class="services-grid">
         {
           services.map((service) => (
             <article class="service-card">
-              {service.video ? (
-                <video
-                  class="service-media"
-                  src={path(service.video)}
-                  poster={service.poster?.src}
-                  controls
-                  preload="metadata"
-                  playsinline
-                  aria-label={`Video del corso ${service.name}`}>
-                  Il tuo browser non supporta la riproduzione video.
-                </video>
-              ) : (
-                <Image
-                  class="service-media"
-                  src={service.image}
-                  alt=""
-                  width={640}
-                  sizes="(min-width: 64rem) 25vw, (min-width: 48rem) 50vw, 100vw" />
-              )}
+              <Image
+                class="service-media"
+                src={service.image}
+                alt=""
+                width={640}
+                sizes="(min-width: 64rem) 25vw, (min-width: 48rem) 50vw, 100vw" />
               <div class="service-body">
                 <h3>{service.name}</h3>
                 <p>{service.desc}</p>
@@ -188,53 +164,44 @@ const galleryPhotos = [
     </div>
   </section>
 
-  <!-- Success story - Session 4 -->
+  <!-- Success story - PLACEHOLDER: replace with a real client story (docs/SETUP.md) -->
   <section class="section" aria-labelledby="storia-title">
     <div class="container story-grid">
       <div class="story-text">
-        <p class="eyebrow">Storia di successo: Dimagrire veramente</p>
-        <h2 id="storia-title">Anna ha perso 40 chili in meno di un anno</h2>
+        <p class="eyebrow">Storia di successo</p>
+        <h2 id="storia-title">[Nome del cliente]: [il risultato raggiunto]</h2>
         <p class="lede">
-          Grazie ai nostri programmi di allenamento e a una dieta bilanciata.
-          Modella il tuo corpo e perdi i centimetri che vuoi con i nostri
-          programmi di allenamento personalizzati.
+          [Due righe sul percorso: es. "Otto mesi di allenamento personalizzato
+          e un piano alimentare su misura per raggiungere il suo obiettivo."]
         </p>
         <a class="btn btn-primary" href={SITE.phones[1].href}>Parliamone: {SITE.phones[1].label}</a>
       </div>
       <div class="story-media">
         <Image
-          src={IMG.storiaAnna1}
-          alt="Anna, storia di successo di Fit'Art"
+          src={IMG.storia1}
+          alt="[Descrizione della foto]"
           width={534}
           sizes="(min-width: 48rem) 50vw, 100vw" />
         <Image
-          src={IMG.storiaAnna2}
-          alt="Allenamento personalizzato alla palestra Fit'Art"
+          src={IMG.storia2}
+          alt="[Descrizione della foto]"
           width={534}
           sizes="(min-width: 48rem) 50vw, 100vw" />
       </div>
     </div>
   </section>
 
-  <!-- Gallery teaser - Session 4 -->
+  <!-- Gallery teaser -->
   <section class="section section-alt" aria-labelledby="galleria-title">
     <div class="container">
-      <p class="eyebrow">Palestra &amp; galleria d'arte</p>
+      <p class="eyebrow">{SITE.tagline}</p>
       <h2 id="galleria-title">Guarda la palestra da vicino</h2>
       <p class="lede">
-        L'unica palestra in Italia che è anche una galleria d'arte: le foto e i
-        video degli spazi, dei corsi e delle esposizioni.
+        Le foto degli spazi, delle attrezzature e dei corsi: scopri dove
+        allenerai.
       </p>
+      <!-- Optional: add a <video> element here for a tour video (drop the MP4 in public/videos/) -->
       <div class="gallery-grid">
-        <video
-          class="gallery-item gallery-video"
-          src={path('/videos/palestra-tour.mp4')}
-          controls
-          preload="metadata"
-          playsinline
-          aria-label="Video tour della palestra">
-          Il tuo browser non supporta la riproduzione video.
-        </video>
         {
           galleryPhotos.map((photo) => (
             <Image
@@ -252,7 +219,7 @@ const galleryPhotos = [
     </div>
   </section>
 
-  <!-- Final CTA - Session 4 -->
+  <!-- Final CTA -->
   <section class="section home-cta" aria-labelledby="cta-title">
     <div class="container home-cta-inner">
       <h2 id="cta-title">Visita la palestra</h2>

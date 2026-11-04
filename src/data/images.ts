@@ -1,7 +1,8 @@
 /**
- * Central image imports - Session 6 (astro:assets migration).
- * Images moved from public/images/ to src/assets/images/ so Astro can
- * optimize them (compressed output, responsive srcset, hashed URLs).
+ * Central image imports (astro:assets).
+ * All photos are free placeholder stock images (Unsplash / Pexels): replace
+ * them with the client's own photos, keeping the same file names in
+ * src/assets/images/ (or update the imports here).
  * The logo stays in public/images/ (it is also the favicon source).
  */
 
@@ -14,15 +15,12 @@ import gallery4 from '../assets/images/gallery-4.jpg';
 import ginnasticaPosturale from '../assets/images/ginnastica-posturale.jpg';
 import heroFunctional from '../assets/images/hero-functional.jpg';
 import indoorCycling from '../assets/images/indoor-cycling.jpg';
+import malDiSchiena from '../assets/images/mal-di-schiena.jpg';
 import pilates from '../assets/images/pilates.jpg';
 import preparazioneAtletica from '../assets/images/preparazione-atletica.jpg';
-import storiaAnna1 from '../assets/images/storia-anna-1.jpg';
-import storiaAnna2 from '../assets/images/storia-anna-2.jpg';
-import tapingPage1 from '../assets/images/taping-page-1.jpg';
-import tapingPage2 from '../assets/images/taping-page-2.jpg';
-import tapingPage3 from '../assets/images/taping-page-3.jpg';
-import tapingPage4 from '../assets/images/taping-page-4.jpg';
-import tapingPage5 from '../assets/images/taping-page-5.jpg';
+import rieducazioneFunzionale from '../assets/images/rieducazione-funzionale.jpg';
+import storia1 from '../assets/images/storia-1.jpg';
+import storia2 from '../assets/images/storia-2.jpg';
 
 export const IMG = {
   dimagrire,
@@ -34,13 +32,10 @@ export const IMG = {
   ginnasticaPosturale,
   heroFunctional,
   indoorCycling,
+  malDiSchiena,
   pilates,
   preparazioneAtletica,
-  storiaAnna1,
-  storiaAnna2,
-  tapingPage1,
-  tapingPage2,
-  tapingPage3,
-  tapingPage4,
-  tapingPage5,
+  rieducazioneFunzionale,
+  storia1,
+  storia2,
 } as const;

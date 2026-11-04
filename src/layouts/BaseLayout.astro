@@ -13,10 +13,11 @@ interface Props {
 
 const { title, description, current } = Astro.props;
 
+// PLACEHOLDER (docs/SETUP.md): default meta description - replace with the client's offer.
 const defaultDescription =
-  "Fit'Art: palestra e galleria d'arte a Rosate (MI). Allenamenti personalizzati, preparazione atletica, posturologia, chinesiologia, massoterapia.";
+  'Palestra e centro fitness a [Città (PRO)]: corsi di functional training, pilates, indoor cycling, preparazione atletica e ginnastica posturale.';
 
-const fullTitle = `${title} · Fit'Art StudioFitness Rosate`;
+const fullTitle = `${title} · ${SITE.brand}`;
 const pageDescription = description ?? defaultDescription;
 // Absolute URLs for canonical / OG (requires `site` in astro.config.mjs)
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
@@ -38,24 +39,24 @@ const jsonLd = {
   telephone: SITE.phones.map((p) => p.href.replace('tel:', '')),
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Via Alessandro Manzoni 33',
-    postalCode: '20088',
-    addressLocality: 'Rosate',
-    addressRegion: 'MI',
-    addressCountry: 'IT',
+    streetAddress: SITE.address.street,
+    postalCode: SITE.address.postalCode,
+    addressLocality: SITE.address.city,
+    addressRegion: SITE.address.region,
+    addressCountry: SITE.address.country,
   },
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      opens: '06:00',
-      closes: '23:00',
+      opens: SITE.hours.weekday.opens,
+      closes: SITE.hours.weekday.closes,
     },
     {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Saturday', 'Sunday'],
-      opens: '08:00',
-      closes: '18:00',
+      opens: SITE.hours.weekend.opens,
+      closes: SITE.hours.weekend.closes,
     },
   ],
   sameAs: SITE.socials.map((s) => s.href),
@@ -71,10 +72,8 @@ const jsonLd = {
     <meta name="description" content={pageDescription} />
     <link rel="canonical" href={canonicalUrl} />
 
-    <!-- Favicon (generated from the IG logo in Session 6 - swap with the official logo when available) -->
-    <link rel="icon" type="image/png" sizes="32x32" href={path('/favicon-32.png')} />
-    <link rel="icon" type="image/png" sizes="16x16" href={path('/favicon-16.png')} />
-    <link rel="apple-touch-icon" href={path('/apple-touch-icon.png')} />
+    <!-- Placeholder favicon (public/favicon.svg) - swap with the client's official logo (docs/SETUP.md) -->
+    <link rel="icon" type="image/svg+xml" href={path('/favicon.svg')} />
     <meta name="theme-color" content="#121110" />
 
     <!-- Open Graph / Twitter (share previews) -->

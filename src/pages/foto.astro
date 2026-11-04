@@ -5,46 +5,36 @@ import { SITE, path } from '../data/site';
 import { IMG } from '../data/images';
 
 /**
- * The 7 gallery photos of the old site's Foto page
- * (docs/CONTENT-INVENTORY.md §Foto, docs/DECISIONS.md §3).
- * 4 were already downloaded as gallery-*.jpg for the homepage teaser and 2 as
- * service photos; foto-palestra.jpg is the remaining one (downloaded in Session 5).
+ * Gallery photos - PLACEHOLDER stock images: replace with the client's own
+ * photos in src/assets/images/ (same file names, see docs/SETUP.md).
  */
 const photos = [
-  { src: IMG.fotoPalestra, alt: 'Gli spazi della palestra Fit\u2019Art' },
-  { src: IMG.gallery1, alt: 'Sala corsi della palestra Fit\u2019Art' },
+  { src: IMG.fotoPalestra, alt: 'Gli spazi della palestra' },
+  { src: IMG.gallery1, alt: 'Sala corsi della palestra' },
   { src: IMG.gallery2, alt: 'Attrezzature per il fitness' },
-  { src: IMG.gallery3, alt: 'Zona di allenamento Fit\u2019Art' },
+  { src: IMG.gallery3, alt: 'Zona di allenamento' },
   { src: IMG.gallery4, alt: 'Dettaglio degli spazi della palestra' },
-  { src: IMG.ginnasticaPosturale, alt: 'Ginnastica posturale alla palestra Fit\u2019Art' },
-  { src: IMG.preparazioneAtletica, alt: 'Preparazione atletica alla palestra Fit\u2019Art' },
+  { src: IMG.ginnasticaPosturale, alt: 'Ginnastica posturale in palestra' },
+  { src: IMG.preparazioneAtletica, alt: 'Preparazione atletica in palestra' },
 ];
 ---
 
 <BaseLayout
   title="Foto"
   current="foto"
-  description="Foto e video della palestra Fit'Art a Rosate (MI): spazi, attrezzature, corsi e galleria d'arte.">
+  description="Foto di [Nome Palestra] a [Città (PRO)]: spazi, attrezzature e corsi.">
   <section class="container hero">
     <p class="eyebrow">Galleria</p>
     <h1>Foto</h1>
     <p class="lede">
-      Guarda la palestra da vicino: spazi, attrezzature, corsi e il video tour.
+      Guarda la palestra da vicino: spazi, attrezzature e corsi.
     </p>
   </section>
 
   <section class="section" aria-label="Galleria fotografica">
     <div class="container">
+      <!-- Optional: add a <video> element here for a tour video (drop the MP4 in public/videos/) -->
       <div class="gallery-grid">
-        <video
-          class="gallery-item gallery-video"
-          src={path('/videos/palestra-tour.mp4')}
-          controls
-          preload="metadata"
-          playsinline
-          aria-label="Video tour della palestra">
-          Il tuo browser non supporta la riproduzione video.
-        </video>
         {
           photos.map((photo) => (
             <Image
@@ -61,11 +51,12 @@ const photos = [
 
   <section class="section section-alt" aria-labelledby="visita-title">
     <div class="container">
-      <p class="eyebrow">Palestra &amp; galleria d'arte</p>
+      <p class="eyebrow">{SITE.tagline}</p>
       <h2 id="visita-title">Vieni a trovarci</h2>
+      <!-- Sample copy - replace with the client's own words (docs/SETUP.md) -->
       <p class="lede">
-        L'unica palestra in Italia che è anche una galleria d'arte. Chiama per
-        visitare la palestra: valuteremo insieme le tue esigenze.
+        Hai domande? Chiamaci per visitare la palestra e scoprire i corsi più
+        adatti a te: valuteremo insieme le tue esigenze.
       </p>
       <p class="section-action">
         <a class="btn btn-primary" href={SITE.phones[0].href}>Chiamaci: {SITE.phones[0].label}</a>

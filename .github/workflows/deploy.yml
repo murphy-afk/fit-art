@@ -1,4 +1,4 @@
-# Deploy the static Astro site to GitHub Pages (Session 7 — docs/ROADMAP.md).
+# Deploy the static Astro site to GitHub Pages (build + style audit run first).
 # Pages must be enabled once in the repo: Settings -> Pages -> Source: "GitHub Actions".
 name: Deploy to GitHub Pages
 

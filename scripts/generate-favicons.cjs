@@ -1,10 +1,17 @@
-// Session 6: generate favicons + OG share image from the existing logo/hero.
-// The logo is a circle on a square JPEG (white corners): the favicons apply a
-// circular mask so the corners become transparent.
-// NOTE: the logo is still the temporary IG profile pic (150x150) - regenerate
-// these files when the official logo arrives (docs/DECISIONS.md §Open).
+// Optional helper: generate PNG favicons + the OG share image from the
+// client's logo and hero photo (requires `sharp`, not installed by default):
+//   node scripts/generate-favicons.cjs path/to/logo.png
+// The template ships public/favicon.svg as the default icon; only run this
+// script if PNG favicons / an apple-touch-icon are wanted, and add the
+// matching <link> tags back in src/layouts/BaseLayout.astro (docs/SETUP.md).
 const sharp = require('sharp');
 const fs = require('fs');
+
+const logoFile = process.argv[2];
+if (!logoFile) {
+  console.error('Usage: node scripts/generate-favicons.cjs path/to/logo.png');
+  process.exit(1);
+}
 
 const overlay = Buffer.from(
   '<svg width="1200" height="630"><rect width="1200" height="630" fill="black" fill-opacity="0.35"/></svg>'
@@ -20,7 +27,7 @@ function circleMask(size) {
 
 /** Logo -> square PNG of `size`, white corners made transparent. */
 async function maskedIcon(size, file) {
-  await sharp('public/images/logo-s150x150.jpg')
+  await sharp(logoFile)
     .resize(size, size)
     .ensureAlpha()
     .composite([{ input: circleMask(size), blend: 'dest-in' }])

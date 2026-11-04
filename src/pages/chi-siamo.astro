@@ -5,8 +5,8 @@ import { SITE, path } from '../data/site';
 import { IMG } from '../data/images';
 
 /**
- * Areas of the gym - from the old site's "Chi siamo" page
- * (original text: docs/CONTENT-INVENTORY.md §Chi siamo).
+ * Areas of the gym - SAMPLE content for the template: replace with the
+ * client's real spaces (docs/SETUP.md).
  */
 const areas = [
   {
@@ -22,8 +22,8 @@ const areas = [
     desc: "Un grande spazio con le attrezzature per l'allenamento muscolare.",
   },
   {
-    name: 'Training Zone',
-    desc: 'La TRAINING ZONE per tutti gli allenamenti a corpo libero e il FUNCTIONAL TRAINING.',
+    name: 'Zona functional',
+    desc: 'La zona dedicata agli allenamenti a corpo libero e al functional training.',
   },
 ];
 ---
@@ -31,7 +31,7 @@ const areas = [
 <BaseLayout
   title="Chi siamo"
   current="chi-siamo"
-  description="Fit'Art: l'unica palestra in Italia che è anche una galleria d'arte. Spazi per cardio, corsi fitness e pilates, allenamento muscolare e functional training a Rosate (MI).">
+  description="Chi è [Nome Palestra] a [Città (PRO)]: gli spazi per il cardio, i corsi fitness e pilates, l'allenamento muscolare e il functional training.">
   <section class="container hero">
     <p class="eyebrow">La palestra</p>
     <h1>Chi siamo</h1>
@@ -40,7 +40,7 @@ const areas = [
     </p>
   </section>
 
-  <!-- Gli spazi - original areas from the old site -->
+  <!-- Gli spazi - sample areas (docs/SETUP.md) -->
   <section class="section" aria-labelledby="spazi-title">
     <div class="container">
       <h2 id="spazi-title">Gli spazi</h2>
@@ -62,35 +62,35 @@ const areas = [
       <Image
         class="page-media"
         src={IMG.gallery1}
-        alt="La sala corsi della palestra Fit'Art"
+        alt="La sala corsi della palestra"
         width={534}
         sizes="(min-width: 72rem) 72rem, 100vw" />
     </div>
   </section>
 
-  <!-- Galleria d'arte - the USP from the old site -->
-  <section class="section section-alt" aria-labelledby="arte-title">
+  <!-- Unique selling point - PLACEHOLDER (docs/SETUP.md): replace with the client's real strength -->
+  <section class="section section-alt" aria-labelledby="vantaggio-title">
     <div class="container">
-      <p class="eyebrow">Palestra &amp; galleria d'arte</p>
-      <h2 id="arte-title">Siamo l'unica palestra in Italia ad essere una galleria d'arte</h2>
+      <p class="eyebrow">[Il tuo vantaggio unico]</p>
+      <h2 id="vantaggio-title">[Perché scegliere questa palestra]</h2>
       <div class="prose">
+        <!-- Sample copy - replace with the client's own words -->
         <p>
-          Nei nostri spazi vengono allestite <strong>mostre d'arte personali e
-          collettive</strong> e <strong>rassegne fotografiche</strong>: così da
-          noi puoi, oltre che migliorare la tua estetica, stimolare il tuo
-          gusto artistico ed estetico.
+          [Due righe su cosa rende speciale la palestra: es. <strong>spazi ampi,
+          attrezzature aggiornate e corsi in piccoli gruppi</strong>, così da
+          seguirti passo passo verso i tuoi obiettivi.]
         </p>
       </div>
       <Image
         class="page-media"
         src={IMG.gallery2}
-        alt="Gli spazi Fit'Art, dove si alternano allenamento e mostre d'arte"
+        alt="[Descrizione della foto]"
         width={534}
         sizes="(min-width: 72rem) 72rem, 100vw" />
     </div>
   </section>
 
-  <!-- Team - original claim from the old site -->
+  <!-- Team - sample copy (docs/SETUP.md) -->
   <section class="section" aria-labelledby="team-title">
     <div class="container">
       <h2 id="team-title">Una squadra di professionisti</h2>

@@ -1,4 +1,4 @@
-// Session 3 audit: find (a) standalone tag lines (">" or "/>" alone), (b) emoji-like characters.
+// Style audit: find (a) standalone tag lines (">" or "/>" alone), (b) emoji-like characters, (c) em-dashes.
 const fs = require('fs');
 const path = require('path');
 
@@ -6,7 +6,7 @@ const dirs = ['src', 'docs', 'public', '.'];
 const exts = new Set(['.astro', '.ts', '.css', '.md', '.mjs', '.json']);
 const emojiRe = /[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{2190}-\u{21FF}\u{1F1E6}-\u{1F1FF}]/u;
 const standaloneTag = /^\s*(\/?>|>)\s*$/;
-// Client rule (Session 7 follow-up): no em-dashes in source, docs or UI.
+// Rule: no em-dashes in source, docs or UI.
 // Plain hyphens (and en-dashes in range notation) are allowed.
 const emDashRe = /—/;
 

@@ -1,22 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE } from '../data/site';
+import { SITE, addressLine, hoursLine } from '../data/site';
 
 /**
- * Contatti page - Session 5; form handling added in Session 6.
- * GitHub Pages is static, so the form posts to Formspree via fetch
- * (docs/DECISIONS.md §Session 6). Until SITE.formspreeEndpoint contains a real
- * form ID, submitting shows the "in fase di collaudo" note instead of sending.
+ * Contatti page - form handling: GitHub Pages is static, so the form posts to
+ * Formspree via fetch (see docs/SETUP.md). Until SITE.formspreeEndpoint
+ * contains a real form ID, submitting shows the "in attivazione" note instead
+ * of sending.
  */
-// Google Maps link for the gym - confirmed by the client (Session 7).
-const mapHref = 'https://maps.app.goo.gl/Uf1LsX99xcg7mxeU6';
+// Google Maps search link built from the address in src/data/site.ts.
+const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addressLine)}`;
 const formspreeReady = !SITE.formspreeEndpoint.includes('YOUR_FORM_ID');
 ---
 
 <BaseLayout
   title="Contatti"
   current="contatti"
-  description="Contatti della palestra Fit'Art a Rosate (MI): Via Alessandro Manzoni 33, telefoni 320 309 5913 / 346 362 9565, orari e modulo di contatto.">
+  description={`Contatti di ${SITE.brand}: ${addressLine}, telefoni ${SITE.phones.map((p) => p.label).join(' / ')}, orari e modulo di contatto.`}>
   <section class="container hero">
     <p class="eyebrow">Contatti</p>
     <h1>Contatti</h1>
@@ -34,7 +34,7 @@ const formspreeReady = !SITE.formspreeEndpoint.includes('YOUR_FORM_ID');
       <div class="contact-grid">
         <div class="contact-card">
           <h3>Dove siamo</h3>
-          <p>{SITE.address}</p>
+          <p>{addressLine}</p>
           <p>
             <a href={mapHref} rel="noopener" target="_blank">
               Apri in Google Maps<span class="visually-hidden"> (si apre in una nuova finestra)</span>
@@ -56,19 +56,19 @@ const formspreeReady = !SITE.formspreeEndpoint.includes('YOUR_FORM_ID');
         </div>
         <div class="contact-card">
           <h3>Email</h3>
-          <!-- PLACEHOLDER (docs/DECISIONS.md §1): swap in the official email -->
+          <!-- PLACEHOLDER (docs/SETUP.md): swap in the official email -->
           <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
         </div>
         <div class="contact-card">
           <h3>Orari</h3>
-          <p>{SITE.hours.weekday}</p>
-          <p>{SITE.hours.weekend}</p>
+          <p>{hoursLine(SITE.hours.weekday)}</p>
+          <p>{hoursLine(SITE.hours.weekend)}</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact form - Formspree wiring (Session 6). Native POST as no-JS fallback. -->
+  <!-- Contact form - Formspree wiring. Native POST as no-JS fallback. -->
   <section class="section section-alt" aria-labelledby="form-title">
     <div class="container">
       <h2 id="form-title">Scrivici</h2>
@@ -111,8 +111,8 @@ const formspreeReady = !SITE.formspreeEndpoint.includes('YOUR_FORM_ID');
             formspreeReady
               ? 'Rispondiamo normalmente entro pochi giorni.'
               : <>
-                  Il modulo è in fase di collaudo: l'invio sarà attivo a breve. Per
-                  ora puoi scriverci a <a href={`mailto:${SITE.email}`}>{SITE.email}</a> o chiamarci.
+                  Il modulo non è ancora attivo: l'invio sarà attivato a breve.
+                  Per ora puoi scriverci a <a href={`mailto:${SITE.email}`}>{SITE.email}</a> o chiamarci.
                 </>
           }
         </p>

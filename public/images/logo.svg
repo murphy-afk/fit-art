@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+  <!-- Placeholder logo: swap with the client's official logo (see docs/SETUP.md) -->
+  <rect width="40" height="40" rx="8" fill="#262321"/>
+  <g fill="none" stroke="#A3BFAE" stroke-width="2.5" stroke-linecap="round">
+    <path d="M13 13.5v13M27 13.5v13M9 17v6M31 17v6M13 20h14"/>
+  </g>
+</svg>

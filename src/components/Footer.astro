@@ -1,11 +1,10 @@
 ---
-import { SITE } from '../data/site';
+import { SITE, addressLine, hoursLine } from '../data/site';
 
 /**
- * Social icons - Session 7 follow-up (client request: "icon logos for the
- * social media pages"). Lucide does not ship brand icons, so the three marks
- * are hand-drawn inline SVGs in Lucide's stroke style (24x24 viewBox,
- * currentColor, stroke-width 2) - decision logged in docs/DECISIONS.md.
+ * Social icons: Lucide does not ship brand icons, so the three marks are
+ * hand-drawn inline SVGs in Lucide's stroke style (24x24 viewBox,
+ * currentColor, stroke-width 2).
  * Keyed by the social labels in src/data/site.ts (single source of truth).
  */
 const socialIcons: Record<string, string> = {
@@ -22,10 +21,10 @@ const socialIcons: Record<string, string> = {
   <div class="container footer-grid">
     <div class="footer-brand">
       <h2>{SITE.brand}</h2>
+      <!-- Sample footer copy - replace with the client's own words (docs/SETUP.md) -->
       <p>
-        {SITE.tagline}: l'unica palestra in Italia che è anche galleria d'arte.
-        Allenamenti personalizzati, preparazione atletica, posturologia,
-        chinesiologia e massoterapia a {SITE.city}.
+        {SITE.tagline}: allenamenti personalizzati, corsi di gruppo, preparazione
+        atletica e attrezzature moderne a {SITE.address.city}.
       </p>
     </div>
 
@@ -35,10 +34,10 @@ const socialIcons: Record<string, string> = {
         {SITE.phones.map((phone) => (
           <li><a href={phone.href}>{phone.label}</a></li>
         ))}
-        <!-- PLACEHOLDER EMAIL (docs/DECISIONS.md §1): swap in the official email -->
+        <!-- PLACEHOLDER EMAIL (docs/SETUP.md): swap in the official email -->
         <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
-        <li>{SITE.hours.weekday}</li>
-        <li>{SITE.hours.weekend}</li>
+        <li>{hoursLine(SITE.hours.weekday)}</li>
+        <li>{hoursLine(SITE.hours.weekend)}</li>
       </ul>
     </div>
 
@@ -72,7 +71,6 @@ const socialIcons: Record<string, string> = {
   </div>
 
   <div class="container footer-bottom">
-    <span>© 2026 {SITE.name} · {SITE.address}</span>
-    <span>Prototipo in costruzione</span>
+    <span>© {new Date().getFullYear()} {SITE.name} · {addressLine}</span>
   </div>
 </footer>

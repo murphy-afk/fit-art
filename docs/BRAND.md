@@ -1,30 +1,48 @@
-# Brand & Style - derived from Instagram @fitartstudiofitness
+# Brand & Style - dark premium design tokens
 
-Source: https://www.instagram.com/fitartstudiofitness/ (Fit'art – StudioFitness ROSATE, 889 followers, 40 posts)
-Profile: "•Allenamenti personalizzati •Preparazione atletica •Posturologia •Chinesiologia •Massoterapia @fitart_massoterapia Rosate"
+The template ships a complete, ready-to-use visual identity. All tokens live in
+`src/styles/global.css`; this file explains the direction and how to adapt it.
 
-Note: in Session 3 the client replaced the bronze/beige accent with **light grayish green** (`#A3BFAE` / `#BCD3C4` / `#E9F0EA`); in the Session 7 follow-up the scheme was **lifted and warmed** (all dark tones raised one step, warm tint) and a **warm sand second accent** added (`#E6D5B8` / `#F2E7D4` - the beige tint below, revived). The table below is the original Instagram analysis; final tokens live in `src/styles/global.css` and are summarized in `AGENTS.md` + `docs/DECISIONS.md` §Session 3 / §Session 7 follow-up.
+## Direction
 
-## Visual identity (from palette analysis of 19 recent posts + profile pic)
+- **Dark premium look**: warm near-black backgrounds, bold off-white
+  typography, big imagery.
+- **Photography-first**: full-bleed hero photo, generous image grids, dark
+  overlay on the hero for text contrast.
+- **Two accents**: light grayish green is the *interactive* accent (links,
+  buttons, icons); warm sand is the *decorative* accent (eyebrows, highlights,
+  gradients). This avoids the usual gym-neon clichés.
+- **No emojis, no icons except Lucide** (social brand marks are hand-drawn
+  inline SVGs in Lucide's stroke style).
 
-The feed is **dark, moody, high-contrast gym photography** with warm undertones:
+## Tokens
 
-| Role | Color | Hex | Notes |
+| Role | Token | Hex | Usage |
 |------|-------|-----|-------|
-| Base / background | near-black | `#0A0A0A` / `#131313` | dominant across most posts |
-| Surface | charcoal | `#1E1E1E` | cards, sections |
-| Text | off-white | `#F5F5F5` | high contrast on dark |
-| Accent | warm bronze/terracotta | `#966B50` | warm tone found in several posts |
-| Soft tint | warm beige | `#F2E7D4` | light sections, subtle backgrounds |
-| Muted gray | `#B1B3B0` | secondary text, borders |
+| Base background | `--color-bg` | `#121110` | page background |
+| Alt background | `--color-bg-alt` | `#1B1917` | alternating sections, footer |
+| Surface | `--color-surface` | `#262321` | cards, navbar (must stay lighter than base) |
+| Text | `--color-text` | `#F5F5F5` | main text |
+| Accent | `--color-accent` | `#A3BFAE` | links, buttons, interactive icons |
+| Accent hover | `--color-accent-strong` | `#BCD3C4` | hover / focus states |
+| Sand | `--color-sand` | `#E6D5B8` | eyebrows, decorative highlights |
+| Sand hover / light | `--color-sand-strong` | `#F2E7D4` | hover, gradients |
+| Light tint | `--color-tint` | `#E9F0EA` | light sections, highlights |
+| Muted | `--color-muted` | `#B8B6B2` | secondary text, borders |
 
-## Mood / direction
-- Dark premium look: near-black backgrounds, white bold typography, big imagery
-- Warm bronze accent for CTAs and highlights (avoids the usual gym-neon clichés)
-- Photography-first: full-bleed photos of training, dramatic lighting
-- Profile pic is black with white logo mark - clean, minimal logo treatment
+## Typography and layout
 
-## Extra content discovered
-- Bio lists additional services: **Allenamenti personalizzati, Preparazione atletica, Posturologia, Chinesiologia, Massoterapia** (massage therapy has its own IG: @fitart_massoterapia)
-- They also have a TikTok: @fitartstudiofitness
-- Logo candidate: IG profile picture (black bg, white mark) - to be replaced by the official logo file when available
+- System sans stack (`--font-sans`), heavy weights for headings, generous
+  line-height for body copy.
+- Max content width `--max-width: 72rem`, mobile-first, breakpoints at
+  `48rem` and `64rem`.
+- Eyebrows (small uppercase-ish labels in sand) introduce sections; CTAs are
+  pill buttons (`btn-primary` in accent, `btn-ghost` outlined).
+
+## Rebranding for a client
+
+1. Update the color tokens in `src/styles/global.css` (keep the surface
+   clearly lighter than the base background).
+2. Swap `public/images/logo.svg` and `public/favicon.svg`.
+3. Replace the placeholder photos in `src/assets/images/` + `public/og-image.jpg`.
+4. Keep `theme-color` in `src/layouts/BaseLayout.astro` in sync with `--color-bg`.
